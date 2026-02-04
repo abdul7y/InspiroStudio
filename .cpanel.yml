@@ -2,4 +2,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/inspgdgt/public_html
     - export REPOPATH=/home/inspgdgt/repositories/InspiroStudio
-    - /bin/cp -R $REPOPATH/dist/* $DEPLOYPATH
+    - cd $REPOPATH
+    - npm install
+    - npm run build
+    - /bin/cp -R dist/* $DEPLOYPATH
