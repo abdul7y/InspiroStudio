@@ -1,4 +1,5 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/inspgdgt/public_html
-    - /bin/cp -R dist/* $DEPLOYPATH
+    - export REPOPATH=/home/inspgdgt/repositories/InspiroStudio
+    - /bin/cp -R $REPOPATH/dist/* $DEPLOYPATH
