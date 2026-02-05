@@ -1,3 +1,5 @@
+# Force deploy
+
 deployment:
   tasks:
     - export DEPLOYPATH=/home/inspgdgt/public_html
