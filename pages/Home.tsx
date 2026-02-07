@@ -542,52 +542,279 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
-      {/* 7. Testimonials Section */}
-      <section className="relative py-48 px-8 md:px-16 lg:px-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1a0a1e] to-[#08030b] pointer-events-none"></div>
-        <div className="max-w-[1440px] mx-auto relative z-10">
-          <div className="text-center mb-24 flex flex-col items-center">
-            <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-10">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em]">Testimonial</span>
-            </div>
-            <h2 className="text-[48px] md:text-[68px] font-bold text-white tracking-tight leading-[1.1] mb-2">Customer Reviews</h2>
-            <div className="relative group/cta mt-12">
-              <div className="absolute -inset-[4px] bg-gradient-to-r from-[#8a4ba7] via-[#a855f7] to-[#5b21b6] rounded-xl blur-[32px] opacity-70 group-hover/cta:opacity-100 transition duration-500"></div>
-              <a 
-                href={CALENDLY_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative block px-14 py-4.5 bg-gradient-to-r from-[#8a4ba7] to-[#5b21b6] border border-white/20 rounded-[14px] text-white font-bold text-[15px] tracking-tight shadow-2xl transition-all hover:scale-[1.02] text-center"
-              >
-                Let's Work Together
-              </a>
-            </div>
+      {/* PRICING SECTION */}
+<section className="relative px-8 md:px-16 lg:px-24 py-40 overflow-hidden">
+  {/* background glow */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-purple-600/10 blur-[120px]" />
+  </div>
+
+  <div className="max-w-[1440px] mx-auto relative z-10">
+    {/* heading */}
+    <div className="max-w-3xl mb-20">
+      <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-6">
+        Pricing
+      </span>
+
+      <h2 className="text-[42px] md:text-[56px] font-bold text-white tracking-tight leading-[1.05]">
+        Plans for all businesses, Suitable for
+      </h2>
+      <h3 className="text-[32px] md:text-[44px] font-semibold text-gray-400 tracking-tight leading-[1.1] mt-2">
+        Personal, Agencies, Startups.
+      </h3>
+
+      <p className="text-gray-500 text-[15px] mt-6 max-w-xl leading-relaxed">
+        Our pricing plans are designed to make getting started as effortless as possible.
+        With flexible options tailored to suit a variety of needs and budgets.
+      </p>
+    </div>
+
+    {/* cards */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      
+      {/* PRO WEEKLY */}
+      <div className="relative group rounded-[28px] border border-white/[0.06] bg-gradient-to-b from-[#070b1a] via-[#050814] to-black overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.8)]">
+        <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_20%_0%,rgba(59,130,246,0.18),transparent_60%)]" />
+
+        <div className="relative p-10">
+          <div className="flex items-center justify-between mb-6">
+            <span className="text-white font-semibold text-[15px]">Pro Weekly</span>
+            <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-gray-400">
+              Most Pick
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((t, idx) => (
-              <div key={idx} className="bg-[#08030b]/90 border border-white/[0.03] rounded-[32px] p-10 flex flex-col relative group overflow-hidden shadow-2xl hover:bg-[#0c0511]/95 transition-all duration-700">
-                <div className="flex items-center justify-between mb-8 relative z-10">
-                  <div className="w-11 h-11 rounded-full border border-white/10 p-0.5 relative overflow-hidden bg-white/5 shadow-inner">
-                    <img src={t.avatar} className="w-full h-full rounded-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt={t.name} />
-                  </div>
-                  <X className="w-4 h-4 text-gray-800 hover:text-gray-400 transition-colors cursor-pointer" />
-                </div>
-                <div className="flex space-x-1 mb-8 relative z-10 opacity-60 group-hover:opacity-100 transition-opacity">
-                  {[1, 2, 3, 4, 5].map(s => <Star key={s} className="w-3 h-3 text-white fill-white" />)}
-                </div>
-                <p className="text-gray-400/80 group-hover:text-gray-300 text-[15px] leading-[1.6] mb-12 flex-grow font-medium relative z-10 transition-colors">"{t.quote}"</p>
-                <div className="mt-auto relative z-10 border-t border-white/[0.03] pt-6">
-                  <h4 className="text-white font-bold text-[14px] mb-1 tracking-tight">{t.name} <span className="mx-2 text-gray-700 font-normal">·</span> <span className="text-gray-500 font-medium">{t.role}</span></h4>
-                  <p className="text-gray-600 text-[11px] font-bold uppercase tracking-[0.2em]">{t.company}</p>
-                </div>
-              </div>
+          <div className="mb-6">
+            <span className="text-white text-[40px] font-bold">$790</span>
+            <span className="text-gray-500 text-[14px]"> / Month</span>
+            <span className="block text-gray-600 line-through text-[14px]">$1450</span>
+          </div>
+
+          <p className="text-gray-400 text-[14px] leading-relaxed mb-8">
+            Our basic pricing plan is designed to offer great value while providing the essential features you need to get started.
+          </p>
+
+          <ul className="space-y-3 mb-10 text-[13px]">
+            {[
+              "100+ Projects",
+              "75+ Revisions",
+              "Dedicated Expert Product Designer",
+              "Up to 40 hours per week",
+              "Daily Updates",
+              "Real-Time Communication",
+              "One Project at a time"
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-3 text-gray-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                {item}
+              </li>
             ))}
+          </ul>
+
+          <a
+            href={CALENDLY_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center px-6 py-3 rounded-full text-white text-[14px] font-bold tracking-tight
+              bg-gradient-to-r from-[#a855f7] via-[#7c3aed] to-[#4c1d95]
+              shadow-[0_0_30px_rgba(168,85,247,0.55)]
+              hover:scale-[1.03] transition-all"
+          >
+            Book an Appointment
+          </a>
+        </div>
+      </div>
+
+      {/* PREMIUM */}
+      <div className="relative group rounded-[28px] border border-white/[0.08] bg-gradient-to-b from-[#090d20] via-[#06081a] to-black overflow-hidden shadow-[0_50px_140px_rgba(0,0,0,0.9)]">
+        <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_20%_0%,rgba(99,102,241,0.22),transparent_60%)]" />
+
+        <div className="relative p-10">
+          <div className="flex items-center justify-between mb-6">
+            <span className="text-white font-semibold text-[15px]">Premium</span>
+            <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-bold uppercase">
+              Recommended
+            </span>
+          </div>
+
+          <div className="mb-6">
+            <span className="text-white text-[40px] font-bold">$2,599</span>
+            <span className="text-gray-500 text-[14px]"> / Month</span>
+          </div>
+
+          <p className="text-gray-400 text-[14px] leading-relaxed mb-8">
+            Our pro pricing plan is designed for businesses looking for advanced features and premium support.
+          </p>
+
+          <ul className="space-y-3 mb-10 text-[13px]">
+            {[
+              "650+ Projects",
+              "250+ Revisions",
+              "Dedicated Expert Product Designer",
+              "Up to 40 hours per week",
+              "Daily Updates",
+              "Real-Time Communication",
+              "One Project at a time"
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-3 text-gray-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href={CALENDLY_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center px-6 py-3 rounded-full text-white text-[14px] font-bold tracking-tight
+              bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#4f46e5]
+              shadow-[0_0_36px_rgba(99,102,241,0.6)]
+              hover:scale-[1.03] transition-all"
+          >
+            Book an Appointment
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+     {/* 7. Testimonial Section – Dark Premium SaaS Glassmorphism */}
+<section className="relative py-48 px-8 md:px-16 lg:px-24 overflow-hidden bg-black">
+
+  {/* ambient background */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-purple-600/20 blur-[140px]" />
+    <div className="absolute left-0 top-[35%] w-[30%] h-[45%] bg-[#050914]" style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }} />
+    <div className="absolute right-0 top-[35%] w-[30%] h-[45%] bg-[#050914]" style={{ clipPath: "polygon(100% 0, 100% 100%, 0 0)" }} />
+  </div>
+
+  <div className="max-w-[1440px] mx-auto relative z-10">
+
+    {/* header */}
+    <div className="text-center max-w-3xl mx-auto mb-28">
+      <span className="inline-flex items-center px-3 py-1 rounded-full 
+        bg-white/5 border border-white/10 
+        text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-6">
+        Testimonial
+      </span>
+
+      <h2 className="text-[44px] md:text-[60px] font-bold text-white tracking-tight leading-[1.05]">
+        Customer Reviews About
+      </h2>
+
+      <h3 className="text-[34px] md:text-[48px] font-semibold text-gray-400 tracking-tight leading-[1.1] mt-2">
+        Process and Final Quality
+      </h3>
+
+      <p className="text-gray-500 text-[15px] mt-6 leading-relaxed">
+        We keep it easy: clear checkpoints, fast feedback loops,
+        and work that looks sharp on launch day.
+      </p>
+
+      <div className="mt-10">
+        <a
+          href={CALENDLY_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-8 py-3 rounded-full
+            text-white text-[14px] font-bold tracking-tight
+            bg-gradient-to-r from-[#a855f7] via-[#7c3aed] to-[#4c1d95]
+            shadow-[0_0_35px_rgba(168,85,247,0.6)]
+            hover:scale-[1.05] transition-all"
+        >
+          Let’s Work Together
+        </a>
+      </div>
+    </div>
+
+    {/* testimonial cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      {[
+        {
+          name: "Daniel Carter",
+          role: "Founder",
+          company: "Innovate Solutions",
+          text: "Our message finally clicked. The new explainer is simple, sharp, and easy to share. They nailed the styleframes early, then the animation matched perfectly."
+        },
+        {
+          name: "Emily Davis",
+          role: "Product Manager",
+          company: "Nexus Digital",
+          text: "The team understood our complex requirements and delivered a user-friendly, high-performing product."
+        },
+        {
+          name: "David Lee",
+          role: "Founder",
+          company: "GreenLeaf Enterprises",
+          text: "Their execution balanced visual polish with functional clarity. A very rare combination."
+        },
+        {
+          name: "Mark Thompson",
+          role: "Creative Director",
+          company: "PixelWorks Studio",
+          text: "Strong process, sharp design sense, and excellent communication throughout the project."
+        },
+        {
+          name: "Brian Clark",
+          role: "Team Lead",
+          company: "Mono Design",
+          text: "Everything was structured, predictable, and clean. The outcome exceeded expectations."
+        },
+        {
+          name: "Daniel Carter",
+          role: "Founder",
+          company: "Fusion Studio",
+          text: "A premium experience from start to finish. The final result feels intentional and refined."
+        }
+      ].map((t, idx) => (
+        <div
+          key={idx}
+          className="relative h-full flex flex-col rounded-[26px]
+            bg-gradient-to-r from-[#0b1628] via-[#050914] to-black
+            backdrop-blur-xl
+            border border-white/[0.06]
+            p-8
+            shadow-[0_30px_90px_rgba(0,0,0,0.9)]
+            hover:border-white/[0.12]
+            transition-all duration-500"
+        >
+
+          {/* top */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white font-bold">
+                {t.name.charAt(0)}
+              </div>
+              <div className="flex gap-[2px] text-white text-[11px]">
+                ★★★★★
+              </div>
+            </div>
+            <span className="text-gray-700 text-sm">×</span>
+          </div>
+
+          {/* content */}
+          <p className="text-gray-400 text-[14px] leading-relaxed mb-10">
+            “{t.text}”
+          </p>
+
+          {/* footer */}
+          <div className="mt-auto pt-6 border-t border-white/[0.06]">
+            <div className="text-white font-semibold text-[14px]">
+              {t.name}
+            </div>
+            <div className="text-gray-500 text-[12px]">
+              {t.role} · {t.company}
+            </div>
           </div>
         </div>
-      </section>
-
+      ))}
+    </div>
+  </div>
+</section>
       {/* 8. FAQ Section */}
       <section className="relative py-48 px-8 md:px-16 lg:px-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#08030b] via-[#1a0a1e] to-[#0a050f] pointer-events-none"></div>
