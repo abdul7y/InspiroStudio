@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-global-gradient selection:bg-purple-500/40">
+      <div className="min-h-screen flex flex-col ">
         <Header />
         <main className="flex-grow">
           <Routes>
