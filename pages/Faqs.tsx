@@ -29,7 +29,7 @@ const Faqs: React.FC = () => {
   ];
 
   return (
-    <div className="pt-48 pb-24 px-6 sm:px-12 lg:px-24">
+    <div className="bg-global-gradient min-h-screen pt-48 pb-24 px-6 sm:px-12 lg:px-24">
       <div className="max-w-3xl mx-auto text-center mb-24">
         <h1 className="text-6xl font-bold text-white mb-8 tracking-tight">Got <span className="text-purple-300">Questions?</span></h1>
         <p className="text-[#a1a1aa] text-lg">Detailed insights into our creative process and partnerships.</p>
@@ -64,7 +64,7 @@ const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, ans
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`glass-card overflow-hidden transition-all duration-500 ${isOpen ? 'bg-white/[0.08]' : 'hover:bg-white/[0.05]'}`}>
+    <div className={`glass-card overflow-hidden transition-all duration-500 ${isOpen ? 'border-blue-400/40' : 'hover:border-blue-400/25'}`}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-8 flex items-center justify-between text-left"

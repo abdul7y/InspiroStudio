@@ -13,7 +13,7 @@ const Blogs: React.FC = () => {
   ];
 
   return (
-    <div className="pt-48 pb-24 px-6 sm:px-12 lg:px-24">
+    <div className="bg-global-gradient min-h-screen pt-48 pb-24 px-6 sm:px-12 lg:px-24">
       <div className="max-w-[1440px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 space-y-8 md:space-y-0">
           <div>
@@ -33,7 +33,7 @@ const Blogs: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post, idx) => (
-            <article key={idx} className="glass-card group cursor-pointer overflow-hidden transition-all duration-500 hover:translate-y-[-8px] hover:bg-white/[0.05]">
+            <article key={idx} className="glass-card group cursor-pointer overflow-hidden transition-all duration-500 hover:translate-y-[-8px] hover:border-blue-400/35">
               <div className="aspect-[16/10] overflow-hidden">
                 <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>

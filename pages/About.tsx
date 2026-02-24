@@ -141,7 +141,7 @@ const About: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member) => (
-              <div key={member.name} className="group relative bg-[#0c0611] border border-white/5 rounded-[32px] overflow-hidden shadow-2xl">
+              <div key={member.name} className="group relative bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-[32px] overflow-hidden shadow-2xl">
                 <div className="aspect-[4/5] overflow-hidden">
                   <img src={member.img} alt={member.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
@@ -162,7 +162,7 @@ const About: React.FC = () => {
 
       {/* 5. Awards Section - Main cart with Themed Sub-Carts */}
       <section className="py-48 px-6 md:px-12 lg:px-24">
-        <div className="max-w-[1440px] mx-auto bg-[#0a050f] border border-white/5 rounded-[60px] p-16 md:p-24 shadow-3xl">
+        <div className="max-w-[1440px] mx-auto bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-[60px] p-16 md:p-24 shadow-3xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
             <div>
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-8">
@@ -175,7 +175,7 @@ const About: React.FC = () => {
 
             <div className="grid grid-cols-2 gap-6">
               {awards.map((award, i) => (
-                <div key={i} className="bg-gradient-to-br from-[#8a4ba7] to-[#5b21b6] border border-white/10 rounded-[32px] p-10 flex flex-col justify-between aspect-square group transition-all relative overflow-hidden shadow-xl hover:scale-[1.02]">
+                <div key={i} className="bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-[32px] p-10 flex flex-col justify-between aspect-square group transition-all relative overflow-hidden shadow-xl hover:scale-[1.02]">
                   <div className="flex justify-between items-start relative z-10">
                     <div className="opacity-80 group-hover:opacity-100 transition-opacity">
                       <span className="text-[12px] font-black text-white uppercase tracking-widest">{award.name}</span>
@@ -210,7 +210,7 @@ const About: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {tools.map((tool, i) => (
-              <div key={i} className="bg-[#0c0611] border border-white/5 rounded-[40px] p-10 text-left hover:border-white/10 transition-all group relative overflow-hidden shadow-xl flex flex-col justify-between aspect-[5/4]">
+              <div key={i} className="bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-[40px] p-10 text-left hover:border-white/20 transition-all group relative overflow-hidden shadow-xl flex flex-col justify-between aspect-[5/4]">
                 <div>
                   <div className="flex justify-between items-start mb-10">
                     <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-[20px] flex items-center justify-center p-4 group-hover:bg-white/10 transition-all">
@@ -235,7 +235,7 @@ const About: React.FC = () => {
       {/* 8. Unique Opportunity Section - Refined Wave Overlay */}
       <section className="relative py-48 px-6 md:px-12 lg:px-24 overflow-hidden">
         <div className="max-w-[1440px] mx-auto">
-          <div className="relative group/card overflow-hidden rounded-[40px] border border-white/10 bg-[#0c0611] shadow-2xl">
+          <div className="relative group/card overflow-hidden rounded-[40px] border border-white/10 bg-gradient-to-br from-[#070b1a] via-[#050814] to-black shadow-2xl">
             <div className="absolute inset-0 bg-global-gradient opacity-90 pointer-events-none"></div>
             
             <div className="relative z-10 py-32 flex flex-col items-center text-center px-10">

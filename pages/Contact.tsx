@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
-import { Mail, Send, MessageCircle, CheckCircle2, Loader2, Sparkles, ArrowRight, ClipboardList, User, Briefcase, ShieldCheck, AlertCircle } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
+import { Mail, Send, MessageCircle, Loader2, Sparkles, ArrowRight, ClipboardList, User, Briefcase, ShieldCheck, AlertCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,53 +13,67 @@ const Contact: React.FC = () => {
   const [aiInsight, setAiInsight] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const buildInsightFallback = (category: string) => {
+    const fallbackByCategory: Record<string, string> = {
+      'Video Marketing':
+        'Your brief is a strong fit for a high-converting narrative video strategy focused on clarity, retention, and conversion.',
+      'Product Animation':
+        'Your concept is ideal for a product-led animation flow that simplifies technical details and improves buyer confidence.',
+      'Branding Package':
+        'Your direction supports a premium branding system with cohesive visual language and clear market positioning.',
+      'Social Strategy':
+        'Your request aligns with a social-first content system built for engagement, consistency, and repeatable creative output.',
+    };
+
+    return (
+      fallbackByCategory[category] ||
+      'Your project direction is clear and commercially strong, and we can map it into a focused production roadmap quickly.'
+    );
+  };
+
+  const resolveContactApiUrl = () => {
+    const hostname = window.location.hostname;
+    const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1';
+    return isLocalHost ? 'http://localhost:3001/api/contact' : '/api/contact';
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.brief) return;
 
     setStatus('submitting');
     setErrorMessage(null);
+    setAiInsight(null);
 
     try {
-      // 1. AI Analysis of the user's specific project "want"
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
-        contents: `A potential client named ${formData.name} wants: "${formData.brief}". Service category: ${formData.category}.
-                  Act as our Studio's Chief Strategist. Provide a 2-sentence expert response validating their technical vision. 
-                  Keep it sophisticated, elite, and encouraging.`,
-        config: {
-          temperature: 0.7,
-          maxOutputTokens: 150,
-          thinkingConfig: { thinkingBudget: 50 }
-        }
-      });
+      const fallbackInsight = buildInsightFallback(formData.category);
 
-      const insight = response.text || "Your requirements align perfectly with our cinematic standards. We are ready to scale this vision into a world-class production.";
-      setAiInsight(insight);
-
-      // 2. Dispatch to the Node.js backend
-      // We point to the local server port 3001 or the relative /api path if proxied
-      const mailResponse = await fetch('http://localhost:3001/api/contact', {
+      const mailResponse = await fetch(resolveContactApiUrl(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          aiInsight: insight
+          aiInsight: fallbackInsight
         })
       });
 
-      if (mailResponse.ok) {
-        setStatus('success');
-      } else {
-        const errorData = await mailResponse.json();
-        throw new Error(errorData.details || 'Server rejected the email dispatch.');
+      let payload: { message?: string; aiInsight?: string; error?: string; details?: string } = {};
+      try {
+        payload = await mailResponse.json();
+      } catch {
+        payload = {};
       }
+
+      if (!mailResponse.ok) {
+        throw new Error(payload.details || payload.error || 'Server rejected the email dispatch.');
+      }
+
+      setAiInsight(payload.aiInsight || fallbackInsight);
+      setStatus('success');
     } catch (error: any) {
       console.error("Submission error:", error);
-      // Detailed error for the user to understand the Node server requirement
       setErrorMessage(error.message === 'Failed to fetch' 
-        ? 'Connection Refused. Please ensure your Node.js server (server.js) is running on port 3001.' 
+        ? 'Connection refused. Please ensure your Node.js backend (server.cjs) is running on port 3001.' 
         : error.message);
       setStatus('error');
     }
@@ -68,11 +81,11 @@ const Contact: React.FC = () => {
 
   if (status === 'success') {
     return (
-      <div className="pt-48 pb-24 px-6 sm:px-12 lg:px-24 min-h-screen flex items-center justify-center">
+      <div className="bg-global-gradient pt-48 pb-24 px-6 sm:px-12 lg:px-24 min-h-screen flex items-center justify-center">
         <div className="max-w-4xl w-full relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 rounded-[40px] blur opacity-30 animate-pulse"></div>
           
-          <div className="relative bg-[#08030b] border border-white/10 rounded-[40px] p-12 md:p-16 overflow-hidden shadow-2xl">
+          <div className="relative bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-[40px] p-12 md:p-16 overflow-hidden shadow-2xl">
             <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
                <div className="absolute -top-1/2 -right-1/4 w-full h-full bg-blue-600/30 blur-[120px] rounded-full animate-float-glow"></div>
                <div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-purple-600/20 blur-[120px] rounded-full animate-float-glow-reverse"></div>
@@ -113,7 +126,7 @@ const Contact: React.FC = () => {
                 )}
               </div>
 
-              <div className="bg-black/40 border border-white/10 rounded-3xl p-8 backdrop-blur-2xl shadow-inner">
+              <div className="bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-3xl p-8 backdrop-blur-2xl shadow-inner">
                  <div className="flex items-center space-x-3 mb-8 border-b border-white/10 pb-4">
                     <ClipboardList className="w-4 h-4 text-gray-500" />
                     <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">Live Dispatch Receipt</span>
@@ -158,7 +171,7 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <div className="pt-48 pb-24 px-6 sm:px-12 lg:px-24">
+    <div className="bg-global-gradient min-h-screen pt-48 pb-24 px-6 sm:px-12 lg:px-24">
       <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
           <div className="sticky top-48">
@@ -183,18 +196,22 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-[32px] blur-xl opacity-0 group-hover:opacity-100 transition duration-700"></div>
+          <div className="relative group contact-water-shell">
+            <div className="contact-water-drop"></div>
+            <div className="contact-water-drop-secondary"></div>
+            <div className="contact-water-ripple contact-water-ripple-one"></div>
+            <div className="contact-water-ripple contact-water-ripple-two"></div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 via-cyan-400/25 to-blue-500/20 rounded-[32px] blur-xl opacity-75 group-hover:opacity-100 transition duration-700"></div>
             
-            <div className="relative glass-card p-12 border-white/10 bg-black/40 backdrop-blur-2xl shadow-2xl">
-              <h3 className="text-2xl font-bold text-white mb-10 tracking-tight flex items-center">
-                Project Test Form
+            <div className="relative glass-card p-12 border-white/10 bg-gradient-to-br from-[#070b1a] via-[#050814] to-black backdrop-blur-2xl shadow-2xl animate-water-drop-in">
+              <h3 className="text-2xl font-bold text-white mb-10 tracking-tight flex items-center animate-water-item" style={{ animationDelay: '120ms' }}>
+                Project Contact Form
                 {status === 'submitting' && <Loader2 className="ml-4 w-5 h-5 text-purple-400 animate-spin" />}
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-8">
                 {status === 'error' && (
-                  <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-5 flex items-start space-x-3 text-red-400 text-sm animate-pulse">
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-5 flex items-start space-x-3 text-red-400 text-sm animate-water-item" style={{ animationDelay: '180ms' }}>
                     <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="font-bold mb-1">Dispatch Failed</p>
@@ -203,41 +220,41 @@ const Contact: React.FC = () => {
                   </div>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-water-item" style={{ animationDelay: '220ms' }}>
                   <div className="space-y-3">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Name / Brand</label>
+                    <label className="text-[11px] font-bold uppercase tracking-widest text-gray-400">Name / Brand</label>
                     <input 
                       required
                       type="text" 
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                       disabled={status === 'submitting'}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4.5 text-white focus:outline-none focus:border-purple-500/50 transition-all disabled:opacity-50" 
+                      className="w-full contact-water-input border rounded-2xl px-6 py-5 text-[15px] text-white placeholder:text-slate-300/55 focus:outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed" 
                       placeholder="e.g. Acme Corp" 
                     />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Contact Email</label>
+                    <label className="text-[11px] font-bold uppercase tracking-widest text-gray-400">Contact Email</label>
                     <input 
                       required
                       type="email" 
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                       disabled={status === 'submitting'}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4.5 text-white focus:outline-none focus:border-purple-500/50 transition-all disabled:opacity-50" 
+                      className="w-full contact-water-input border rounded-2xl px-6 py-5 text-[15px] text-white placeholder:text-slate-300/55 focus:outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed" 
                       placeholder="you@domain.com" 
                     />
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Category</label>
+                <div className="space-y-3 animate-water-item" style={{ animationDelay: '300ms' }}>
+                  <label className="text-[11px] font-bold uppercase tracking-widest text-gray-400">Category</label>
                   <div className="relative">
                     <select 
                       value={formData.category}
                       onChange={(e) => setFormData({...formData, category: e.target.value})}
                       disabled={status === 'submitting'}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4.5 text-white focus:outline-none focus:border-purple-500/50 transition-all appearance-none cursor-pointer disabled:opacity-50"
+                      className="w-full contact-water-input border rounded-2xl px-6 py-5 text-[15px] text-white focus:outline-none transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <option className="bg-[#1a0a1e]">Video Marketing</option>
                       <option className="bg-[#1a0a1e]">Product Animation</option>
@@ -250,15 +267,15 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Project Brief (The Want)</label>
+                <div className="space-y-3 animate-water-item" style={{ animationDelay: '380ms' }}>
+                  <label className="text-[11px] font-bold uppercase tracking-widest text-gray-400">Project Brief (The Want)</label>
                   <textarea 
                     required
                     rows={6} 
                     value={formData.brief}
                     onChange={(e) => setFormData({...formData, brief: e.target.value})}
                     disabled={status === 'submitting'}
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4.5 text-white focus:outline-none focus:border-purple-500/50 transition-all resize-none disabled:opacity-50" 
+                    className="w-full contact-water-input min-h-[190px] border rounded-2xl px-6 py-5 text-[15px] text-white placeholder:text-slate-300/55 focus:outline-none transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed" 
                     placeholder="Describe exactly what you want from our studio..."
                   ></textarea>
                 </div>
@@ -266,15 +283,12 @@ const Contact: React.FC = () => {
                 <button 
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="glow-btn-custom w-full py-5 text-white font-bold text-[15px] rounded-full tracking-tight flex items-center justify-center space-x-3 relative overflow-hidden group shadow-2xl"
+                  className="glow-btn-custom contact-water-submit w-full py-5 text-white font-bold text-[15px] rounded-full tracking-tight flex items-center justify-center space-x-3 relative overflow-hidden group shadow-2xl animate-water-item"
+                  style={{ animationDelay: '460ms' }}
                 >
                   <span className="relative z-10">{status === 'submitting' ? 'Mailing to Studio...' : 'Mail Project to Inbox'}</span>
                   {status === 'submitting' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
                 </button>
-                
-                <p className="text-[10px] text-gray-600 text-center uppercase tracking-widest opacity-60">
-                  Node.js Backend Required for Live Email Delivery
-                </p>
               </form>
             </div>
           </div>

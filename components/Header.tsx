@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { NAV_LINKS } from "../constants/navigation";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,14 +15,6 @@ const Header: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Blogs", path: "/blogs" },
-    { name: "Contact", path: "/contact" },
-    { name: "FAQ", path: "/faqs" },
-  ];
 
   const CALENDLY_LINK = "https://calendly.com/inspirostudio-io/30min";
 
@@ -41,7 +34,7 @@ const Header: React.FC = () => {
             <div className="hidden md:block w-px h-9 bg-white/20"></div>
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center space-x-12">
-              {navLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
@@ -62,7 +55,7 @@ const Header: React.FC = () => {
               href={CALENDLY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="glow-btn-custom px-8 py-3 shadow-lg shadow-blue-500 whitespace-nowrap text-[14px] font-bold rounded-xl text-white inline-block tracking-tight"
+              className="glow-btn-custom px-10 py-[18px] rounded-xl text-white font-bold text-[15px] tracking-tight shadow-lg shadow-blue-500/50 whitespace-nowrap inline-block"
             >
               Get in Touch
             </a>
@@ -85,7 +78,7 @@ const Header: React.FC = () => {
         className={`md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-2xl overflow-hidden transition-all duration-300 ${isOpen ? "max-h-screen border-b border-white/10 py-10" : "max-h-0 py-0"}`}
       >
         <div className="flex flex-col items-center space-y-8 px-6">
-          {navLinks.map((link) => (
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.name}
               to={link.path}

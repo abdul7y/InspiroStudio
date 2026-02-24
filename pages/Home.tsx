@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Play,
   Check,
@@ -24,11 +24,33 @@ import twitter from "../images/twitter.jpg";
 
 import video from "../videos/Preview.mp4";
 
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(max, Math.max(min, value));
+
+const HERO_TYPING_WORDS = [
+  "AI & SaaS",
+  "Ecommerce.",
+  "Law Firms.",
+  "Rental House.",
+  "Software Houses.",
+];
+
 const Home: React.FC = () => {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [heroTypedText, setHeroTypedText] = useState("");
+  const [heroWordIndex, setHeroWordIndex] = useState(0);
+  const [heroIsDeleting, setHeroIsDeleting] = useState(false);
+  const portfolioStackRef = useRef<HTMLDivElement | null>(null);
+  const portfolioCardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const CALENDLY_LINK = "https://calendly.com/inspirostudio-io/30min";
   const ABOUT_VIDEO_SRC = video;
+  // TODO: Replace these preview assets with real portfolio video URLs later.
+  const PORTFOLIO_MEDIA = {
+    first: image,
+    second: image2,
+    third: image3,
+  };
 
   const logos = ["LOGO", "IPSUM", "IPSUOM"];
 
@@ -45,7 +67,7 @@ const Home: React.FC = () => {
         // </div>
         <div className="absolute inset-0 overflow-hidden">
           <img
-            src={image}
+            src={PORTFOLIO_MEDIA.first}
             alt="Ocean"
             className="w-full h-full object-cover opacity-90"
           />
@@ -60,7 +82,7 @@ const Home: React.FC = () => {
       content: (
         <div className="absolute inset-0 overflow-hidden">
           <img
-            src={image2}
+            src={PORTFOLIO_MEDIA.second}
             alt="Ocean"
             className="w-full h-full object-cover opacity-90"
           />
@@ -76,7 +98,7 @@ const Home: React.FC = () => {
         <div className="relative h-full flex flex-col items-center justify-center">
           <div className="w-full">
             <img
-              src={image3}
+              src={PORTFOLIO_MEDIA.third}
               alt="White Stag"
               className="w-full h-full h-fit object-cover object-center"
             />
@@ -256,8 +278,117 @@ const Home: React.FC = () => {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
+  useEffect(() => {
+    const currentWord = HERO_TYPING_WORDS[heroWordIndex];
+    const isWordComplete = heroTypedText === currentWord;
+    const isWordCleared = heroTypedText.length === 0;
+    const typingDelay = heroIsDeleting ? 45 : 95;
+    const holdDelay = 1400;
+    const restartDelay = 260;
+
+    const timer = window.setTimeout(() => {
+      if (!heroIsDeleting) {
+        if (!isWordComplete) {
+          setHeroTypedText(currentWord.slice(0, heroTypedText.length + 1));
+          return;
+        }
+        setHeroIsDeleting(true);
+        return;
+      }
+
+      if (!isWordCleared) {
+        setHeroTypedText(currentWord.slice(0, heroTypedText.length - 1));
+        return;
+      }
+
+      setHeroIsDeleting(false);
+      setHeroWordIndex((prev) => (prev + 1) % HERO_TYPING_WORDS.length);
+    }, !heroIsDeleting && isWordComplete
+      ? holdDelay
+      : heroIsDeleting && isWordCleared
+        ? restartDelay
+        : typingDelay);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [heroIsDeleting, heroTypedText, heroWordIndex]);
+
+  useEffect(() => {
+    let rafId = 0;
+    const totalCards = portfolioItems.length;
+
+    const applyCardTransforms = (progress: number) => {
+      if (totalCards === 0) return;
+      const totalTransitions = Math.max(totalCards - 1, 1);
+      const initialHold = 0.1;
+      const betweenHold = 0.08;
+      const endHold = 0.02;
+      const rawDuration =
+        (1 - initialHold - endHold - betweenHold * Math.max(totalTransitions - 1, 0)) /
+        totalTransitions;
+      const transitionDuration = clamp(rawDuration, 0.1, 1);
+      const getTransitionStart = (transitionIndex: number) =>
+        initialHold + (transitionIndex - 1) * (transitionDuration + betweenHold);
+
+      portfolioCardRefs.current.forEach((card, index) => {
+        if (!card) return;
+
+        const incomingStart = index === 0 ? 0 : getTransitionStart(index);
+        const incomingProgress =
+          index === 0
+            ? 1
+            : clamp((progress - incomingStart) / transitionDuration, 0, 1);
+
+        let translateY = index === 0 ? 0 : (1 - incomingProgress) * 112;
+        let scale = 1;
+
+        if (index < totalCards - 1) {
+          const outgoingStart = getTransitionStart(index + 1);
+          const outgoingProgress = clamp(
+            (progress - outgoingStart) / transitionDuration,
+            0,
+            1
+          );
+          translateY += -outgoingProgress * 10;
+          scale -= outgoingProgress * 0.04;
+        }
+
+        card.style.transform = `translate3d(0, ${translateY}%, 0) scale(${scale})`;
+        card.style.opacity = `${0.65 + incomingProgress * 0.35}`;
+        card.style.zIndex = String(index + 1);
+      });
+    };
+
+    const updateProgress = () => {
+      const section = portfolioStackRef.current;
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const totalScrollable = Math.max(rect.height - viewportHeight * 0.9, 1);
+      const rawProgress = (viewportHeight * 0.2 - rect.top) / totalScrollable;
+      applyCardTransforms(clamp(rawProgress, 0, 1));
+    };
+
+    const onScrollOrResize = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateProgress);
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
+  }, []);
+
   return (
-    <div className=" min-h-screen">
+    <div className="bg-global-gradient min-h-screen">
       {/* 1. Hero Section */}
       <section className="relative min-h-screen flex items-center px-8 md:px-16 lg:px-24 overflow-hidden bg-gradient-to-r from-black via-black to-fuchsia-900">
         {/* Add a radial gradient overlay for extra depth */}
@@ -265,20 +396,13 @@ const Home: React.FC = () => {
 
         <div className="max-w-[1440px] mx-auto w-full pt-32 pb-40">
           <div className="max-w-[900px] relative z-10">
-            <div className="flex items-center space-x-2 mb-10">
-              <div className="bg-white/10 px-1 pr-2 py-1.5 rounded-xl flex justify-between items-center gap-2 border border-white/10 backdrop-blur-sm">
-                <span className="bg-[#2563eb] text-[11px] font-black px-2 py-1 rounded-md text-white uppercase tracking-tight">
-                  NEW
-                </span>
-                <span className="text-[13px] font-medium text-gray-300">
-                  No. 1 Studio of 2025
-                </span>
-              </div>
-            </div>
-
-            <h1 className="text-[60px] md:text-[80px] lg:text-[100px]  text-white mb-8 tracking-[-0.03em] leading-[1.05]">
-              Video Marketing Agency For <br className="hidden lg:block" /> AI &
-              SaaS
+            <h1 className="text-[60px] md:text-[80px] lg:text-[100px] text-white mb-8 tracking-[-0.03em] leading-[1.05]">
+              Video Marketing Agency For
+              <br className="hidden lg:block" />
+              <span className="inline-flex items-end">
+                <span>{heroTypedText}</span>
+                <span className="ml-1 inline-block h-[0.88em] w-[3px] rounded-full bg-blue-400 animate-pulse" />
+              </span>
             </h1>
 
             <p className="text-[#a1a1aa] text-lg md:text-[19px] mb-12 max-w-[620px] leading-relaxed font-normal">
@@ -320,10 +444,12 @@ const Home: React.FC = () => {
             <div className="wave wave-2"></div>
             <div className="wave"></div>
           </div> */}
+        <div className="absolute inset-x-0 bottom-0 h-36 md:h-44 lg:h-52 bg-gradient-to-b from-transparent via-[#060f22]/60 to-black pointer-events-none"></div>
       </section>
 
       {/* 2. Portfolio Section */}
-      <section className="relative px-8 lg:px-16 p-8 lg:px-0 bg-black overflow-hidden">
+      <section className="relative px-8 lg:px-16 pt-8 lg:pt-0 pb-0 bg-black overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/80 via-black/55 to-transparent pointer-events-none z-0"></div>
         <div className="relative w-full bg-black overflow-hidden 2xl:py-28 py-32">
           {/* LEFT CURVE */}
           <img
@@ -412,25 +538,41 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-[1100px] mx-auto pb-[10vh] relative z-10 scroll-snap-y scroll-smooth overflow-y-auto h-screen sidebar-hide px-6">
-          {portfolioItems.map((item, index) => (
-            <div
-              key={item.id}
-              className="sticky top-24 w-full aspect-video rounded-[32px] md:rounded-[40px] overflow-hidden border border-white/10 mb-[20vh] group cursor-pointer"
-              style={{ zIndex: index + 1 }}
-            >
+        <div
+          ref={portfolioStackRef}
+          className="max-w-[1440px] mx-auto pb-0 relative z-10 px-2 md:px-4 lg:px-6"
+          style={{ height: `${portfolioItems.length * 90}vh` }}
+        >
+          <div className="sticky top-24 h-[82vh] sm:h-[86vh] lg:h-[90vh]">
+            {portfolioItems.map((item, index) => (
               <div
-                className={`w-full h-full ${item.bgClass} relative overflow-hidden`}
+                key={item.id}
+                className="absolute inset-0 rounded-[32px] md:rounded-[40px] overflow-hidden border border-white/10 group cursor-pointer will-change-transform"
+                ref={(el) => {
+                  portfolioCardRefs.current[index] = el;
+                }}
+                style={{
+                  transform:
+                    index === 0
+                      ? "translate3d(0, 0%, 0) scale(1)"
+                      : "translate3d(0, 112%, 0) scale(1)",
+                  opacity: index === 0 ? 1 : 0.65,
+                  zIndex: index + 1,
+                }}
               >
-                {item.content}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/20">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/20">
-                    <Play className="w-10 h-10 text-white fill-white" />
+                <div
+                  className={`w-full h-full ${item.bgClass} relative overflow-hidden`}
+                >
+                  {item.content}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/20">
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/20">
+                      <Play className="w-10 h-10 text-white fill-white" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
@@ -997,7 +1139,7 @@ const Home: React.FC = () => {
               {/* top blue glow */}
               <div className="absolute inset-0 bg-[radial-gradient(85%_65%_at_20%_0%,rgba(59,130,246,0.22),transparent_60%)]" />
 
-              <div className="relative p-10">
+              <div className="relative px-10 py-[45px]">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex flex-col  items-start gap-3">
@@ -1094,7 +1236,7 @@ const Home: React.FC = () => {
               {/* top indigo/blue glow */}
               <div className="absolute inset-0 bg-[radial-gradient(85%_65%_at_20%_0%,rgba(59,130,246,0.22),transparent_60%)]" />
 
-              <div className="relative p-10">
+              <div className="relative px-10 py-[45px]">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex flex-col items-start gap-3">
