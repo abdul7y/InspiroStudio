@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import {
   Play,
+  Pause,
   Check,
   Star,
   ArrowRight,
@@ -24,9 +25,6 @@ import twitter from "../images/twitter.jpg";
 
 import video from "../videos/Preview.mp4";
 
-const clamp = (value: number, min: number, max: number) =>
-  Math.min(max, Math.max(min, value));
-
 const HERO_TYPING_WORDS = [
   "AI & SaaS",
   "Ecommerce.",
@@ -40,16 +38,22 @@ const Home: React.FC = () => {
   const [heroTypedText, setHeroTypedText] = useState("");
   const [heroWordIndex, setHeroWordIndex] = useState(0);
   const [heroIsDeleting, setHeroIsDeleting] = useState(false);
-  const portfolioStackRef = useRef<HTMLDivElement | null>(null);
-  const portfolioCardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const CALENDLY_LINK = "https://calendly.com/inspirostudio-io/30min";
   const ABOUT_VIDEO_SRC = video;
-  // TODO: Replace these preview assets with real portfolio video URLs later.
-  const PORTFOLIO_MEDIA = {
+
+  // TODO: Replace these poster images if needed when you switch to final project videos.
+  const PORTFOLIO_MEDIA_POSTERS = {
     first: image,
     second: image2,
     third: image3,
+  };
+
+  // TODO: Replace these video sources with your final portfolio video links/files.
+  const PORTFOLIO_VIDEO_LINKS = {
+    first: video,
+    second: video,
+    third: video,
   };
 
   const logos = ["LOGO", "IPSUM", "IPSUOM"];
@@ -58,127 +62,48 @@ const Home: React.FC = () => {
     {
       id: 1,
       title: "and",
-      bgClass: "bg-gradient-to-br from-[#4f46e5] via-[#3b82f6] to-[#2563eb]",
-      content: (
-        // <div className="flex items-center justify-center h-full">
-        //   <span className="text-white text-[120px] md:text-[200px] font-bold tracking-tighter select-none">
-        //     and
-        //   </span>
-        // </div>
-        <div className="absolute inset-0 overflow-hidden">
-          <img
-            src={PORTFOLIO_MEDIA.first}
-            alt="Ocean"
-            className="w-full h-full object-cover opacity-90"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        </div>
-      ),
+      year: "2024",
+      tags: ["SaaS", "Campaign"],
+      posterSrc: PORTFOLIO_MEDIA_POSTERS.first,
+      videoSrc: PORTFOLIO_VIDEO_LINKS.first,
     },
     {
       id: 2,
       title: "The Horizon",
-      bgClass: "bg-[#0f172a]",
-      content: (
-        <div className="absolute inset-0 overflow-hidden">
-          <img
-            src={PORTFOLIO_MEDIA.second}
-            alt="Ocean"
-            className="w-full h-full object-cover opacity-90"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        </div>
-      ),
+      year: "2024",
+      tags: ["Ocean", "Launch"],
+      posterSrc: PORTFOLIO_MEDIA_POSTERS.second,
+      videoSrc: PORTFOLIO_VIDEO_LINKS.second,
     },
     {
       id: 3,
       title: "White Stag",
-      bgClass: "bg-[#0a0a0a]",
-      content: (
-        <div className="relative h-full flex flex-col items-center justify-center">
-          <div className="w-full">
-            <img
-              src={PORTFOLIO_MEDIA.third}
-              alt="White Stag"
-              className="w-full h-full h-fit object-cover object-center"
-            />
-          </div>
-
-          {/* <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between space-x-3 px-3 py-2 bg-black/60 backdrop-blur-md rounded-xl border border-white/10">
-            <div className="flex items-center space-x-3 w-full">
-              <div className="flex items-center space-x-4 bg-black border border-white/10 px-3 py-2 rounded-lg">
-                <span className="text-[10px] font-bold text-white uppercase ">
-                  White Stag . 2024
-                </span>
-              </div>
-              <div className="border-r border-gray-600 h-8" />
-              <div className="p-1 bg-zinc-900 w-6xl w-full border border-white/10 rounded-lg">
-                <div className="h-6 w-2xl md:w-full bg-white/10 rounded-lg overflow-hidden">
-                  <div className="h-full w-2/3 bg-gradient-to-r from-blue-500 to-blue-600"></div>
-                </div>
-              </div>
-            </div>
-
-            <div className="hidden sm:flex items-center space-x-3">
-              <div className="border-r border-gray-600 h-8" />
-              <span className="px-2 py-0.5 border border-white/10 bg-zinc-900 rounded text-[9px] text-gray-200">
-                SAAS
-              </span>
-              <span className="px-2 py-0.5 border border-white/10 rounded bg-zinc-900 text-[9px] text-gray-200">
-                Landing Page
-              </span>
-            </div>
-          </div> */}
-          <div
-            className="absolute bottom-6 left-6 right-6 flex items-center justify-between gap-3 px-4 py-2.5 
-  bg-black/65 backdrop-blur-xl rounded-2xl border border-white/10 shadow-xl md:visible invisible"
-          >
-            {/* Left section */}
-            <div className="flex items-center gap-3 min-w-0 flex-1">
-              {/* White Stag badge */}
-              <div className="flex items-center gap-3.5 bg-black/80 border border-white/15 px-3.5 py-1.5 rounded-lg">
-                <span className="text-[11px] md:text-xs font-bold tracking-wide text-white uppercase">
-                  WHITE STAG<span className="text-white/60">.</span> 2024
-                </span>
-              </div>
-
-              {/* Divider */}
-              <div className="hidden sm:block w-px h-7 bg-white/10" />
-
-              {/* Progress bar container */}
-              <div className="flex-1 h-5 bg-zinc-900/80 border border-white/10 rounded-lg overflow-hidden">
-                <div
-                  className="h-full w-3/5 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 rounded-lg"
-                  style={{ minWidth: "20%" }} // prevents it from collapsing too much
-                />
-              </div>
-            </div>
-
-            {/* Right tags – hidden on mobile */}
-            <div className="hidden sm:flex items-center gap-2.5 shrink-0">
-              <div className="hidden sm:block w-px h-7 bg-white/10" />
-
-              <span className="px-2.5 py-1 text-[10px] font-medium text-gray-200 bg-zinc-900/80 border border-white/10 rounded-md">
-                SAAS
-              </span>
-              <span className="px-2.5 py-1 text-[10px] font-medium text-gray-200 bg-zinc-900/80 border border-white/10 rounded-md">
-                Landing Page
-              </span>
-            </div>
-          </div>
-          <div
-            className="absolute bottom-6 left-6 right-6 flex items-center justify-between gap-3 px-3 py-2.5 
-   md:invisible visible bg-black rounded-xl"
-          >
-            <p className="text-white text-sm">White Stag</p>
-            <span className="text-white text-xs bg-zinc-900/80 backdrop-blur-xl rounded-lg px-2 py-1 border border-white/10 shadow-xl">
-              2024
-            </span>
-          </div>
-        </div>
-      ),
+      year: "2024",
+      tags: ["SaaS", "Landing Page"],
+      posterSrc: PORTFOLIO_MEDIA_POSTERS.third,
+      videoSrc: PORTFOLIO_VIDEO_LINKS.third,
     },
   ];
+
+  const portfolioVideoRefs = useRef<Array<HTMLVideoElement | null>>([]);
+  const [portfolioPlaying, setPortfolioPlaying] = useState<boolean[]>(
+    portfolioItems.map(() => true)
+  );
+
+  const togglePortfolioVideo = (index: number) => {
+    const videoEl = portfolioVideoRefs.current[index];
+    if (!videoEl) return;
+
+    if (videoEl.paused) {
+      const playPromise = videoEl.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+      }
+      return;
+    }
+
+    videoEl.pause();
+  };
 
   const testimonials = [
     {
@@ -273,6 +198,18 @@ const Home: React.FC = () => {
     },
   ];
   const blogSlidesLoop = [...blogSlides, ...blogSlides];
+  const benefitChips = [
+    "Enhanced UX",
+    "Boosted Conversions",
+    "Fast Loading",
+    "SEO Optimized",
+    "Customizable",
+    "Scalable",
+    "Increased Engagement",
+    "Expandable",
+    "Secure",
+    "User-Friendly",
+  ];
 
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -314,93 +251,20 @@ const Home: React.FC = () => {
     };
   }, [heroIsDeleting, heroTypedText, heroWordIndex]);
 
-  useEffect(() => {
-    let rafId = 0;
-    const totalCards = portfolioItems.length;
-
-    const applyCardTransforms = (progress: number) => {
-      if (totalCards === 0) return;
-      const totalTransitions = Math.max(totalCards - 1, 1);
-      const initialHold = 0.1;
-      const betweenHold = 0.08;
-      const endHold = 0.02;
-      const rawDuration =
-        (1 - initialHold - endHold - betweenHold * Math.max(totalTransitions - 1, 0)) /
-        totalTransitions;
-      const transitionDuration = clamp(rawDuration, 0.1, 1);
-      const getTransitionStart = (transitionIndex: number) =>
-        initialHold + (transitionIndex - 1) * (transitionDuration + betweenHold);
-
-      portfolioCardRefs.current.forEach((card, index) => {
-        if (!card) return;
-
-        const incomingStart = index === 0 ? 0 : getTransitionStart(index);
-        const incomingProgress =
-          index === 0
-            ? 1
-            : clamp((progress - incomingStart) / transitionDuration, 0, 1);
-
-        let translateY = index === 0 ? 0 : (1 - incomingProgress) * 112;
-        let scale = 1;
-
-        if (index < totalCards - 1) {
-          const outgoingStart = getTransitionStart(index + 1);
-          const outgoingProgress = clamp(
-            (progress - outgoingStart) / transitionDuration,
-            0,
-            1
-          );
-          translateY += -outgoingProgress * 10;
-          scale -= outgoingProgress * 0.04;
-        }
-
-        card.style.transform = `translate3d(0, ${translateY}%, 0) scale(${scale})`;
-        card.style.opacity = `${0.65 + incomingProgress * 0.35}`;
-        card.style.zIndex = String(index + 1);
-      });
-    };
-
-    const updateProgress = () => {
-      const section = portfolioStackRef.current;
-      if (!section) return;
-
-      const rect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const totalScrollable = Math.max(rect.height - viewportHeight * 0.9, 1);
-      const rawProgress = (viewportHeight * 0.2 - rect.top) / totalScrollable;
-      applyCardTransforms(clamp(rawProgress, 0, 1));
-    };
-
-    const onScrollOrResize = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updateProgress);
-    };
-
-    updateProgress();
-    window.addEventListener("scroll", onScrollOrResize, { passive: true });
-    window.addEventListener("resize", onScrollOrResize);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", onScrollOrResize);
-      window.removeEventListener("resize", onScrollOrResize);
-    };
-  }, []);
-
   return (
-    <div className="bg-global-gradient min-h-screen">
+    <div className="relative min-h-screen">
       {/* 1. Hero Section */}
-      <section className="relative min-h-screen flex items-center px-8 md:px-16 lg:px-24 overflow-hidden bg-gradient-to-r from-black via-black to-fuchsia-900">
+      <section className="relative min-h-screen flex items-start px-8 md:px-16 lg:px-24 overflow-hidden bg-gradient-to-r from-black via-[#020916] to-[#0b1f3f]">
         {/* Add a radial gradient overlay for extra depth */}
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black to-fuchsia-600/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black to-blue-700/35"></div>
 
-        <div className="max-w-[1440px] mx-auto w-full pt-32 pb-40">
+        <div className="max-w-[1440px] mx-auto w-full pt-[180px] md:pt-[190px] pb-[70px]">
           <div className="max-w-[900px] relative z-10">
             <h1 className="text-[60px] md:text-[80px] lg:text-[100px] text-white mb-8 tracking-[-0.03em] leading-[1.05]">
-              Video Marketing Agency For
+              <span className="font-normal">Video Marketing Agency For</span>
               <br className="hidden lg:block" />
               <span className="inline-flex items-end">
-                <span>{heroTypedText}</span>
+                <span className="bg-gradient-to-r from-[#53a5ff] via-[#2f83ff] to-[#00a3ff] bg-clip-text text-transparent font-extrabold">{heroTypedText}</span>
                 <span className="ml-1 inline-block h-[0.88em] w-[3px] rounded-full bg-blue-400 animate-pulse" />
               </span>
             </h1>
@@ -416,7 +280,7 @@ const Home: React.FC = () => {
                 href={CALENDLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glow-btn-custom px-10 py-[18px] rounded-xl text-white font-bold text-[15px] tracking-tight mb-12 shadow-lg shadow-blue-500/50"
+                className="glow-btn-custom site-button w-full sm:w-auto px-10 py-[18px] rounded-xl text-white font-bold text-[15px] tracking-tight mb-12 shadow-lg shadow-blue-500/50"
               >
                 Book a Call
               </a>
@@ -448,9 +312,9 @@ const Home: React.FC = () => {
       </section>
 
       {/* 2. Portfolio Section */}
-      <section className="relative px-8 lg:px-16 pt-8 lg:pt-0 pb-0 bg-black overflow-hidden">
+      <section className="relative px-8 lg:px-16 pt-8 lg:pt-0 pb-20 lg:pb-28 bg-black overflow-visible">
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/80 via-black/55 to-transparent pointer-events-none z-0"></div>
-        <div className="relative w-full bg-black overflow-hidden 2xl:py-28 py-32">
+        <div className="relative w-full bg-black overflow-hidden lg:overflow-visible 2xl:py-28 py-32">
           {/* LEFT CURVE */}
           <img
             src={leftcurve}
@@ -514,7 +378,7 @@ const Home: React.FC = () => {
               <div
                 className="absolute -inset-[4px] 
                       bg-gradient-to-r 
-                      from-[#8a2be2] via-[#7c3aed] to-[#4b0082] 
+                      from-[#1766e8] via-[#2f83ff] to-[#0f4db4] 
                       rounded-full blur-[18px] 
                       opacity-70 group-hover:opacity-100 
                       transition duration-500"
@@ -522,13 +386,13 @@ const Home: React.FC = () => {
 
               <Link
                 to="/blogs"
-                className="relative inline-flex items-center justify-center 
+                className="site-button relative inline-flex w-full sm:w-auto items-center justify-center 
                    px-10 py-3 rounded-xl 
                    bg-gradient-to-r 
-                   from-[#8a2be2] via-[#7c3aed] to-[#4b0082] 
+                   from-[#1766e8] via-[#2f83ff] to-[#0f4db4] 
                    text-white text-sm font-semibold 
                    border border-white/20 
-                   shadow-[0_0_30px_rgba(168,85,247,0.5)]
+                   shadow-[0_0_30px_rgba(47,131,255,0.45)]
                    shadow-lg shadow-blue-500/50
                    "
               >
@@ -538,39 +402,53 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <div
-          ref={portfolioStackRef}
-          className="max-w-[1440px] mx-auto pb-0 relative z-10 px-2 md:px-4 lg:px-6"
-          style={{ height: `${portfolioItems.length * 90}vh` }}
-        >
-          <div className="sticky top-24 h-[82vh] sm:h-[86vh] lg:h-[90vh]">
+        <div className="max-w-[1100px] mx-auto pb-[10vh] relative z-10">
+          <div className="relative">
             {portfolioItems.map((item, index) => (
-              <div
+              <article
                 key={item.id}
-                className="absolute inset-0 rounded-[32px] md:rounded-[40px] overflow-hidden border border-white/10 group cursor-pointer will-change-transform"
-                ref={(el) => {
-                  portfolioCardRefs.current[index] = el;
-                }}
-                style={{
-                  transform:
-                    index === 0
-                      ? "translate3d(0, 0%, 0) scale(1)"
-                      : "translate3d(0, 112%, 0) scale(1)",
-                  opacity: index === 0 ? 1 : 0.65,
-                  zIndex: index + 1,
-                }}
+                className="sticky top-16 sm:top-20 lg:top-24 w-full mb-[14vh] sm:mb-[16vh] lg:mb-[20vh] rounded-[26px] sm:rounded-[32px] lg:rounded-[44px] overflow-hidden border border-white/12 bg-black shadow-[0_30px_90px_rgba(0,0,0,0.55)]"
+                style={{ zIndex: index + 1 }}
               >
-                <div
-                  className={`w-full h-full ${item.bgClass} relative overflow-hidden`}
-                >
-                  {item.content}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/20">
-                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/20">
-                      <Play className="w-10 h-10 text-white fill-white" />
-                    </div>
-                  </div>
+                <div className="group relative aspect-[16/9] bg-[#0a1633]">
+                  <video
+                    ref={(el) => {
+                      portfolioVideoRefs.current[index] = el;
+                    }}
+                    className="absolute inset-0 w-full h-full object-cover opacity-100"
+                    src={item.videoSrc}
+                    poster={item.posterSrc}
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    autoPlay
+                    onPlay={() =>
+                      setPortfolioPlaying((prev) =>
+                        prev.map((value, idx) => (idx === index ? true : value))
+                      )
+                    }
+                    onPause={() =>
+                      setPortfolioPlaying((prev) =>
+                        prev.map((value, idx) => (idx === index ? false : value))
+                      )
+                    }
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => togglePortfolioVideo(index)}
+                    aria-label={portfolioPlaying[index] ? "Pause video" : "Play video"}
+                    className="absolute inset-0 m-auto h-16 w-16 sm:h-20 sm:w-20 rounded-full border border-white/65 bg-black/55 text-white flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300"
+                  >
+                    {portfolioPlaying[index] ? (
+                      <Pause className="h-6 w-6 sm:h-7 sm:w-7" />
+                    ) : (
+                      <Play className="h-6 w-6 sm:h-7 sm:w-7 fill-white" />
+                    )}
+                  </button>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -578,99 +456,112 @@ const Home: React.FC = () => {
 
       {/* 3. About Inspiro Section */}
 
-      <section className="relative px-8 md:px-16 lg:px-24 bg-black overflow-hidden">
-        <div className="max-w-[1440px] w-full ">
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 xl:gap-4 lg:gap-10 gap-10 mitems-center">
-            <div className="flex justify-center lg:justify-start  gap-2 order-2 lg:order-1">
-              <div className="relative w-full max-w-[500px]">
-                <div className="relative aspect-square w-full rounded-[32px] shadow-2xl shadow-blue-700/60  border border-white/10 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.7)]">
-                  <video
-                    className="absolute inset-0 w-full h-full  object-cover opacity-90"
-                    src={ABOUT_VIDEO_SRC}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                  />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.35)]">
-                      <Play className="w-6 h-6 text-white fill-white" />
-                    </div>
-                  </div>
-                  <div className="absolute bottom-5 left-6 text-[10px] uppercase tracking-[0.35em] text-white/70">
-                    Video Preview
-                  </div>
-                </div>
-              </div>
-            </div>
+      <section className="relative overflow-hidden bg-black">
+        <div className="relative w-full bg-black overflow-hidden pt-16 md:pt-20 lg:pt-24">
+          <div className="relative mb-14 md:mb-16">
+            {/* LEFT CURVE */}
+            <img
+              src={leftcurve}
+              alt="Left Curve"
+              className="absolute left-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+            />
 
-            <div className="md:space-y-4 space-y-8 order-1 lg:order-2 text-left lg:text-left">
-              {/* <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-                  <span className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em]">
-                    About Inspiro
-                  </span>
-                </div> */}
-              <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-4">
-                <div
-                  className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-r border-l border-gray-800
-                  bg-black backdrop-blur-xl"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                  <span className="text-xs text-gray-200 tracking-widest">
-                    About Inspiro
-                  </span>
+            {/* RIGHT CURVE */}
+            <img
+              src={leftcurve}
+              alt="Right Curve"
+              className="absolute right-0 lg:top-1/2 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+            />
+
+            <div className="relative z-10 max-w-3xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
+                <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-4">
+                  <div
+                    className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-r border-l border-gray-800
+                    bg-black backdrop-blur-xl"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
+                    <span className="text-xs text-gray-200 tracking-widest uppercase">
+                      About Inspiro
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <h2 className="text-[38px] md:text-[52px]  text-white leading-[1.08] tracking-tight mb-4">
+                <h2 className="text-[38px] md:text-[52px] text-white leading-[1.08] tracking-tight">
                   Building Stronger Brands
                 </h2>
-                <h3 className="text-[30px] md:text-[44px] text-gray-400 leading-[1.1] tracking-tight">
+                <h3 className="text-[30px] md:text-[44px] text-gray-400 leading-[1.1] tracking-tight mt-2">
                   Across 30+ Countries
                 </h3>
-              </div>
+            </div>
+          </div>
 
-              <p className="text-[15px] md:text-[16px] text-gray-400 leading-relaxed max-w-[520px]">
-                Delivering expert solutions that transform modern businesses.
-                Driving innovation globally, partnering with clients for impact.
-              </p>
-
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3 text-gray-300 text-[14px]">
-                  <span className="w-5 h-5 rounded-full bg-blue-700 flex items-center justify-center">
-                    <BadgeCheck className="w-full h-full " />
-                  </span>
-                  <span>From $0 to $500,000 in revenue.</span>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-300 text-[14px]">
-                  <span className="w-5 h-5 rounded-full bg-blue-700 flex items-center justify-center">
-                    <BadgeCheck className="w-full h-full " />
-                  </span>
-                  <span>70% growth in new customers.</span>
-                </div>
-              </div>
-
-              <div className="flex flex-col-reverse md:flex-row md:items-center gap-6">
-                <button className="relative inline-flex w-fit items-center justify-center px-6 py-2.5 rounded-xl text-white text-[13px] font-bold tracking-tight bg-gradient-to-r from-[#8a2be2] via-[#7c3aed] to-[#4b0082] shadow-lg shadow-blue-500/50 border border-white/20">
-                  About Inspiro
-                </button>
-                <div className="hidden sm:block w-px h-6 bg-gray-700"></div>
-                <div className="px-1 py-2">
-                  <div className="flex flex-col items-start gap-2">
-                    <div className="flex items-center space-x-1">
-                      {[1, 2, 3, 4, 5].map((s) => (
-                        <Star
-                          key={s}
-                          className="w-3 h-3 text-white fill-white"
-                        />
-                      ))}
+          <div className="max-w-[1440px] mx-auto relative z-10 px-8 md:px-16 lg:px-24">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 xl:gap-4 lg:gap-10 gap-10 mitems-center">
+              <div className="flex justify-center lg:justify-start gap-2 order-2 lg:order-1">
+                <div className="relative w-full max-w-[500px]">
+                  <div className="relative aspect-square w-full rounded-[32px] shadow-2xl shadow-blue-700/60 border border-white/10 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.7)]">
+                    <video
+                      className="absolute inset-0 w-full h-full object-cover opacity-90"
+                      src={ABOUT_VIDEO_SRC}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                    />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.35)]">
+                        <Play className="w-6 h-6 text-white fill-white" />
+                      </div>
                     </div>
-                    <span className="text-[12px] text-gray-400">
-                      200+ Agencies Rated
+                    <div className="absolute bottom-5 left-6 text-[10px] uppercase tracking-[0.35em] text-white/70">
+                      Video Preview
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="md:space-y-6 space-y-8 order-1 lg:order-2 text-left lg:text-left">
+                <p className="text-[15px] md:text-[16px] text-gray-400 leading-relaxed max-w-[520px]">
+                  Delivering expert solutions that transform modern businesses.
+                  Driving innovation globally, partnering with clients for
+                  impact.
+                </p>
+
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3 text-gray-300 text-[14px]">
+                    <span className="w-5 h-5 rounded-full bg-blue-700 flex items-center justify-center">
+                      <BadgeCheck className="w-full h-full " />
                     </span>
+                    <span>From $0 to $500,000 in revenue.</span>
+                  </div>
+                  <div className="flex items-center space-x-3 text-gray-300 text-[14px]">
+                    <span className="w-5 h-5 rounded-full bg-blue-700 flex items-center justify-center">
+                      <BadgeCheck className="w-full h-full " />
+                    </span>
+                    <span>70% growth in new customers.</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col-reverse md:flex-row md:items-center gap-6">
+                  <button className="site-button relative inline-flex w-full sm:w-fit items-center justify-center px-6 py-2.5 rounded-xl text-white text-[13px] font-bold tracking-tight bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4] shadow-lg shadow-blue-500/50 border border-white/20">
+                    About Inspiro
+                  </button>
+                  <div className="hidden sm:block w-px h-6 bg-gray-700"></div>
+                  <div className="px-1 py-2">
+                    <div className="flex flex-col items-start gap-2">
+                      <div className="flex items-center space-x-1">
+                        {[1, 2, 3, 4, 5].map((s) => (
+                          <Star
+                            key={s}
+                            className="w-3 h-3 text-white fill-white"
+                          />
+                        ))}
+                      </div>
+                      <span className="text-[12px] text-gray-400">
+                        200+ Agencies Rated
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -687,14 +578,14 @@ const Home: React.FC = () => {
           <img
             src={leftcurve}
             alt="Left Curve"
-            className="absolute lg:left-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[250px] md:max-w-[200px] pointer-events-none"
+            className="absolute lg:left-0 lg:top-1/2 left-0 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
           />
 
           {/* RIGHT CURVE */}
           <img
             src={leftcurve}
             alt="Right Curve"
-            className="absolute lg:right-0 lg:top-1/2 -bottom-5 right-1 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[250px] md:max-w-[200px]  pointer-events-none"
+            className="absolute lg:right-0 lg:top-1/2 right-1 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px]  pointer-events-none"
           />
 
           {/* CENTER CONTENT */}
@@ -728,13 +619,13 @@ const Home: React.FC = () => {
 
             {/* CTA */}
             <div className="relative group mt-10">
-              <div className="absolute -inset-[4px] bg-gradient-to-r from-[#8a2be2] via-[#7c3aed] to-[#4b0082] rounded-full blur-[20px] opacity-70 group-hover:opacity-100 transition duration-500"></div>
+              <div className="absolute -inset-[4px] bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4] rounded-full blur-[20px] opacity-70 group-hover:opacity-100 transition duration-500"></div>
 
               <a
                 href={CALENDLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative inline-flex items-center justify-center px-8 py-3 rounded-xl bg-gradient-to-r from-[#8a2be2] via-[#7c3aed] to-[#4b0082] text-white text-sm font-semibold border border-white/20 shadow-[0_0_30px_rgba(168,85,247,0.5)] shadow-lg shadow-blue-500/50 transition duration-300"
+                className="site-button relative inline-flex w-full sm:w-auto items-center justify-center px-8 py-3 rounded-xl bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4] text-white text-sm font-semibold border border-white/20 shadow-[0_0_30px_rgba(47,131,255,0.5)] shadow-lg shadow-blue-500/50 transition duration-300"
               >
                 Book a 15-min call
               </a>
@@ -881,7 +772,8 @@ const Home: React.FC = () => {
         </div>
       </section>
       {/* 5. Landing Benefits Section */}
-      <section className="relative px-8 md:px-16 lg:px-24 overflow-hidden bg-black">
+      <section className="relative overflow-hidden bg-black">
+
         {/* <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-[radial-gradient(circle_at_70%_20%,rgba(59,130,246,0.18),transparent_60%)]"></div>
           <div className="absolute -top-20 right-10 w-[40%] h-[40%] bg-[radial-gradient(circle,rgba(168,85,247,0.18),transparent_65%)]"></div>
@@ -891,11 +783,27 @@ const Home: React.FC = () => {
           ></div>
         </div> */}
 
-        <div className="max-w-[1440px] mx-auto relative z-10 mt-32 ">
+        <div className="relative z-10 mt-32">
+          <div className="relative mb-14 md:mb-16">
+            {/* LEFT CURVE */}
+            <img
+              src={leftcurve}
+              alt="Left Curve"
+              className="absolute left-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+            />
+
+            {/* RIGHT CURVE */}
+            <img
+              src={leftcurve}
+              alt="Right Curve"
+              className="absolute right-0 lg:top-1/2 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+            />
+
+            <div className="relative z-10 max-w-4xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
           {/* <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
             <span className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em]">
-              Landin Benefits
+              Inspiro Benefits
             </span>
           </div> */}
           <div
@@ -910,48 +818,42 @@ const Home: React.FC = () => {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
               <span className="text-xs text-gray-200 tracking-widest uppercase">
-                Landin Benefits
+                Inspiro Benefits
               </span>
             </div>
           </div>
 
           <h2 className="text-[30px] md:text-[44px] text-white leading-[1.1] tracking-tight">
-            We Just Don't Design, We Build.
+            We Don't Just Design, We Build.
           </h2>
           <h3 className="text-[26px] md:text-[40px]  text-gray-400 leading-[1.1] tracking-tight">
-            If You Can Dream It, We Can Play It!
+            If You Can Dream It, We Can Build It!
           </h3>
 
-          <div className="mt-6 flex flex-wrap max-w-2xl w-full items-center gap-2 text-[11px] md:text-[12px]">
-            {[
-              "Enhanced UX",
-              "Boosted Conversions",
-              "Fast Loading",
-              "SEO Optimized",
-              "Customizable",
-              "Scalable",
-              "Increased Engagement",
-              "Expandable",
-              "Secure",
-              "User-Friendly",
-            ].map((chip) => (
-              <span
-                key={chip}
-                className="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-gray-300"
-              >
-                {chip}
-              </span>
-            ))}
-            <button className="ml-1 px-3.5 py-1 rounded-full bg-white text-black text-[11px] font-bold shadow-[0_0_18px_rgba(255,255,255,0.2)]">
+          <div className="mt-8 flex w-full max-w-[1080px] flex-col items-center gap-4">
+            <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+              {benefitChips.map((chip) => (
+                <span
+                  key={chip}
+                  className="inline-flex min-h-[62px] w-full items-center justify-center px-4 sm:px-5 rounded-[100px] border border-white/10 bg-white/10 text-center text-[12px] font-medium text-gray-200 md:text-[13px]"
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+            <button className="site-button inline-flex min-h-[62px] w-full items-center justify-center rounded-[100px] bg-white px-6 text-[12px] font-bold text-black shadow-[0_0_18px_rgba(255,255,255,0.2)] sm:w-auto sm:min-w-[220px] md:text-[13px]">
               Contact Now
             </button>
           </div>
+            </div>
+          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-8 mt-10">
+          <div className="max-w-[1440px] mx-auto px-8 md:px-16 lg:px-24">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-8 mt-12">
             <div className="space-y-6">
               <div className="relative w-full md:h-[420px]  2xl:h-[430px] lg:h-[450px] rounded-[26px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 shadow-[0_35px_90px_rgba(0,0,0,0.7)] overflow-hidden">
-                {/* bottom purple glow */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-tr from-[#7c3aed]/40 via-[#9333ea]/20 to-transparent blur-2xl"></div>
+                {/* bottom accent glow */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl"></div>
 
                 {/* Image container */}
                 <div className="relative h-[230px] rounded-[18px] overflow-hidden border border-white/10 mb-5">
@@ -977,20 +879,20 @@ const Home: React.FC = () => {
                 </p>
 
                 {/* Buttons */}
-                <div className="flex gap-3">
-                  <button className="px-4 py-2 rounded-lg text-[12px] font-semibold text-white bg-gradient-to-r from-[#a855f7] via-[#7c3aed] to-[#5b21b6] shadow-[0_0_20px_rgba(168,85,247,0.55)] hover:scale-[1.03] transition">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button className="site-button w-full sm:flex-1 px-4 py-2 rounded-lg text-[12px] font-semibold text-white bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4] shadow-[0_0_20px_rgba(47,131,255,0.55)] hover:scale-[1.03] transition">
                     Book an Appointment
                   </button>
 
-                  <button className="px-4 py-2 rounded-lg text-[12px] font-semibold text-white bg-gradient-to-r from-[#a855f7] via-[#7c3aed] to-[#5b21b6] shadow-[0_0_20px_rgba(168,85,247,0.55)] hover:scale-[1.03] transition">
-                    What is Landin?
+                  <button className="site-button w-full sm:flex-1 px-4 py-2 rounded-lg text-[12px] font-semibold text-white bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4] shadow-[0_0_20px_rgba(47,131,255,0.55)] hover:scale-[1.03] transition">
+                    Why Inspiro Studio?
                   </button>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="relative 2xl:h-[250px] lg:h-[280px] rounded-[20px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#7c3aed]/40 via-[#9333ea]/20 to-transparent blur-2xl"></div>
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl"></div>
                   <div className="relative h-[110px] rounded-[12px] overflow-hidden border border-white/10 mb-3">
                     <img
                       src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
@@ -1015,7 +917,7 @@ const Home: React.FC = () => {
                 </div>
 
                 <div className="relative 2xl:h-[250px] lg:h-[280px] rounded-[20px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#7c3aed]/40 via-[#9333ea]/20 to-transparent blur-2xl"></div>
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl"></div>
                   <div className="relative h-[110px] rounded-[12px] overflow-hidden border border-white/10 mb-3">
                     <img
                       src="https://images.unsplash.com/photo-1556155092-8707de31f9c4?auto=format&fit=crop&w=900&q=80"
@@ -1038,7 +940,7 @@ const Home: React.FC = () => {
 
             <div className="space-y-6">
               <div className="relative  2xl:h-[340px] lg:h-[360px] rounded-[22px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-6 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#7c3aed]/40 via-[#9333ea]/20 to-transparent blur-2xl"></div>
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl"></div>
                 <div className="relative h-[170px] rounded-[14px] overflow-hidden border border-white/10 mb-4">
                   <img
                     src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=900&q=80"
@@ -1065,7 +967,7 @@ const Home: React.FC = () => {
               </div>
 
               <div className="relative 2xl:h-[340px] lg:h-[360px] rounded-[22px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-6 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#7c3aed]/40 via-[#9333ea]/20 to-transparent blur-2xl"></div>
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl"></div>
                 <div className="relative h-[170px] rounded-[14px] overflow-hidden border border-white/10 mb-4">
                   <img
                     src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=80"
@@ -1092,18 +994,34 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </section>
       {/* PRICING SECTION */}
-      <section className="relative px-8 md:px-16 lg:px-24 py-40 overflow-hidden bg-black">
+      <section className="relative overflow-hidden bg-black">
+        <div className="relative w-full bg-black w-full overflow-hidden py-40">
         {/* background glow */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-purple-600/10 blur-[120px]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-blue-600/10 blur-[120px]" />
         </div>
 
-        <div className="max-w-[1440px] mx-auto relative z-10">
+        <div className="relative mb-20">
+          {/* LEFT CURVE */}
+          <img
+            src={leftcurve}
+            alt="Left Curve"
+            className="absolute left-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+          />
+
+          {/* RIGHT CURVE */}
+          <img
+            src={leftcurve}
+            alt="Right Curve"
+            className="absolute right-0 lg:top-1/2 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+          />
+
           {/* heading */}
-          <div className="max-w-3xl mb-20">
+          <div className="relative z-10 max-w-4xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
             <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-6">
               <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 bg-black backdrop-blur-xl">
                 <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
@@ -1114,32 +1032,34 @@ const Home: React.FC = () => {
             </div>
 
             <h2 className="text-3xl md:text-[44px] text-white tracking-tight leading-[1.05]">
-              Plans for all businesses, Suitable for
+              Plans for all businesses, suitable for
             </h2>
             <h3 className="text-3xl md:text-[44px] text-gray-400 tracking-tight leading-[1.1] mt-2">
-              Personal, Agencies, Startups.
+              Personal Brands, Agencies, Startups.
             </h3>
 
-            <p className="text-zinc-500 text-[18px] mt-6 max-w-2xl leading-relaxed">
+            <p className="text-zinc-500 text-[18px] mt-6 max-w-2xl mx-auto leading-relaxed">
               Our pricing plans are designed to make getting started as
               effortless as possible. With flexible options tailored to suit a
               variety of needs and budgets.
             </p>
           </div>
+        </div>
 
+        <div className="max-w-[1440px] mx-auto relative z-10 px-8 md:px-16 lg:px-24">
           {/* cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="max-w-[980px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* PRO WEEKLY */}
 
             <div
-              className="relative w-full rounded-[30px] border border-white/[0.08] 
+              className="relative w-full max-w-[460px] mx-auto rounded-[34px] border border-white/[0.08] 
                   bg-gradient-to-br from-[#070b1a] via-[#050814] to-black 
-                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden"
+                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col"
             >
               {/* top blue glow */}
               <div className="absolute inset-0 bg-[radial-gradient(85%_65%_at_20%_0%,rgba(59,130,246,0.22),transparent_60%)]" />
 
-              <div className="relative px-10 py-[45px]">
+              <div className="relative px-8 md:px-9 pt-10 pb-8 min-h-[690px] flex-1 flex flex-col">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex flex-col  items-start gap-3">
@@ -1191,7 +1111,7 @@ const Home: React.FC = () => {
                 </div>
 
                 {/* Features */}
-                <ul className="space-y-4 mb-10 text-[13px]">
+                <ul className="space-y-4 mb-8 text-[13px]">
                   {[
                     "1 Dedicated Expert Product Designer",
                     "Up to 40 hours per week",
@@ -1204,23 +1124,24 @@ const Home: React.FC = () => {
                       className="flex items-center gap-3 text-gray-300"
                     >
                       <span className="w-5 h-5 rounded-full bg-blue-700 text-white flex items-center justify-center text-[11px]">
-                        ✓
+                        âœ"
                       </span>
                       {item}
                     </li>
                   ))}
                 </ul>
-
-                {/* CTA */}
+              </div>
+              {/* CTA: keep only pill shape from reference */}
+              <div className="relative mt-auto px-6 pb-6">
                 <a
                   href={CALENDLY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-center px-6 py-3 rounded-lg 
-      text-white text-[14px] font-semibold tracking-tight w-full max-w-[300px]
-      bg-gradient-to-r from-[#a855f7] via-[#7c3aed] to-[#4c1d95]
-      shadow-[0_0_35px_rgba(168,85,247,0.6)]
-      hover:scale-[1.04] transition-all"
+                  className="site-button relative z-10 mx-auto flex h-[72px] w-[86%] items-center justify-center !rounded-full
+      bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4]
+      text-white text-[15px] font-bold tracking-tight
+      shadow-[0_0_35px_rgba(47,131,255,0.55)]
+      hover:brightness-110 transition-all duration-300"
                 >
                   Book an Appointment
                 </a>
@@ -1229,14 +1150,14 @@ const Home: React.FC = () => {
 
             {/* PREMIUM */}
             <div
-              className="relative w-full rounded-[30px] border border-white/[0.08] 
+              className="relative w-full max-w-[460px] mx-auto rounded-[34px] border border-white/[0.08] 
                   bg-gradient-to-br from-[#070b1a] via-[#050814] to-black 
-                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden"
+                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col"
             >
               {/* top indigo/blue glow */}
               <div className="absolute inset-0 bg-[radial-gradient(85%_65%_at_20%_0%,rgba(59,130,246,0.22),transparent_60%)]" />
 
-              <div className="relative px-10 py-[45px]">
+              <div className="relative px-8 md:px-9 pt-10 pb-8 min-h-[690px] flex-1 flex flex-col">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex flex-col items-start gap-3">
@@ -1284,7 +1205,7 @@ const Home: React.FC = () => {
                 </div>
 
                 {/* Features */}
-                <ul className="space-y-4 mb-10 text-[13px]">
+                <ul className="space-y-4 mb-8 text-[13px]">
                   {[
                     "Dedicated Expert Product Designer",
                     "Up to 40 hours per week",
@@ -1297,42 +1218,44 @@ const Home: React.FC = () => {
                       className="flex items-center gap-3 text-gray-300"
                     >
                       <span className="w-5 h-5 rounded-full bg-blue-700 text-white flex items-center justify-center text-[11px]">
-                        ✓
+                        âœ"
                       </span>
                       {item}
                     </li>
                   ))}
                 </ul>
-
-                {/* CTA */}
+                <img
+                  src={star}
+                  alt="Star"
+                  className="pointer-events-none absolute bottom-28 right-1/2 -translate-x-1/2 opacity-20 mx-auto"
+                />
+              </div>
+              {/* CTA: keep only pill shape from reference */}
+              <div className="relative mt-auto px-6 pb-6">
                 <a
                   href={CALENDLY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-center px-6 py-3 rounded-lg 
-      text-white text-[14px] font-semibold tracking-tight w-full max-w-[300px]
-      bg-gradient-to-r from-[#a855f7] via-[#7c3aed] to-[#4c1d95]
-      shadow-[0_0_35px_rgba(168,85,247,0.6)]
-      hover:scale-[1.04] transition-all"
+                  className="site-button relative z-10 mx-auto flex h-[72px] w-[86%] items-center justify-center !rounded-full
+      bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4]
+      text-white text-[15px] font-bold tracking-tight
+      shadow-[0_0_35px_rgba(47,131,255,0.55)]
+      hover:brightness-110 transition-all duration-300"
                 >
                   Book an Appointment
                 </a>
-                <img
-                  src={star}
-                  alt="Star"
-                  className="absolute bottom-0 right-1/2 -translate-x-1/2 opacity-20 mx-auto mt-4"
-                />
               </div>
             </div>
           </div>
         </div>
+        </div>
       </section>
 
-      {/* 7. Testimonial Section – Dark Premium SaaS Glassmorphism */}
+      {/* 7. Testimonial Section â€" Dark Premium SaaS Glassmorphism */}
       <section className="relative overflow-hidden bg-black">
         {/* ambient background */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-purple-600/20 blur-[140px]" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-blue-600/20 blur-[140px]" />
           <div
             className="absolute left-0 top-[35%] w-[30%] h-[45%] bg-[#050914]"
             style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
@@ -1369,7 +1292,7 @@ const Home: React.FC = () => {
             </div>
 
             <h2 className="text-4xl md:text-[48px] text-white tracking-tight leading-[1.05]">
-              Customer Reviews About
+              Customer Reviews on
             </h2>
 
             <h3 className="text-4xl md:text-[48px] text-gray-400 tracking-tight leading-[1.1] mt-2">
@@ -1398,13 +1321,13 @@ const Home: React.FC = () => {
                 href={CALENDLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-8 py-3 rounded-lg
+                className="site-button inline-block w-full sm:w-auto px-8 py-3 rounded-lg
               text-white text-[14px] font-bold tracking-tight
-              bg-gradient-to-r from-[#a855f7] via-[#7c3aed] to-[#4c1d95]
-              shadow-[0_0_35px_rgba(168,85,247,0.6)]
+              bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4]
+              shadow-[0_0_35px_rgba(47,131,255,0.6)]
               hover:scale-[1.05] transition-all  shadow-lg shadow-blue-500"
               >
-                Let’s Work Together
+                Let's Work Together
               </a>
             </div>
           </div>
@@ -1467,9 +1390,7 @@ const Home: React.FC = () => {
             ].map((t, idx) => (
               <div
                 key={idx}
-                className="relative h-full flex flex-col rounded-[26px]
-              bg-gradient-to-t from-[#010c22] via-[#010c22] to-black
-              backdrop-blur-xl
+                className="midnight-card-gradient relative h-full flex flex-col rounded-[26px]
               border-t 
               border-blue-800
               p-8
@@ -1509,7 +1430,7 @@ const Home: React.FC = () => {
 
                 {/* content */}
                 <p className="text-zinc-400  text-[14px] leading-relaxed mb-10">
-                  “{t.text}”
+                  "{t.text}"
                 </p>
 
                 {/* footer */}
@@ -1528,15 +1449,29 @@ const Home: React.FC = () => {
         </div>
       </section>
       {/* 8. FAQ Section */}
-      <section className="relative py-40 px-8 md:px-16 lg:px-24 overflow-hidden bg-black">
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-[#08030b] via-[#1a0a1e] to-[#0a050f] pointer-events-none"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-600/50 to-transparent z-20"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-purple-600/10 blur-[80px] pointer-events-none z-10"></div>
-         */}
+      <section className="relative overflow-hidden bg-black">
+        <div className="relative w-full bg-black overflow-hidden py-40">
+          {/* <div className="absolute inset-0 bg-gradient-to-b from-[#08030b] via-[#1a0a1e] to-[#0a050f] pointer-events-none"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-600/50 to-transparent z-20"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-blue-600/10 blur-[80px] pointer-events-none z-10"></div>
+           */}
 
-        <div className="max-w-[1440px] mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-            <div className="flex flex-col items-start pt-4">
+          <div className="relative mb-16">
+            {/* LEFT CURVE */}
+            <img
+              src={leftcurve}
+              alt="Left Curve"
+              className="absolute left-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+            />
+
+            {/* RIGHT CURVE */}
+            <img
+              src={leftcurve}
+              alt="Right Curve"
+              className="absolute right-0 lg:top-1/2 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+            />
+
+            <div className="relative z-10 max-w-4xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center mb-16">
               {/* <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-[#1a0a1e]/80 border border-white/[0.05] mb-10 backdrop-blur-xl">
                 <span className="w-1 h-1 rounded-full bg-blue-400"></span>
                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.25em]">
@@ -1559,22 +1494,25 @@ const Home: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <h2 className="text-4xl 2xl:text-[72px] lg:text-[44px] font-bold leading-[1.05] tracking-tight mb-10">
+              <h2 className="text-4xl 2xl:text-[72px] lg:text-[44px] font-bold leading-[1.05] tracking-tight mb-6">
                 <span className="text-white font-normal">Frequently</span>
                 <span className="text-gray-500/80 block font-normal">
                   Asked Questions
                 </span>
               </h2>
-              <p className="text-gray-400 font-semibold">
-                Have question? Our FAQs section has you covered withn quick
-                answers to the most common inquiries
+              <p className="text-gray-400 font-semibold max-w-2xl">
+                Have questions? Our FAQs section covers quick answers to the
+                most common inquiries.
               </p>
             </div>
-            <div className="space-y-4">
+          </div>
+
+          <div className="max-w-[1440px] mx-auto relative z-10 px-8 md:px-16 lg:px-24">
+            <div className="max-w-4xl mx-auto space-y-4">
               {faqItems.map((item, idx) => (
                 <div
                   key={idx}
-                  className={`bg-[#08030b]/80 border border-zinc-800 rounded-[24px] overflow-hidden group hover:border-white/[0.08] hover:bg-[#0c0511]/90 transition-all duration-500 cursor-pointer ${activeFaq === idx ? "border-white/[0.12] bg-[#0c0511]" : ""}`}
+                  className={`midnight-card-gradient border border-blue-100/15 rounded-[24px] overflow-hidden group hover:border-white/[0.08] transition-all duration-500 cursor-pointer ${activeFaq === idx ? "border-white/[0.12]" : ""}`}
                   onClick={() => toggleFaq(idx)}
                 >
                   <div className="p-8 flex items-center justify-between">
@@ -1606,10 +1544,11 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. Unique Opportunity Section - WITH ANIMATED WAVE COLOR CART */}
-      <section className="relative py-40 px-8 md:px-16 lg:px-24 overflow-hidden bg-black">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-[#0b1d3a] via-[#0a1330] to-black">
+      {/* 9. Unique Opportunity Section - Overlay layer that reveals fixed footer */}
+      <section className="relative z-20 h-[150vh] bg-transparent">
+        <div className="sticky top-0 h-screen flex items-end">
+          <div className="w-full">
+            <div className="midnight-card-gradient relative overflow-hidden rounded-none border-y border-white/10 min-h-[100svh] flex items-center">
             {/* Background Glow Effects */}
             <div className="absolute inset-0 overflow-hidden">
               <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-600/30 rounded-full blur-[100px]"></div>
@@ -1618,8 +1557,8 @@ const Home: React.FC = () => {
               <div className="absolute -bottom-60 right-40 w-[700px] h-[600px] bg-black rounded-full blur-[100px]"></div>
             </div>
 
-            {/* Content */}
-            <div className="relative z-10 py-24 px-6 md:px-16 flex flex-col items-center text-center">
+              {/* Content */}
+              <div className="relative z-10 w-full py-24 px-6 md:px-16 lg:px-24 flex flex-col items-center text-center">
               {/* Tag */}
               {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-full mb-10">
                 <span className="w-1.5 h-1.5 rounded-full bg-white/80"></span>
@@ -1635,7 +1574,7 @@ const Home: React.FC = () => {
                 <div
                   className="inline-flex items-center space-x-2 px-4 py-2 
                       rounded-lg border-x border-gray-800 backdrop-blur-xl bg-gradient-to-t 
-                    from-black via-slate-950 to-purple-900/30"
+                    from-black via-slate-950 to-blue-900/30"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
                   <span className="text-xs text-gray-200 tracking-widest uppercase">
@@ -1645,40 +1584,45 @@ const Home: React.FC = () => {
               </div>
 
               {/* Heading */}
-              <h2 className="md:block hidden text-4xl 2xl:text-5xl lg:text-5xl text-white leading-tight max-w-4xl">
-                Each Project we Undertake
-                <br />
-                <span className="text-white/50">is a Unique Opportunity.</span>
-              </h2>
-              <h2 className="md:hidden block text-4xl 2xl:text-5xl lg:text-5xl text-white leading-tight max-w-4xl">
-                Each Project, Our
-                <br />
-                <span className="text-white/50">Design is Great.</span>
-              </h2>
+                <h2 className="md:block hidden text-5xl lg:text-6xl 2xl:text-7xl text-white leading-[1.05] max-w-5xl">
+                  Each Project we Undertake
+                  <br />
+                  <span className="text-white/50">is a Unique Opportunity.</span>
+                </h2>
+                <h2 className="md:hidden block text-[44px] text-white leading-[1.05] max-w-4xl">
+                  Each Project, Our
+                  <br />
+                  <span className="text-white/50">Design is Great.</span>
+                </h2>
 
               {/* Description */}
-              <p className="mt-6 text-white/60 text-base md:text-lg max-w-2xl leading-relaxed">
-                Ready to take the next step? Join us now and start transforming
-                your
-                <br className="hidden md:block" />
-                vision into reality with expert support.
-              </p>
+                <p className="mt-6 text-white/60 text-base md:text-lg max-w-2xl leading-relaxed">
+                  Ready to take the next step? Join us now and start transforming
+                  your
+                  <br className="hidden md:block" />
+                  vision into reality with expert support.
+                </p>
 
               {/* CTA Button */}
-              <button
-                className="mt-10 px-8 py-3.5 rounded-xl font-semibold text-white
-      bg-gradient-to-r from-purple-600 to-purple-700
-      shadow-[0_0_40px_rgba(168,85,247,0.5)]
-      hover:shadow-[0_0_60px_rgba(168,85,247,0.7)]
+                <button
+                  className="site-button mt-12 w-full sm:w-auto px-12 py-5 rounded-2xl text-[18px] font-bold text-white
+      bg-gradient-to-r from-[#1766e8] to-[#0f4db4]
+      shadow-[0_0_40px_rgba(47,131,255,0.5)]
+      hover:shadow-[0_0_60px_rgba(47,131,255,0.7)]
       shadow-lg shadow-blue-500
       transition-all duration-300 hover:scale-105"
-              >
-                Book an Appointment
-              </button>
+                >
+                  Book an Appointment
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Scroll reveal space: allows Join Us layer to fully move up, exposing fixed footer */}
+      <section className="relative z-10 h-[110vh] bg-transparent pointer-events-none" />
+
     </div>
   );
 };

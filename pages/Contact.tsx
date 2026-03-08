@@ -81,14 +81,15 @@ const Contact: React.FC = () => {
 
   if (status === 'success') {
     return (
-      <div className="bg-global-gradient pt-48 pb-24 px-6 sm:px-12 lg:px-24 min-h-screen flex items-center justify-center">
-        <div className="max-w-4xl w-full relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 rounded-[40px] blur opacity-30 animate-pulse"></div>
+      <div className="bg-global-gradient pt-56 md:pt-60 lg:pt-64 pb-44 md:pb-48 px-6 sm:px-12 lg:px-24 min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
+        <div className="max-w-4xl w-full relative z-10 group">
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-500 rounded-[40px] blur opacity-30 animate-pulse"></div>
           
           <div className="relative bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-[40px] p-12 md:p-16 overflow-hidden shadow-2xl">
             <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
                <div className="absolute -top-1/2 -right-1/4 w-full h-full bg-blue-600/30 blur-[120px] rounded-full animate-float-glow"></div>
-               <div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-purple-600/20 blur-[120px] rounded-full animate-float-glow-reverse"></div>
+               <div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-cyan-500/20 blur-[120px] rounded-full animate-float-glow-reverse"></div>
                <div className="waves-container !opacity-20">
                   <div className="wave wave-3"></div>
                   <div className="wave wave-2"></div>
@@ -113,10 +114,10 @@ const Contact: React.FC = () => {
                 {aiInsight && (
                   <div className="bg-white/5 border border-white/10 rounded-3xl p-8 text-left backdrop-blur-xl relative overflow-hidden shadow-inner group/ai">
                     <div className="absolute top-0 right-0 p-4 opacity-30">
-                      <Sparkles className="w-5 h-5 text-purple-400" />
+                      <Sparkles className="w-5 h-5 text-blue-300" />
                     </div>
-                    <h4 className="text-[10px] font-black text-purple-400 uppercase tracking-[0.3em] mb-4 flex items-center">
-                      <span className="w-1.5 h-1.5 rounded-full bg-purple-400 mr-2 animate-pulse"></span>
+                    <h4 className="text-[10px] font-black text-blue-300 uppercase tracking-[0.3em] mb-4 flex items-center">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-300 mr-2 animate-pulse"></span>
                       Studio Intelligence
                     </h4>
                     <p className="text-gray-300 italic leading-relaxed font-medium text-[15px]">
@@ -134,7 +135,7 @@ const Contact: React.FC = () => {
 
                  <div className="space-y-6">
                     <div className="flex items-start space-x-4">
-                       <User className="w-4 h-4 text-purple-400 mt-1" />
+                       <User className="w-4 h-4 text-blue-300 mt-1" />
                        <div>
                           <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">Identity</p>
                           <p className="text-white font-bold">{formData.name}</p>
@@ -157,7 +158,7 @@ const Contact: React.FC = () => {
 
                  <button 
                   onClick={() => setStatus('idle')}
-                  className="w-full mt-10 py-4 bg-white text-black font-bold rounded-2xl hover:bg-gray-100 transition-all flex items-center justify-center space-x-3 group shadow-xl"
+                  className="site-button w-full mt-10 py-4 bg-white text-black font-bold rounded-2xl hover:bg-gray-100 transition-all flex items-center justify-center space-x-3 group shadow-xl"
                 >
                   <span>Submit Another Brief</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -171,15 +172,16 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <div className="bg-global-gradient min-h-screen pt-48 pb-24 px-6 sm:px-12 lg:px-24">
-      <div className="max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-          <div className="sticky top-48">
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-10 tracking-tight leading-[1.05]">
-              TELL US <br/><span className="text-purple-300">EVERYTHING</span>.
+    <div className="bg-global-gradient min-h-screen pt-56 md:pt-60 lg:pt-64 pb-44 md:pb-48 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
+      <div className="max-w-[1440px] mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1fr)] gap-14 lg:gap-16 xl:gap-20 items-start">
+          <div className="lg:sticky lg:top-40 max-w-[580px] pr-2">
+            <h1 className="text-[56px] sm:text-[72px] lg:text-[84px] xl:text-[92px] font-bold text-white mb-10 tracking-tight leading-[1.02]">
+              TELL US <br/><span className="text-blue-300">EVERYTHING</span>.
             </h1>
             <p className="text-xl text-[#a1a1aa] mb-16 leading-relaxed max-w-lg font-medium opacity-80">
-              Your project inquiry is about to be mailed to <span className="text-white border-b border-purple-500/50 pb-1">business@inspirostudio.io</span>. 
+              Your project inquiry is about to be mailed to <span className="text-white border-b border-blue-500/50 pb-1">business@inspirostudio.io</span>. 
             </p>
 
             <div className="space-y-12">
@@ -196,17 +198,17 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative group contact-water-shell">
+          <div className="relative group contact-water-shell lg:ml-auto w-full max-w-[760px]">
             <div className="contact-water-drop"></div>
             <div className="contact-water-drop-secondary"></div>
             <div className="contact-water-ripple contact-water-ripple-one"></div>
             <div className="contact-water-ripple contact-water-ripple-two"></div>
             <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 via-cyan-400/25 to-blue-500/20 rounded-[32px] blur-xl opacity-75 group-hover:opacity-100 transition duration-700"></div>
             
-            <div className="relative glass-card p-12 border-white/10 bg-gradient-to-br from-[#070b1a] via-[#050814] to-black backdrop-blur-2xl shadow-2xl animate-water-drop-in">
+            <div className="midnight-card-gradient relative border border-white/10 rounded-[24px] p-8 md:p-10 xl:p-12 shadow-2xl animate-water-drop-in">
               <h3 className="text-2xl font-bold text-white mb-10 tracking-tight flex items-center animate-water-item" style={{ animationDelay: '120ms' }}>
                 Project Contact Form
-                {status === 'submitting' && <Loader2 className="ml-4 w-5 h-5 text-purple-400 animate-spin" />}
+                {status === 'submitting' && <Loader2 className="ml-4 w-5 h-5 text-blue-300 animate-spin" />}
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-8">
@@ -256,10 +258,10 @@ const Contact: React.FC = () => {
                       disabled={status === 'submitting'}
                       className="w-full contact-water-input border rounded-2xl px-6 py-5 text-[15px] text-white focus:outline-none transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <option className="bg-[#1a0a1e]">Video Marketing</option>
-                      <option className="bg-[#1a0a1e]">Product Animation</option>
-                      <option className="bg-[#1a0a1e]">Branding Package</option>
-                      <option className="bg-[#1a0a1e]">Social Strategy</option>
+                      <option className="bg-[#0a1428]">Video Marketing</option>
+                      <option className="bg-[#0a1428]">Product Animation</option>
+                      <option className="bg-[#0a1428]">Branding Package</option>
+                      <option className="bg-[#0a1428]">Social Strategy</option>
                     </select>
                     <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
                       <ArrowRight className="w-4 h-4 rotate-90" />
@@ -283,7 +285,7 @@ const Contact: React.FC = () => {
                 <button 
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="glow-btn-custom contact-water-submit w-full py-5 text-white font-bold text-[15px] rounded-full tracking-tight flex items-center justify-center space-x-3 relative overflow-hidden group shadow-2xl animate-water-item"
+                  className="glow-btn-custom site-button contact-water-submit w-full py-5 text-white font-bold text-[15px] rounded-full tracking-tight flex items-center justify-center space-x-3 relative overflow-hidden group shadow-2xl animate-water-item"
                   style={{ animationDelay: '460ms' }}
                 >
                   <span className="relative z-10">{status === 'submitting' ? 'Mailing to Studio...' : 'Mail Project to Inbox'}</span>
@@ -300,11 +302,11 @@ const Contact: React.FC = () => {
 
 const ContactInfoItem: React.FC<{ icon: React.ReactNode; title: string; content: string }> = ({ icon, title, content }) => (
   <div className="flex items-start space-x-8 group">
-    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-purple-300 group-hover:bg-purple-500/10 group-hover:border-purple-500/20 transition-all duration-300 shadow-xl">
+    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-300 group-hover:bg-blue-500/10 group-hover:border-blue-500/20 transition-all duration-300 shadow-xl">
       {icon}
     </div>
     <div>
-      <h4 className="text-lg font-bold text-white mb-1 tracking-tight group-hover:text-purple-300 transition-colors">{title}</h4>
+      <h4 className="text-lg font-bold text-white mb-1 tracking-tight group-hover:text-blue-300 transition-colors">{title}</h4>
       <p className="text-gray-400 font-medium text-[15px]">{content}</p>
     </div>
   </div>

@@ -4,6 +4,8 @@ import { ChevronDown, HelpCircle } from 'lucide-react';
 
 const Faqs: React.FC = () => {
   const CALENDLY_LINK = "https://calendly.com/inspirostudio-io/30min";
+  const primaryButtonClass =
+    "glow-btn-custom site-button inline-flex w-full sm:w-auto whitespace-nowrap rounded-[120px] px-10 py-4 text-[14px] font-bold uppercase tracking-[0.12em] text-white text-center";
 
   const faqs = [
     { 
@@ -29,9 +31,11 @@ const Faqs: React.FC = () => {
   ];
 
   return (
-    <div className="bg-global-gradient min-h-screen pt-48 pb-24 px-6 sm:px-12 lg:px-24">
+    <div className="bg-global-gradient min-h-screen pt-48 pb-24 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
+      <div className="relative z-10">
       <div className="max-w-3xl mx-auto text-center mb-24">
-        <h1 className="text-6xl font-bold text-white mb-8 tracking-tight">Got <span className="text-purple-300">Questions?</span></h1>
+        <h1 className="text-6xl font-bold text-white mb-8 tracking-tight">Got <span className="text-blue-300">Questions?</span></h1>
         <p className="text-[#a1a1aa] text-lg">Detailed insights into our creative process and partnerships.</p>
       </div>
 
@@ -41,8 +45,8 @@ const Faqs: React.FC = () => {
         ))}
       </div>
 
-      <div className="max-w-3xl mx-auto mt-32 glass-card p-16 text-center">
-        <div className="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-300 mx-auto mb-8">
+      <div className="midnight-card-gradient max-w-3xl mx-auto mt-32 border border-white/10 rounded-[24px] p-16 text-center">
+        <div className="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-300 mx-auto mb-8">
           <HelpCircle className="w-8 h-8" />
         </div>
         <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">Still curious?</h3>
@@ -51,10 +55,11 @@ const Faqs: React.FC = () => {
           href={CALENDLY_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          className="glow-btn-custom px-10 py-4 font-bold rounded-full text-white text-[15px] tracking-tight inline-block"
+          className={primaryButtonClass}
         >
           Book a Call
         </a>
+      </div>
       </div>
     </div>
   );
@@ -64,7 +69,7 @@ const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, ans
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`glass-card overflow-hidden transition-all duration-500 ${isOpen ? 'border-blue-400/40' : 'hover:border-blue-400/25'}`}>
+    <div className={`midnight-card-gradient border border-white/10 rounded-[24px] overflow-hidden transition-all duration-500 ${isOpen ? 'border-blue-400/40' : 'hover:border-blue-400/25'}`}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-8 flex items-center justify-between text-left"

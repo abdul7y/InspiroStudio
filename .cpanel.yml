@@ -7,4 +7,4 @@ deployment:
     - cd $REPOPATH
     - npm install
     - npm run build
-    - /bin/cp -R dist/* $DEPLOYPATH
+    - /bin/cp -R dist/. $DEPLOYPATH

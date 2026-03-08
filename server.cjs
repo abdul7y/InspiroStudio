@@ -145,5 +145,5 @@ app.get(/.*/, (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  console.log(`Fullstack Inspiro Studio server running on port ${PORT}`);
+  console.log(`Inspiro Studio server running on port ${PORT}`);
 });

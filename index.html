@@ -8,53 +8,105 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --ink-950: #020611;
+        --ink-900: #081227;
+        --ink-850: #0c1931;
+        --surface-900: #070f21;
+        --surface-800: #0d1a33;
+        --line-soft: rgba(151, 181, 255, 0.2);
+        --line-strong: rgba(120, 169, 255, 0.35);
+        --text-main: #f8fbff;
+        --text-soft: #9db0d5;
+        --accent-400: #53a5ff;
+        --accent-500: #2f83ff;
+        --accent-600: #1366e8;
+        --midnight-card-gradient: linear-gradient(145deg, #0b1d3a 0%, #0a1330 48%, #000000 100%);
+      }
+
       body {
         font-family: 'Plus Jakarta Sans', sans-serif;
-        background-color: #000000;
-        color: #ffffff;
+        background-color: var(--ink-950);
+        color: var(--text-main);
         margin: 0;
         overflow-x: hidden;
       }
 
-      .electrolize-regular {
-        font-family: "Electrolize", sans-serif;
-        font-weight: 400;
+      .logo-wordmark {
+        font-family: "Poppins", "Plus Jakarta Sans", sans-serif;
+        font-weight: 800;
         font-style: normal;
+        letter-spacing: -0.065em;
+        line-height: 0.95;
+        text-wrap: balance;
       }
 
 
-      /* Global background gradient - Light Eggplant Theme */
+      /* Global background gradient */
       .bg-global-gradient {
         background:
-          radial-gradient(circle at 75% 10%, rgba(37, 99, 235, 0.22), transparent 45%),
-          linear-gradient(145deg, #071328 0%, #050814 45%, #000000 100%);
+          radial-gradient(circle at 8% 6%, rgba(18, 107, 255, 0.18), transparent 42%),
+          radial-gradient(circle at 88% 16%, rgba(39, 145, 255, 0.2), transparent 45%),
+          linear-gradient(150deg, var(--ink-900) 0%, var(--ink-850) 42%, var(--ink-950) 100%);
         background-attachment: fixed;
         min-height: 100vh;
       }
 
       /* Button gradient and glow */
       .glow-btn-custom {
-        background: linear-gradient(135deg, #8a4ba7 0%, #5b21b6 100%);  
-        box-shadow: 0 0 25px 2px rgba(138, 75, 167, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: linear-gradient(135deg, var(--accent-600) 0%, var(--accent-500) 58%, #00a3ff 100%);
+        box-shadow: 0 16px 45px rgba(20, 112, 255, 0.42);
+        border: 1px solid rgba(173, 214, 255, 0.24);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .glow-btn-custom:hover {
-        box-shadow: 0 0 35px 5px rgba(138, 75, 167, 0.6);
+        box-shadow: 0 18px 60px rgba(39, 145, 255, 0.55);
         transform: translateY(-2px);
+      }
+
+      /* Shared CTA button shell */
+      .site-button,
+      .glow-btn-custom {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        max-width: 100%;
+        min-height: 72px;
+        padding: 1rem 1.85rem !important;
+        border-radius: 999px !important;
+        text-align: center;
+        line-height: 1.1;
+        vertical-align: middle;
+      }
+
+      @media (max-width: 640px) {
+        .site-button,
+        .glow-btn-custom {
+          min-height: 60px;
+          padding: 0.9rem 1.35rem !important;
+        }
       }
 
       /* Glassmorphism for components */
       .glass-card {
-        background: linear-gradient(135deg, #070b1a 0%, #050814 55%, #000000 100%);
+        background:
+          linear-gradient(145deg, rgba(13, 29, 56, 0.9) 0%, rgba(6, 15, 30, 0.92) 52%, rgba(3, 8, 18, 0.95) 100%);
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--line-soft);
         border-radius: 24px;
+        box-shadow: 0 24px 80px rgba(1, 8, 22, 0.55);
+      }
+
+      .midnight-card-gradient {
+        background:
+          radial-gradient(circle at top right, rgba(83, 165, 255, 0.2) 0%, transparent 30%),
+          radial-gradient(circle at bottom left, rgba(19, 102, 232, 0.18) 0%, transparent 28%),
+          var(--midnight-card-gradient);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 28px 90px rgba(1, 8, 22, 0.5);
       }
 
       /* Infinite Logo Scroll Animation (Right to Left) */
@@ -380,14 +432,14 @@
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #0a050f;
+        background: #030816;
       }
       ::-webkit-scrollbar-thumb {
-        background: #3d1b3f;
+        background: #1e4a87;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #4a2c4a;
+        background: #2b65b1;
       }
     </style>
     <script type="importmap">
