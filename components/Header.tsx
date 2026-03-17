@@ -41,51 +41,51 @@ const Header: React.FC = () => {
         hideOnFooter ? "opacity-0 -translate-y-8 pointer-events-none" : "opacity-100 translate-y-0"
       }`}
     >
-      <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-16">
+      <div className="mx-auto w-full max-w-[1680px] px-5 sm:px-8 lg:px-12">
         <nav
-          className={`mt-4 rounded-[120px] border px-8 sm:px-10 lg:px-14 transition-all duration-300 ${
+          className={`mt-4 rounded-[120px] border px-6 sm:px-8 lg:px-10 transition-all duration-300 ${
             scrolled
-              ? "border-blue-200/20 bg-[#050d1f]/88 py-5 shadow-[0_18px_55px_rgba(1,6,16,0.6)] backdrop-blur-xl"
-              : "border-blue-200/15 bg-[#060f22]/70 py-6 backdrop-blur-md"
+              ? "border-blue-200/20 bg-[#050d1f]/88 py-3.5 shadow-[0_18px_55px_rgba(1,6,16,0.6)] backdrop-blur-xl"
+              : "border-blue-200/15 bg-[#060f22]/70 py-4 backdrop-blur-md"
           }`}
         >
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-7">
+          <div className="grid grid-cols-[auto_auto] items-center gap-4 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
+            <div className="flex items-center">
               <Link to="/" className="group inline-flex items-center" aria-label="Inspiro Studio">
                 <span className="logo-wordmark whitespace-nowrap text-[23px] text-white sm:text-[28px] lg:text-[40px]">
                   Inspiro Studio
                 </span>
               </Link>
-              <div className="hidden h-8 w-px bg-white/15 md:block" />
-              <div className="hidden items-center gap-8 md:flex">
-                {NAV_LINKS.map((link) => {
-                  const isActive = location.pathname === link.path;
-                  return (
-                    <Link
-                      key={link.name}
-                      to={link.path}
-                      className={`relative text-[13px] font-semibold uppercase tracking-[0.11em] transition-colors ${
-                        isActive ? "text-white" : "text-blue-100/70 hover:text-white"
-                      }`}
-                    >
-                      {link.name}
-                      <span
-                        className={`absolute -bottom-2 left-0 h-[2px] rounded-full bg-blue-300 transition-all ${
-                          isActive ? "w-full opacity-100" : "w-0 opacity-0"
-                        }`}
-                      />
-                    </Link>
-                  );
-                })}
-              </div>
             </div>
 
-            <div className="hidden md:block">
+            <div className="hidden items-center justify-center gap-8 md:flex">
+              {NAV_LINKS.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className={`relative text-[13px] font-semibold uppercase tracking-[0.11em] transition-colors ${
+                      isActive ? "text-white" : "text-blue-100/70 hover:text-white"
+                    }`}
+                  >
+                    {link.name}
+                    <span
+                      className={`absolute -bottom-2 left-0 h-[2px] rounded-full bg-blue-300 transition-all ${
+                        isActive ? "w-full opacity-100" : "w-0 opacity-0"
+                      }`}
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="hidden items-center justify-end md:flex">
               <a
                 href={CALENDLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glow-btn-custom site-button inline-flex whitespace-nowrap rounded-[120px] px-12 py-5 text-[14px] font-bold uppercase tracking-[0.12em] text-white"
+                className="glow-btn-custom site-button inline-flex whitespace-nowrap rounded-[120px] px-10 py-4 text-[14px] font-bold uppercase tracking-[0.12em] text-white"
               >
                 Book a Call
               </a>
@@ -94,7 +94,7 @@ const Header: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsOpen((prev) => !prev)}
-              className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-blue-100/20 bg-white/5 text-white md:hidden"
+              className="col-start-2 inline-flex h-12 w-12 items-center justify-center justify-self-end rounded-full border border-blue-100/20 bg-white/5 text-white md:hidden"
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
             >

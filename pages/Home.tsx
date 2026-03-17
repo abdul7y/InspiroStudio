@@ -11,6 +11,7 @@ import {
   Plus,
   BadgeCheck,
   Dot,
+  Slack as SlackIcon,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import leftcurve from "../images/leftcurve.jpg";
@@ -32,6 +33,98 @@ const HERO_TYPING_WORDS = [
   "Rental House.",
   "Software Houses.",
 ];
+
+type HeroBrandId = "loom" | "johnson" | "slack" | "sony" | "microsoft";
+
+const HERO_BRANDS: HeroBrandId[] = [
+  "loom",
+  "johnson",
+  "slack",
+  "sony",
+  "microsoft",
+];
+
+const renderHeroBrandLogo = (brand: HeroBrandId) => {
+  switch (brand) {
+    case "loom":
+      return (
+        <div className="flex items-center gap-3 text-white/90">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            className="h-8 w-8 sm:h-10 sm:w-10"
+          >
+            <g fill="none" stroke="#5B5CE2" strokeLinecap="round" strokeWidth="2.3">
+              <path d="M12 2.7v4.6" />
+              <path d="M12 16.7v4.6" />
+              <path d="M2.7 12h4.6" />
+              <path d="M16.7 12h4.6" />
+              <path d="M5.4 5.4l3.3 3.3" />
+              <path d="M15.3 15.3l3.3 3.3" />
+              <path d="M18.6 5.4l-3.3 3.3" />
+              <path d="M8.7 15.3l-3.3 3.3" />
+            </g>
+            <circle cx="12" cy="12" r="2.1" fill="#5B5CE2" />
+          </svg>
+          <span className="whitespace-nowrap text-[26px] font-semibold tracking-[-0.05em] lowercase leading-none sm:text-[31px]">
+            loom
+          </span>
+        </div>
+      );
+
+    case "johnson":
+      return (
+        <div
+          className="flex flex-col whitespace-nowrap text-white/90 leading-[0.82]"
+          style={{ fontFamily: '"Times New Roman", Georgia, serif' }}
+        >
+          <span className="text-[20px] font-semibold leading-none sm:text-[24px]">Johnson</span>
+          <span className="-mt-0.5 text-[20px] font-semibold leading-none sm:text-[24px]">
+            &amp;Johnson
+          </span>
+        </div>
+      );
+
+    case "slack":
+      return (
+        <div className="flex items-center gap-3 text-white/95">
+          <SlackIcon
+            aria-hidden="true"
+            className="h-8 w-8 sm:h-10 sm:w-10"
+            strokeWidth={2.2}
+          />
+          <span className="whitespace-nowrap text-[25px] font-semibold tracking-[-0.05em] lowercase leading-none sm:text-[30px]">
+            slack
+          </span>
+        </div>
+      );
+
+    case "sony":
+      return (
+        <span
+          className="whitespace-nowrap text-[26px] font-semibold uppercase tracking-[0.14em] text-white/90 leading-none sm:text-[31px]"
+          style={{ fontFamily: '"Times New Roman", Georgia, serif' }}
+        >
+          SONY
+        </span>
+      );
+
+    case "microsoft":
+      return (
+        <div className="flex items-center gap-3 text-white/85">
+          <div className="grid grid-cols-2 gap-[2px]">
+            <span className="h-[12px] w-[12px] sm:h-[14px] sm:w-[14px] bg-[#F25022]" />
+            <span className="h-[12px] w-[12px] sm:h-[14px] sm:w-[14px] bg-[#7FBA00]" />
+            <span className="h-[12px] w-[12px] sm:h-[14px] sm:w-[14px] bg-[#00A4EF]" />
+            <span className="h-[12px] w-[12px] sm:h-[14px] sm:w-[14px] bg-[#FFB900]" />
+          </div>
+          <span className="whitespace-nowrap text-[24px] font-medium tracking-[-0.05em] leading-none sm:text-[29px]">
+            Microsoft
+          </span>
+        </div>
+      );
+  }
+};
 
 const Home: React.FC = () => {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -280,26 +373,11 @@ const Home: React.FC = () => {
                 href={CALENDLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glow-btn-custom site-button w-full sm:w-auto px-10 py-[18px] rounded-xl text-white font-bold text-[15px] tracking-tight mb-12 shadow-lg shadow-blue-500/50"
+                className="glow-btn-custom site-button w-full sm:w-auto !px-7 !py-4 rounded-xl text-white font-bold text-[14px] uppercase tracking-[0.08em] mb-12 shadow-lg shadow-blue-500/50"
               >
-                Book a Call
+                BOOK A DISCOVERY CALL
               </a>
 
-              <div className="relative w-full max-w-[400px] overflow-hidden opacity-30 grayscale select-none pointer-events-none">
-                <div className="animate-infinite-scroll flex items-center py-2">
-                  {[...logos, ...logos, ...logos].map((logo, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center space-x-3 mx-8"
-                    >
-                      <div className="w-3.5 h-3.5 bg-white rounded-[1px]"></div>
-                      <span className="text-[16px] font-black tracking-tighter text-white whitespace-nowrap uppercase">
-                        {logo}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -311,8 +389,33 @@ const Home: React.FC = () => {
         <div className="absolute inset-x-0 bottom-0 h-36 md:h-44 lg:h-52 bg-gradient-to-b from-transparent via-[#060f22]/60 to-black pointer-events-none"></div>
       </section>
 
+      <div className="relative left-1/2 z-20 -mt-10 w-screen -translate-x-1/2 overflow-hidden pb-6 sm:-mt-12 sm:pb-7 lg:-mt-14 lg:pb-8">
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, #07173f 0%, #0a1f57 46%, #0f2c7a 74%, #18439f 100%)",
+          }}
+        />
+        <div className="relative flex min-h-[78px] w-full items-center overflow-hidden select-none sm:min-h-[90px]">
+          <div
+            className="animate-infinite-scroll flex h-[78px] min-w-max items-center gap-10 sm:h-[90px] sm:gap-14 lg:gap-20"
+            style={{ animationDuration: "22s" }}
+          >
+            {[...HERO_BRANDS, ...HERO_BRANDS, ...HERO_BRANDS].map((brand, index) => (
+              <div
+                key={`${brand}-${index}`}
+                className="flex h-full min-w-[160px] items-center justify-center sm:min-w-[198px] lg:min-w-[228px]"
+              >
+                {renderHeroBrandLogo(brand)}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* 2. Portfolio Section */}
-      <section className="relative px-8 lg:px-16 pt-8 lg:pt-0 pb-20 lg:pb-28 bg-black overflow-visible">
+      <section className="relative px-5 sm:px-8 lg:px-12 pt-8 lg:pt-0 pb-20 lg:pb-28 bg-black overflow-visible">
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/80 via-black/55 to-transparent pointer-events-none z-0"></div>
         <div className="relative w-full bg-black overflow-hidden lg:overflow-visible 2xl:py-28 py-32">
           {/* LEFT CURVE */}
@@ -402,12 +505,14 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-[1100px] mx-auto pb-[10vh] relative z-10">
+        {/* Match the portfolio cards to the global navbar shell across breakpoints. */}
+        <div className="mx-auto w-full max-w-[1680px] pb-[16vh] relative z-10">
           <div className="relative">
+            {/* Keep the portfolio stack pinned near screen center while only the videos progress on scroll. */}
             {portfolioItems.map((item, index) => (
               <article
                 key={item.id}
-                className="sticky top-16 sm:top-20 lg:top-24 w-full mb-[14vh] sm:mb-[16vh] lg:mb-[20vh] rounded-[26px] sm:rounded-[32px] lg:rounded-[44px] overflow-hidden border border-white/12 bg-black shadow-[0_30px_90px_rgba(0,0,0,0.55)]"
+                className="sticky top-1/2 w-full -translate-y-1/2 transform-gpu will-change-transform mb-[16vh] sm:mb-[18vh] lg:mb-[22vh] rounded-[26px] sm:rounded-[32px] lg:rounded-[44px] overflow-hidden border border-white/12 bg-black shadow-[0_30px_90px_rgba(0,0,0,0.55)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{ zIndex: index + 1 }}
               >
                 <div className="group relative aspect-[16/9] bg-[#0a1633]">
@@ -415,7 +520,7 @@ const Home: React.FC = () => {
                     ref={(el) => {
                       portfolioVideoRefs.current[index] = el;
                     }}
-                    className="absolute inset-0 w-full h-full object-cover opacity-100"
+                    className="absolute inset-0 w-full h-full object-cover opacity-100 transform-gpu will-change-transform"
                     src={item.videoSrc}
                     poster={item.posterSrc}
                     muted
@@ -498,9 +603,9 @@ const Home: React.FC = () => {
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 xl:gap-4 lg:gap-10 gap-10 mitems-center">
               <div className="flex justify-center lg:justify-start gap-2 order-2 lg:order-1">
                 <div className="relative w-full max-w-[500px]">
-                  <div className="relative aspect-square w-full rounded-[32px] shadow-2xl shadow-blue-700/60 border border-white/10 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.7)]">
+                  <div className="relative aspect-square w-full overflow-hidden rounded-[32px] border border-white/8 bg-[radial-gradient(circle_at_30%_20%,rgba(46,125,255,0.2),rgba(8,18,38,0.72)_42%,rgba(0,0,0,0.12)_72%,transparent_100%)] shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
                     <video
-                      className="absolute inset-0 w-full h-full object-cover opacity-90"
+                      className="absolute inset-0 w-full h-full object-cover opacity-88"
                       src={ABOUT_VIDEO_SRC}
                       autoPlay
                       muted
@@ -508,7 +613,9 @@ const Home: React.FC = () => {
                       playsInline
                       preload="metadata"
                     />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.16),transparent_42%)]"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#071127]/18 via-transparent to-black/35"></div>
+                    <div className="absolute inset-x-0 -bottom-10 h-28 bg-gradient-to-t from-black via-black/65 to-transparent blur-2xl"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.35)]">
                         <Play className="w-6 h-6 text-white fill-white" />
