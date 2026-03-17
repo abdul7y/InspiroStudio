@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "../constants/navigation";
+import {
+  NAVBAR_CTA_BUTTON_CLASS,
+  NAVBAR_CTA_BUTTON_FULL_WIDTH_CLASS,
+} from "../constants/buttonStyles";
 
 const CALENDLY_LINK = "https://calendly.com/inspirostudio-io/30min";
 
@@ -85,7 +89,7 @@ const Header: React.FC = () => {
                 href={CALENDLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glow-btn-custom site-button inline-flex whitespace-nowrap rounded-[120px] px-10 py-4 text-[14px] font-bold uppercase tracking-[0.12em] text-white"
+                className={NAVBAR_CTA_BUTTON_CLASS}
               >
                 Book a Call
               </a>
@@ -129,7 +133,7 @@ const Header: React.FC = () => {
               href={CALENDLY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="glow-btn-custom site-button mt-6 inline-flex w-full items-center justify-center rounded-[120px] px-10 py-5 text-[14px] font-bold uppercase tracking-[0.12em] text-white"
+              className={`${NAVBAR_CTA_BUTTON_FULL_WIDTH_CLASS} mt-6`}
             >
               Start a Project
             </a>

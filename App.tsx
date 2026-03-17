@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import Faqs from './pages/Faqs';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from './constants/buttonStyles';
 
 const CALENDLY_LINK = 'https://calendly.com/inspirostudio-io/30min';
 
@@ -147,7 +148,7 @@ const JoinUsRevealLayer: React.FC = () => {
                   href={CALENDLY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="site-button mt-12 w-full sm:w-auto px-12 py-5 rounded-2xl text-[18px] font-bold text-white bg-gradient-to-r from-[#1766e8] to-[#0f4db4] shadow-[0_0_40px_rgba(47,131,255,0.5)] hover:shadow-[0_0_60px_rgba(47,131,255,0.7)] shadow-lg shadow-blue-500 transition-all duration-300 hover:scale-105"
+                  className={`${NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS} mt-12`}
                 >
                   Book an Appointment
                 </a>

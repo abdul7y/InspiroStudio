@@ -1,11 +1,11 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
+import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
 
-const Faqs: React.FC = () => {
+  const Faqs: React.FC = () => {
   const CALENDLY_LINK = "https://calendly.com/inspirostudio-io/30min";
-  const primaryButtonClass =
-    "glow-btn-custom site-button inline-flex w-full sm:w-auto whitespace-nowrap rounded-[120px] px-10 py-4 text-[14px] font-bold uppercase tracking-[0.12em] text-white text-center";
+  const primaryButtonClass = NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS;
 
   const faqs = [
     { 

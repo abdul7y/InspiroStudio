@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Search } from 'lucide-react';
+import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
 
 const Blogs: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -89,7 +90,7 @@ const Blogs: React.FC = () => {
           <button
             type="button"
             onClick={handleArchiveClick}
-            className="site-button w-full sm:w-auto px-10 py-4 glass-card border-white/10 text-white font-bold text-sm tracking-tight hover:bg-white/5 transition-all rounded-full"
+            className={NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS}
           >
             {normalizedSearch
               ? 'Clear Search'

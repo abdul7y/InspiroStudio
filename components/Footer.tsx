@@ -11,6 +11,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { NAV_LINKS } from "../constants/navigation";
+import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from "../constants/buttonStyles";
 
 const CONTACT_EMAIL = "business@inspirostudio.io";
 const CALENDLY_LINK = "https://calendly.com/inspirostudio-io/30min";
@@ -48,9 +49,9 @@ const Footer: React.FC = () => {
       </div>
 
       <div
-        className={`relative z-10 max-w-[1360px] mx-auto w-full transition-all duration-700 ease-out ${
+        className={`relative z-10 max-w-[1480px] mx-auto w-full transition-all duration-700 ease-out ${
           isFooterVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        } py-5`}
+        } pt-[160px] pb-5`}
       >
         <div className="midnight-card-gradient mb-8 rounded-[28px] border border-blue-100/15 p-6 md:p-7">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
@@ -66,7 +67,7 @@ const Footer: React.FC = () => {
               href={CALENDLY_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="glow-btn-custom site-button inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl px-8 py-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-white"
+              className={NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS}
             >
               Book Discovery Call
               <ArrowUpRight className="h-4 w-4" />
@@ -160,14 +161,18 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-6 flex flex-col items-center text-center">
-          <Link to="/" className="inline-flex items-end justify-center mb-5" aria-label="Inspiro Studio">
-            <span className="logo-wordmark whitespace-nowrap text-[44px] text-white sm:text-[96px] lg:text-[168px] xl:text-[188px]">
+        <div className="mb-6 mt-4 flex flex-col items-center text-center">
+          <Link
+            to="/"
+            className="mb-4 flex w-full items-end justify-center overflow-hidden"
+            aria-label="Inspiro Studio"
+          >
+            <span className="logo-wordmark block w-full whitespace-nowrap text-center leading-[0.84] text-[58px] text-white sm:text-[96px] md:text-[132px] lg:text-[188px] xl:text-[216px] 2xl:text-[232px]">
               Inspiro Studio
             </span>
           </Link>
 
-          <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-[13px] uppercase tracking-[0.1em] text-blue-100/70">
+          <nav className="flex w-full flex-wrap items-center justify-center gap-x-8 gap-y-2 text-[12px] uppercase tracking-[0.1em] text-blue-100/70">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.name}
@@ -180,7 +185,7 @@ const Footer: React.FC = () => {
           </nav>
         </div>
 
-        <div className="h-px bg-blue-100/15 mb-5" />
+        <div className="mb-5 h-px w-full bg-blue-100/15" />
 
         <p className="text-center text-[12px] uppercase tracking-[0.1em] text-blue-100/50">
           Copyright (c) {year} Inspiro Studio. All rights reserved.

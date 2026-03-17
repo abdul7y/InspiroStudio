@@ -1,13 +1,11 @@
 import React, { useRef } from 'react';
 import { Play, Star, Plus, ArrowRight } from 'lucide-react';
+import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
 
 const About: React.FC = () => {
   const CALENDLY_LINK = "https://calendly.com/inspirostudio-io/30min";
   const aboutSectionRef = useRef<HTMLElement | null>(null);
-  const primaryButtonClass =
-    "glow-btn-custom site-button inline-flex w-full sm:w-auto whitespace-nowrap rounded-[120px] px-10 py-4 text-[14px] font-bold uppercase tracking-[0.12em] text-white text-center";
-  const secondaryButtonClass =
-    "site-button inline-flex w-full sm:w-auto whitespace-nowrap rounded-[120px] border border-white/10 bg-white/5 px-10 py-4 text-[14px] font-bold uppercase tracking-[0.12em] text-white transition-all hover:bg-white/10";
+  const primaryButtonClass = NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS;
 
   const teamMembers = [
     { name: 'Daniel Reed', role: 'Co-Founder, CEO', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop' },
@@ -65,7 +63,7 @@ const About: React.FC = () => {
             <a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className={primaryButtonClass}>
               Connect With Us
             </a>
-            <button className={secondaryButtonClass} onClick={scrollToAboutSection} type="button">
+            <button className={primaryButtonClass} onClick={scrollToAboutSection} type="button">
               Why Inspiro Studio?
             </button>
           </div>

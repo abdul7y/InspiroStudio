@@ -14,7 +14,12 @@ import {
   Slack as SlackIcon,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS,
+  NAVBAR_CTA_BUTTON_CLASS,
+} from "../constants/buttonStyles";
 import leftcurve from "../images/leftcurve.jpg";
+import rightcurve from "../images/rightcurve.jpg";
 import image from "../images/image.png";
 import image2 from "../images/image-copy.png";
 import image3 from "../images/image-copy-2.png";
@@ -43,6 +48,11 @@ const HERO_BRANDS: HeroBrandId[] = [
   "sony",
   "microsoft",
 ];
+
+const PRICING_CARD_GRADIENT =
+  "bg-gradient-to-br from-[#070b1a] via-[#050814] to-black";
+const PRICING_CARD_GLOW =
+  "bg-[radial-gradient(85%_65%_at_20%_0%,rgba(59,130,246,0.22),transparent_60%)]";
 
 const renderHeroBrandLogo = (brand: HeroBrandId) => {
   switch (brand) {
@@ -291,18 +301,6 @@ const Home: React.FC = () => {
     },
   ];
   const blogSlidesLoop = [...blogSlides, ...blogSlides];
-  const benefitChips = [
-    "Enhanced UX",
-    "Boosted Conversions",
-    "Fast Loading",
-    "SEO Optimized",
-    "Customizable",
-    "Scalable",
-    "Increased Engagement",
-    "Expandable",
-    "Secure",
-    "User-Friendly",
-  ];
 
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -351,7 +349,7 @@ const Home: React.FC = () => {
         {/* Add a radial gradient overlay for extra depth */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black to-blue-700/35"></div>
 
-        <div className="max-w-[1440px] mx-auto w-full pt-[180px] md:pt-[190px] pb-[70px]">
+        <div className="max-w-[1440px] mx-auto w-full pt-[250px] md:pt-[280px] pb-[140px] md:pb-[180px]">
           <div className="max-w-[900px] relative z-10">
             <h1 className="text-[60px] md:text-[80px] lg:text-[100px] text-white mb-8 tracking-[-0.03em] leading-[1.05]">
               <span className="font-normal">Video Marketing Agency For</span>
@@ -373,7 +371,7 @@ const Home: React.FC = () => {
                 href={CALENDLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glow-btn-custom site-button w-full sm:w-auto !px-7 !py-4 rounded-xl text-white font-bold text-[14px] uppercase tracking-[0.08em] mb-12 shadow-lg shadow-blue-500/50"
+                className={`${NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS} mb-12`}
               >
                 BOOK A DISCOVERY CALL
               </a>
@@ -415,104 +413,68 @@ const Home: React.FC = () => {
       </div>
 
       {/* 2. Portfolio Section */}
-      <section className="relative px-5 sm:px-8 lg:px-12 pt-8 lg:pt-0 pb-20 lg:pb-28 bg-black overflow-visible">
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/80 via-black/55 to-transparent pointer-events-none z-0"></div>
-        <div className="relative w-full bg-black overflow-hidden lg:overflow-visible 2xl:py-28 py-32">
-          {/* LEFT CURVE */}
-          <img
-            src={leftcurve}
-            alt="Left Curve"
-            className="absolute lg:left-0 lg:top-1/2 -bottom-10 -translate-y-1/2 
-               w-[40%] 2xl:max-w-[400px] lg:max-w-[300px] md:max-w-[200px]  
-               pointer-events-none select-none"
-          />
+      <section className="relative overflow-visible bg-black">
+        <div className="relative w-full bg-black overflow-hidden pt-16 md:pt-20 lg:pt-24">
+          <div className="relative mb-0">
+            {/* LEFT CURVE */}
+            <img
+              src={leftcurve}
+              alt="Left Curve"
+              className="absolute left-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+            />
 
-          {/* RIGHT CURVE */}
-          <img
-            src={leftcurve}
-            alt="Right Curve"
-            className="absolute lg:right-0 lg:top-1/2 -bottom-10 right-1 -translate-y-1/2 -scale-x-100 
-               w-[40%] 2xl:max-w-[400px] lg:max-w-[300px] md:max-w-[200px]  
-               pointer-events-none select-none"
-          />
+            {/* RIGHT CURVE */}
+            <img
+              src={rightcurve}
+              alt="Right Curve"
+              className="absolute right-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+            />
 
-          {/* CENTER CONTENT */}
-          <div className="relative z-10 max-w-[900px] mx-auto px-6 text-center flex flex-col items-center">
-            {/* BADGE */}
-            <div
-              className="inline-block rounded-lg bg-gradient-to-r 
-                    from-transparent via-blue-700/60 to-transparent 
-                    p-[1px] mb-8"
-            >
-              <div
-                className="inline-flex items-center space-x-2 px-4 py-2 
-                      rounded-lg border-x border-gray-800 
-                      bg-black backdrop-blur-xl"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                <span className="text-xs text-gray-200 tracking-widest uppercase">
-                  Portfolio
-                </span>
+            <div className="relative z-10 max-w-3xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
+              <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-4">
+                <div
+                  className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-r border-l border-gray-800
+                    bg-black backdrop-blur-xl"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
+                  <span className="text-xs text-gray-200 tracking-widest uppercase">
+                    Portfolio
+                  </span>
+                </div>
               </div>
-            </div>
 
-            {/* HEADLINES */}
-            <h2
-              className="lg:text-[48px] 2xl:text-[72px] text-4xl   
-                   text-white tracking-tight leading-[1.05]"
-            >
-              Portfolio
-            </h2>
+              <h2 className="text-[38px] md:text-[52px] text-white leading-[1.08] tracking-tight">
+                Portfolio
+              </h2>
+              <h3 className="text-[30px] md:text-[44px] text-gray-400 leading-[1.1] tracking-tight mt-2">
+                Product Success Stories
+              </h3>
 
-            <h3
-              className="lg:text-[40px] 2xl:text-[56px] text-4xl font-medium 
-                   text-gray-400 tracking-tight leading-[1.05] mt-2"
-            >
-              Product Success Stories
-            </h3>
+              <p className="text-gray-400 max-w-[560px] mt-6 text-lg">
+                Explainers, onboarding, launch films and social content built to
+                be watched and understood.
+              </p>
 
-            <p className="text-gray-400 max-w-[560px] mt-6 text-lg">
-              Explainers, onboarding, launch films and social content built to
-              be watched and understood.
-            </p>
-
-            {/* CTA */}
-            <div className="relative group mt-12">
-              <div
-                className="absolute -inset-[4px] 
-                      bg-gradient-to-r 
-                      from-[#1766e8] via-[#2f83ff] to-[#0f4db4] 
-                      rounded-full blur-[18px] 
-                      opacity-70 group-hover:opacity-100 
-                      transition duration-500"
-              ></div>
-
-              <Link
-                to="/blogs"
-                className="site-button relative inline-flex w-full sm:w-auto items-center justify-center 
-                   px-10 py-3 rounded-xl 
-                   bg-gradient-to-r 
-                   from-[#1766e8] via-[#2f83ff] to-[#0f4db4] 
-                   text-white text-sm font-semibold 
-                   border border-white/20 
-                   shadow-[0_0_30px_rgba(47,131,255,0.45)]
-                   shadow-lg shadow-blue-500/50
-                   "
-              >
-                View Portfolio
-              </Link>
+              <div className="mt-10">
+                <Link
+                  to="/blogs"
+                  className={NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS}
+                >
+                  View Portfolio
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Match the portfolio cards to the global navbar shell across breakpoints. */}
-        <div className="mx-auto w-full max-w-[1680px] pb-[16vh] relative z-10">
-          <div className="relative">
+        <div className="relative z-10 mx-auto mt-10 w-full max-w-[1680px] px-5 pb-[20vh] sm:mt-12 sm:px-8 lg:mt-16 lg:px-12">
+          <div className="relative pb-[6vh] sm:pb-[8vh] lg:pb-[10vh]">
             {/* Keep the portfolio stack pinned near screen center while only the videos progress on scroll. */}
             {portfolioItems.map((item, index) => (
               <article
                 key={item.id}
-                className="sticky top-1/2 w-full -translate-y-1/2 transform-gpu will-change-transform mb-[16vh] sm:mb-[18vh] lg:mb-[22vh] rounded-[26px] sm:rounded-[32px] lg:rounded-[44px] overflow-hidden border border-white/12 bg-black shadow-[0_30px_90px_rgba(0,0,0,0.55)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className={`${index === 0 ? "" : "-mt-[12vh] sm:-mt-[16vh] lg:-mt-[20vh]"} sticky top-20 w-full transform-gpu will-change-transform rounded-[26px] overflow-hidden border border-white/12 bg-black shadow-[0_30px_90px_rgba(0,0,0,0.55)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:top-24 sm:rounded-[32px] lg:top-[12vh] lg:rounded-[44px]`}
                 style={{ zIndex: index + 1 }}
               >
                 <div className="group relative aspect-[16/9] bg-[#0a1633]">
@@ -600,12 +562,13 @@ const Home: React.FC = () => {
           </div>
 
           <div className="max-w-[1440px] mx-auto relative z-10 px-8 md:px-16 lg:px-24">
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 xl:gap-4 lg:gap-10 gap-10 mitems-center">
-              <div className="flex justify-center lg:justify-start gap-2 order-2 lg:order-1">
-                <div className="relative w-full max-w-[500px]">
-                  <div className="relative aspect-square w-full overflow-hidden rounded-[32px] border border-white/8 bg-[radial-gradient(circle_at_30%_20%,rgba(46,125,255,0.2),rgba(8,18,38,0.72)_42%,rgba(0,0,0,0.12)_72%,transparent_100%)] shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
+            <div className="relative z-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+              <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
+                <div className="group relative w-full max-w-[520px] transition-transform duration-300 hover:-translate-y-2">
+                  <div className="rounded-[34px] bg-[linear-gradient(135deg,#1456ff_0%,#1f7dff_58%,#00a3ff_100%)] p-[1px] shadow-[0_18px_45px_rgba(20,112,255,0.3)] transition-all duration-300 group-hover:shadow-[0_22px_70px_rgba(39,145,255,0.45)]">
+                    <div className="relative aspect-square w-full overflow-hidden rounded-[32px] border border-white/10 bg-[radial-gradient(circle_at_30%_20%,rgba(46,125,255,0.28),rgba(8,18,38,0.8)_42%,rgba(0,0,0,0.2)_72%,transparent_100%)] shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
                     <video
-                      className="absolute inset-0 w-full h-full object-cover opacity-88"
+                      className="absolute inset-0 h-full w-full object-cover opacity-88 transition-transform duration-500 group-hover:scale-[1.04]"
                       src={ABOUT_VIDEO_SRC}
                       autoPlay
                       muted
@@ -614,10 +577,10 @@ const Home: React.FC = () => {
                       preload="metadata"
                     />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.16),transparent_42%)]"></div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#071127]/18 via-transparent to-black/35"></div>
+                    <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(20,86,255,0.14)_0%,rgba(31,125,255,0.08)_42%,rgba(0,0,0,0.4)_100%)] transition-opacity duration-300 group-hover:opacity-90"></div>
                     <div className="absolute inset-x-0 -bottom-10 h-28 bg-gradient-to-t from-black via-black/65 to-transparent blur-2xl"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.35)]">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-blue-100/30 bg-[linear-gradient(135deg,rgba(20,86,255,0.88)_0%,rgba(31,125,255,0.84)_58%,rgba(0,163,255,0.8)_100%)] backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.35)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_45px_rgba(39,145,255,0.55)]">
                         <Play className="w-6 h-6 text-white fill-white" />
                       </div>
                     </div>
@@ -625,39 +588,43 @@ const Home: React.FC = () => {
                       Video Preview
                     </div>
                   </div>
+                  </div>
                 </div>
               </div>
 
-              <div className="md:space-y-6 space-y-8 order-1 lg:order-2 text-left lg:text-left">
-                <p className="text-[15px] md:text-[16px] text-gray-400 leading-relaxed max-w-[520px]">
+              <div className="order-1 space-y-8 text-center lg:order-2 lg:ml-auto lg:max-w-[540px] lg:text-left">
+                <p className="max-w-[520px] text-[15px] leading-relaxed text-gray-400 md:text-[16px] lg:max-w-none">
                   Delivering expert solutions that transform modern businesses.
                   Driving innovation globally, partnering with clients for
                   impact.
                 </p>
 
                 <div className="space-y-4">
-                  <div className="flex items-center space-x-3 text-gray-300 text-[14px]">
-                    <span className="w-5 h-5 rounded-full bg-blue-700 flex items-center justify-center">
-                      <BadgeCheck className="w-full h-full " />
+                  <div className="flex items-center justify-center gap-3 text-[14px] text-gray-300 lg:justify-start">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-700">
+                      <BadgeCheck className="h-4 w-4 text-white" />
                     </span>
                     <span>From $0 to $500,000 in revenue.</span>
                   </div>
-                  <div className="flex items-center space-x-3 text-gray-300 text-[14px]">
-                    <span className="w-5 h-5 rounded-full bg-blue-700 flex items-center justify-center">
-                      <BadgeCheck className="w-full h-full " />
+                  <div className="flex items-center justify-center gap-3 text-[14px] text-gray-300 lg:justify-start">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-700">
+                      <BadgeCheck className="h-4 w-4 text-white" />
                     </span>
                     <span>70% growth in new customers.</span>
                   </div>
                 </div>
 
-                <div className="flex flex-col-reverse md:flex-row md:items-center gap-6">
-                  <button className="site-button relative inline-flex w-full sm:w-fit items-center justify-center px-6 py-2.5 rounded-xl text-white text-[13px] font-bold tracking-tight bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4] shadow-lg shadow-blue-500/50 border border-white/20">
+                <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-start">
+                  <button
+                    type="button"
+                    className={NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS}
+                  >
                     About Inspiro
                   </button>
-                  <div className="hidden sm:block w-px h-6 bg-gray-700"></div>
+                  <div className="hidden lg:block h-6 w-px bg-gray-700"></div>
                   <div className="px-1 py-2">
-                    <div className="flex flex-col items-start gap-2">
-                      <div className="flex items-center space-x-1">
+                    <div className="flex flex-col items-center gap-2 lg:items-start">
+                      <div className="flex items-center gap-1">
                         {[1, 2, 3, 4, 5].map((s) => (
                           <Star
                             key={s}
@@ -725,14 +692,12 @@ const Home: React.FC = () => {
             </p>
 
             {/* CTA */}
-            <div className="relative group mt-10">
-              <div className="absolute -inset-[4px] bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4] rounded-full blur-[20px] opacity-70 group-hover:opacity-100 transition duration-500"></div>
-
+            <div className="mt-10">
               <a
                 href={CALENDLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="site-button relative inline-flex w-full sm:w-auto items-center justify-center px-8 py-3 rounded-xl bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4] text-white text-sm font-semibold border border-white/20 shadow-[0_0_30px_rgba(47,131,255,0.5)] shadow-lg shadow-blue-500/50 transition duration-300"
+                className={NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS}
               >
                 Book a 15-min call
               </a>
@@ -793,80 +758,81 @@ const Home: React.FC = () => {
                 //     </div>
                 //   </div>
                 // </div>
-                <div className="relative p-[2px] rounded-[28px] border border-zinc-600 bg-gradient-to-b from-white/10 to-white/5">
-                  {/* OUTER FRAME */}
-                  <div className="rounded-[26px] bg-[#05060a] p-2 shadow-[0_40px_120px_rgba(0,0,0,0.9)]">
+                <div
+                  key={`${card.id}-${index}`}
+                  className="group w-[320px] sm:w-[360px] md:w-[420px] lg:w-[480px] xl:w-[520px] flex-shrink-0 transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-4"
+                  aria-hidden={index >= blogSlides.length}
+                >
+                  <div
+                    className={`relative rounded-[28px] border border-white/[0.08] p-[2px] ${PRICING_CARD_GRADIENT} shadow-[0_40px_120px_rgba(0,0,0,0.9)] transition-all duration-500 group-hover:border-blue-400/30 group-hover:shadow-[0_55px_150px_rgba(4,10,24,0.95)]`}
+                  >
                     <div
-                      key={`${card.id}-${index}`}
-                      className="w-[320px] sm:w-[360px] md:w-[420px] lg:w-[480px] xl:w-[520px] "
-                      aria-hidden={index >= blogSlides.length}
-                    >
+                      className={`pointer-events-none absolute inset-0 rounded-[28px] opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`}
+                    />
+
+                    <div className="relative rounded-[26px] bg-[#05060a] p-2">
                       {/* MAIN CARD */}
                       <div
-                        className="relative h-[500px] bg-[#0b0c10] border border-zinc-800
-                      rounded-[22px] overflow-hidden flex flex-col p-3 "
+                        className={`relative h-[500px] overflow-hidden rounded-[22px] border border-white/[0.08] p-3 ${PRICING_CARD_GRADIENT}`}
                       >
+                        <div
+                          className={`pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`}
+                        />
+
                         {/* IMAGE SECTION */}
-                        {/* <div className="relative h-[58%] overflow-hidden"> */}
                         <img
                           src={card.image}
                           alt={card.title}
-                          className="w-full h-full object-cover scale-105 opacity-70"
+                          className="h-full w-full scale-105 object-cover opacity-70 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                         />
-                        <div
-                          className="absolute inset-0 bg-gradient-to-t 
-                          from-black via-black/40 to-transparent bottom-0"
-                        />
-                        {/* </div> */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent transition-all duration-500 group-hover:via-black/55 group-hover:from-black/95" />
 
                         {/* CONTENT SECTION */}
                         <div
-                          className="absolute bottom-0 m-3 left-0 right-0 flex-1 bg-[#0a0b0f] p-6 
-                        border border-zinc-800 
-                        rounded-[21px] -mt-6"
+                          className={`absolute bottom-0 left-0 right-0 m-3 flex-1 rounded-[21px] border border-white/[0.08] p-6 transition-all duration-500 group-hover:-translate-y-2 group-hover:border-blue-400/25 ${PRICING_CARD_GRADIENT}`}
                         >
-                          {/* LOGO / ICON */}
-                          <div className="mb-4">
-                            <div
-                              className="
-                            rounded-md flex text-start "
-                            >
-                              <h1 className="text-white text-2xl font-bold tracking-tight">
-                                {card.title}
-                              </h1>
+                          <div
+                            className={`pointer-events-none absolute inset-0 rounded-[21px] opacity-70 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`}
+                          />
+
+                          <div className="relative">
+                            {/* LOGO / ICON */}
+                            <div className="mb-4">
+                              <div className="rounded-md flex text-start">
+                                <h1 className="text-white text-2xl font-bold tracking-tight transition-colors duration-300 group-hover:text-blue-50">
+                                  {card.title}
+                                </h1>
+                              </div>
                             </div>
-                          </div>
 
-                          {/* TITLE */}
-                          <h3 className="text-white text-[20px] font-semibold mb-2 flex items-center gap-2">
-                            {card.client}{" "}
-                            <span className="bg-blue-700 text-[10px] font-semibold px-2 py-0.5 rounded">
-                              {card.badge}
-                            </span>
-                          </h3>
+                            {/* TITLE */}
+                            <h3 className="text-white text-[20px] font-semibold mb-2 flex items-center gap-2">
+                              {card.client}{" "}
+                              <span className="bg-blue-700 text-[10px] font-semibold px-2 py-0.5 rounded transition-colors duration-300 group-hover:bg-blue-600">
+                                {card.badge}
+                              </span>
+                            </h3>
 
-                          <div className="border-t border-zinc-500 w-24 rounded-full mb-4"></div>
-                          {/* DESCRIPTION */}
-                          <p className="text-zinc-400 text-[14px] leading-relaxed mb-6">
-                            {card.description}
-                          </p>
+                            <div className="border-t border-zinc-500/80 w-24 rounded-full mb-4 transition-colors duration-300 group-hover:border-blue-400/50"></div>
 
-                          {/* STATS PILLS */}
-                          <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
-                            <span
-                              className="px-4 py-2 rounded-lg 
-                             bg-white/[0.04] border border-white/[0.08] 
-                             text-gray-400 text-sm font-medium text-center"
-                            >
-                              {card.stats[0]}
-                            </span>
-                            <span
-                              className="px-4 py-2 rounded-lg 
-                             bg-white/[0.04] border border-white/[0.08] 
-                             text-gray-400 text-sm font-medium text-center"
-                            >
-                              {card.stats[1]}
-                            </span>
+                            {/* DESCRIPTION */}
+                            <p className="text-zinc-400 text-[14px] leading-relaxed mb-6 transition-colors duration-300 group-hover:text-zinc-300">
+                              {card.description}
+                            </p>
+
+                            {/* STATS PILLS */}
+                            <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
+                              <span
+                                className="px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-gray-400 text-sm font-medium text-center transition-all duration-300 group-hover:border-blue-400/20 group-hover:bg-blue-500/10 group-hover:text-gray-200"
+                              >
+                                {card.stats[0]}
+                              </span>
+                              <span
+                                className="px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-gray-400 text-sm font-medium text-center transition-all duration-300 group-hover:border-blue-400/20 group-hover:bg-blue-500/10 group-hover:text-gray-200"
+                              >
+                                {card.stats[1]}
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -937,20 +903,13 @@ const Home: React.FC = () => {
             If You Can Dream It, We Can Build It!
           </h3>
 
-          <div className="mt-8 flex w-full max-w-[1080px] flex-col items-center gap-4">
-            <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-              {benefitChips.map((chip) => (
-                <span
-                  key={chip}
-                  className="inline-flex min-h-[62px] w-full items-center justify-center px-4 sm:px-5 rounded-[100px] border border-white/10 bg-white/10 text-center text-[12px] font-medium text-gray-200 md:text-[13px]"
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
-            <button className="site-button inline-flex min-h-[62px] w-full items-center justify-center rounded-[100px] bg-white px-6 text-[12px] font-bold text-black shadow-[0_0_18px_rgba(255,255,255,0.2)] sm:w-auto sm:min-w-[220px] md:text-[13px]">
+          <div className="mt-8 flex w-full max-w-[1080px] justify-center">
+            <Link
+              to="/contact"
+              className={NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS}
+            >
               Contact Now
-            </button>
+            </Link>
           </div>
             </div>
           </div>
@@ -958,87 +917,77 @@ const Home: React.FC = () => {
           <div className="max-w-[1440px] mx-auto px-8 md:px-16 lg:px-24">
             <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-8 mt-12">
             <div className="space-y-6">
-              <div className="relative w-full md:h-[420px]  2xl:h-[430px] lg:h-[450px] rounded-[26px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 shadow-[0_35px_90px_rgba(0,0,0,0.7)] overflow-hidden">
+              <div className="group relative w-full md:h-[420px]  2xl:h-[430px] lg:h-[450px] rounded-[26px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 shadow-[0_35px_90px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:shadow-[0_45px_110px_rgba(5,12,32,0.85)]">
                 {/* bottom accent glow */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
 
                 {/* Image container */}
                 <div className="relative h-[230px] rounded-[18px] overflow-hidden border border-white/10 mb-5">
                   <img
                     src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80"
                     alt="Submit Unlimited Requests"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-white font-semibold text-[15px] mb-2">
+                <h3 className="text-white font-semibold text-[15px] mb-2 transition-colors duration-300 group-hover:text-blue-50">
                   Submit Unlimited Requests
                 </h3>
 
-                <div className="border border-violet-500/30 w-24 mb-3" />
+                <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-blue-400/40" />
 
-                <p className="text-violet-100 text-[13px] leading-relaxed mb-4">
+                <p className="text-violet-100 text-[13px] leading-relaxed mb-4 transition-colors duration-300 group-hover:text-violet-50/90">
                   Enjoy the freedom to submit unlimited requests without any
                   restrictions. Whether you need design tweaks, we're here to
                   assist you at every step.
                 </p>
 
-                {/* Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button className="site-button w-full sm:flex-1 px-4 py-2 rounded-lg text-[12px] font-semibold text-white bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4] shadow-[0_0_20px_rgba(47,131,255,0.55)] hover:scale-[1.03] transition">
-                    Book an Appointment
-                  </button>
-
-                  <button className="site-button w-full sm:flex-1 px-4 py-2 rounded-lg text-[12px] font-semibold text-white bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4] shadow-[0_0_20px_rgba(47,131,255,0.55)] hover:scale-[1.03] transition">
-                    Why Inspiro Studio?
-                  </button>
-                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="relative 2xl:h-[250px] lg:h-[280px] rounded-[20px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl"></div>
+                <div className="group relative 2xl:h-[250px] lg:h-[280px] rounded-[20px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
                   <div className="relative h-[110px] rounded-[12px] overflow-hidden border border-white/10 mb-3">
                     <img
                       src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
                       alt="Quick turnaround"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                   </div>
                   <div className="flex items-center gap-2 mb-2">
-                    <h4 className="text-white font-bold text-[13px]">
+                    <h4 className="text-white font-bold text-[13px] transition-colors duration-300 group-hover:text-blue-50">
                       Quick Turnaround
                     </h4>
-                    <span className="px-2 py-0.5 rounded bg-blue-700 border-2 border-blue-600 text-white text-[8px] font-bold uppercase">
+                    <span className="px-2 py-0.5 rounded bg-blue-700 border-2 border-blue-600 text-white text-[8px] font-bold uppercase transition-colors duration-300 group-hover:bg-blue-600">
                       NEW
                     </span>
                   </div>
-                  <div className="border border-violet-500/30 w-24 mb-3" />
+                  <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-blue-400/40" />
 
-                  <p className="text-violet-100 text-[13px] leading-relaxed">
+                  <p className="text-violet-100 text-[13px] leading-relaxed transition-colors duration-300 group-hover:text-violet-50/90">
                     We prioritize efficiency without compromising quality.
                   </p>
                 </div>
 
-                <div className="relative 2xl:h-[250px] lg:h-[280px] rounded-[20px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl"></div>
+                <div className="group relative 2xl:h-[250px] lg:h-[280px] rounded-[20px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
                   <div className="relative h-[110px] rounded-[12px] overflow-hidden border border-white/10 mb-3">
                     <img
                       src="https://images.unsplash.com/photo-1556155092-8707de31f9c4?auto=format&fit=crop&w=900&q=80"
                       alt="Publish in seconds"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                   </div>
-                  <h4 className="text-white font-bold text-[13px] mb-2">
+                  <h4 className="text-white font-bold text-[13px] mb-2 transition-colors duration-300 group-hover:text-blue-50">
                     Publish in Seconds
                   </h4>
-                  <div className="border border-violet-500/30 w-24 mb-3" />
+                  <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-blue-400/40" />
 
-                  <p className="text-violet-100 text-[13px] leading-relaxed">
+                  <p className="text-violet-100 text-[13px] leading-relaxed transition-colors duration-300 group-hover:text-violet-50/90">
                     Publish your site in seconds with our streamlined process.
                   </p>
                 </div>
@@ -1046,54 +995,54 @@ const Home: React.FC = () => {
             </div>
 
             <div className="space-y-6">
-              <div className="relative  2xl:h-[340px] lg:h-[360px] rounded-[22px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-6 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl"></div>
+              <div className="group relative  2xl:h-[340px] lg:h-[360px] rounded-[22px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-6 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
                 <div className="relative h-[170px] rounded-[14px] overflow-hidden border border-white/10 mb-4">
                   <img
                     src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=900&q=80"
                     alt="Requests and revisions"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 </div>
                 <div className="flex items-center space-x-2 mb-2">
-                  <h4 className="text-white font-bold text-[14px]">
+                  <h4 className="text-white font-bold text-[14px] transition-colors duration-300 group-hover:text-blue-50">
                     Requests & Revisions
                   </h4>
-                  <span className="px-2 py-0.5 rounded bg-blue-700 border-2 border-blue-600 text-white text-[8px] font-bold uppercase">
+                  <span className="px-2 py-0.5 rounded bg-blue-700 border-2 border-blue-600 text-white text-[8px] font-bold uppercase transition-colors duration-300 group-hover:bg-blue-600">
                     NEW
                   </span>
                 </div>
-                <div className="border border-violet-500/30 w-24 mb-3" />
+                <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-blue-400/40" />
 
-                <p className="text-violet-100 text-[13px] leading-relaxed">
+                <p className="text-violet-100 text-[13px] leading-relaxed transition-colors duration-300 group-hover:text-violet-50/90">
                   Our process includes multiple rounds of requests and
                   revisions, ensuring that your feedback is incorporated and
                   that the final product meets your expectations.
                 </p>
               </div>
 
-              <div className="relative 2xl:h-[340px] lg:h-[360px] rounded-[22px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-6 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)]">
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl"></div>
+              <div className="group relative 2xl:h-[340px] lg:h-[360px] rounded-[22px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-6 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
                 <div className="relative h-[170px] rounded-[14px] overflow-hidden border border-white/10 mb-4">
                   <img
                     src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=80"
                     alt="References"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 </div>
                 <div className="flex items-center space-x-2 mb-2">
-                  <h4 className="text-white font-bold text-[14px]">
+                  <h4 className="text-white font-bold text-[14px] transition-colors duration-300 group-hover:text-blue-50">
                     Worry Free Pricing
                   </h4>
-                  <span className="px-2 py-0.5 rounded bg-blue-700 border-2 border-blue-600 text-white text-[8px] font-bold uppercase">
+                  <span className="px-2 py-0.5 rounded bg-blue-700 border-2 border-blue-600 text-white text-[8px] font-bold uppercase transition-colors duration-300 group-hover:bg-blue-600">
                     NEW
                   </span>
                 </div>
-                <div className="border border-violet-500/30 w-24 mb-3" />
+                <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-blue-400/40" />
 
-                <p className="text-violet-100 text-[13px] leading-relaxed">
+                <p className="text-violet-100 text-[13px] leading-relaxed transition-colors duration-300 group-hover:text-violet-50/90">
                   Whether you're just starting or scaling up, our flexible
                   pricing plans are designed to fit your needs and budget, so
                   you can get started without any financial stress.
@@ -1155,31 +1104,31 @@ const Home: React.FC = () => {
 
         <div className="max-w-[1440px] mx-auto relative z-10 px-8 md:px-16 lg:px-24">
           {/* cards */}
-          <div className="max-w-[980px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="max-w-[980px] mx-auto grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2">
             {/* PRO WEEKLY */}
 
             <div
-              className="relative w-full max-w-[460px] mx-auto rounded-[34px] border border-white/[0.08] 
-                  bg-gradient-to-br from-[#070b1a] via-[#050814] to-black 
-                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col"
+              className={`group relative h-full w-full max-w-[460px] mx-auto rounded-[34px] border border-white/[0.08] 
+                  ${PRICING_CARD_GRADIENT}
+                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-blue-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
             >
               {/* top blue glow */}
-              <div className="absolute inset-0 bg-[radial-gradient(85%_65%_at_20%_0%,rgba(59,130,246,0.22),transparent_60%)]" />
+              <div className={`absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`} />
 
               <div className="relative px-8 md:px-9 pt-10 pb-8 min-h-[690px] flex-1 flex flex-col">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex flex-col  items-start gap-3">
-                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-blue-900 border border-blue-900 flex items-center justify-center">
+                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-blue-900 border border-blue-900 flex items-center justify-center transition-all duration-500 group-hover:border-blue-400/40 group-hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
                       <Rocket />
                     </div>
-                    <span className="text-white font-semibold text-[15px]">
+                    <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-blue-50">
                       Pro Weekly
                     </span>
                   </div>
 
                   <span
-                    className="px-3 py-2 rounded-lg bg-blue-500/10 border bg-gradient-to-t from-gray-500/20 to-blue-900/20 border-blue-500/20 
+                    className="px-3 py-2 rounded-lg bg-blue-500/10 border bg-gradient-to-t from-gray-500/20 to-blue-900/20 border-blue-500/20 transition-all duration-300 group-hover:border-blue-400/30 group-hover:text-white 
         text-[13px] font-semibold text-blue-100"
                   >
                     Most Pick
@@ -1187,7 +1136,7 @@ const Home: React.FC = () => {
                 </div>
 
                 {/* Price */}
-                <div className="relative mb-6">
+                <div className="relative mb-6 min-h-[84px]">
                   <div className="flex items-end gap-2">
                     <span className="text-white text-[44px] ">$790</span>
                     <span className="text-gray-500 text-[14px] mb-3">
@@ -1202,17 +1151,17 @@ const Home: React.FC = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-400 text-[14px] leading-relaxed mb-7">
+                <p className="min-h-[70px] text-gray-400 text-[14px] leading-relaxed mb-7 transition-colors duration-300 group-hover:text-gray-300">
                   Our basic pricing plan is designed to offer great value while
                   providing the essential features you need to get started.
                 </p>
 
                 {/* Pills */}
                 <div className="flex gap-3 mb-8">
-                  <span className="px-4 py-1.5 rounded-lg  bg-blue-500/10 border border-white/10 text-[13px] ">
+                  <span className="px-4 py-1.5 rounded-lg  bg-blue-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-blue-400/25 group-hover:bg-blue-500/15">
                     <b>100+</b> <span className="text-gray-400">Projects</span>
                   </span>
-                  <span className="px-4 py-1.5 rounded-lg bg-blue-500/10 border border-white/10 text-[13px] text-gray-300">
+                  <span className="px-4 py-1.5 rounded-lg bg-blue-500/10 border border-white/10 text-[13px] text-gray-300 transition-all duration-300 group-hover:border-blue-400/25 group-hover:bg-blue-500/15">
                     <b>75+</b> <span className="text-gray-400">Revisions</span>
                   </span>
                 </div>
@@ -1230,9 +1179,7 @@ const Home: React.FC = () => {
                       key={item}
                       className="flex items-center gap-3 text-gray-300"
                     >
-                      <span className="w-5 h-5 rounded-full bg-blue-700 text-white flex items-center justify-center text-[11px]">
-                        âœ"
-                      </span>
+                      <BadgeCheck className="h-5 w-5 text-blue-500" />
                       {item}
                     </li>
                   ))}
@@ -1244,11 +1191,7 @@ const Home: React.FC = () => {
                   href={CALENDLY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="site-button relative z-10 mx-auto flex h-[72px] w-[86%] items-center justify-center !rounded-full
-      bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4]
-      text-white text-[15px] font-bold tracking-tight
-      shadow-[0_0_35px_rgba(47,131,255,0.55)]
-      hover:brightness-110 transition-all duration-300"
+                  className={`${NAVBAR_CTA_BUTTON_CLASS} mx-auto w-full text-center`}
                 >
                   Book an Appointment
                 </a>
@@ -1257,28 +1200,28 @@ const Home: React.FC = () => {
 
             {/* PREMIUM */}
             <div
-              className="relative w-full max-w-[460px] mx-auto rounded-[34px] border border-white/[0.08] 
-                  bg-gradient-to-br from-[#070b1a] via-[#050814] to-black 
-                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col"
+              className={`group relative h-full w-full max-w-[460px] mx-auto rounded-[34px] border border-white/[0.08] 
+                  ${PRICING_CARD_GRADIENT}
+                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-blue-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
             >
               {/* top indigo/blue glow */}
-              <div className="absolute inset-0 bg-[radial-gradient(85%_65%_at_20%_0%,rgba(59,130,246,0.22),transparent_60%)]" />
+              <div className={`absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`} />
 
               <div className="relative px-8 md:px-9 pt-10 pb-8 min-h-[690px] flex-1 flex flex-col">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex flex-col items-start gap-3">
-                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-blue-900 border border-blue-900 flex items-center justify-center">
+                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-blue-900 border border-blue-900 flex items-center justify-center transition-all duration-500 group-hover:border-blue-400/40 group-hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
                       <Power /> {/* or Rocket if you want consistency */}
                     </div>
 
-                    <span className="text-white font-semibold text-[15px]">
+                    <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-blue-50">
                       Premium
                     </span>
                   </div>
 
                   <span
-                    className="px-3 py-2 rounded-lg bg-blue-500/10 border bg-gradient-to-t from-gray-500/20 to-blue-900/20 border-blue-500/20 
+                    className="px-3 py-2 rounded-lg bg-blue-500/10 border bg-gradient-to-t from-gray-500/20 to-blue-900/20 border-blue-500/20 transition-all duration-300 group-hover:border-blue-400/30 group-hover:text-white 
         text-[13px] font-semibold text-blue-100"
                   >
                     Recommended
@@ -1286,27 +1229,33 @@ const Home: React.FC = () => {
                 </div>
 
                 {/* Price */}
-                <div className="relative mb-6">
+                <div className="relative mb-6 min-h-[84px]">
                   <div className="flex items-end gap-2">
                     <span className="text-white text-[44px]">$2,599</span>
                     <span className="text-gray-500 text-[14px] mb-3">
                       /Month
                     </span>
+                    <span
+                      aria-hidden="true"
+                      className="text-[44px] line-through opacity-0 select-none"
+                    >
+                      $1450
+                    </span>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-400 text-[14px] leading-relaxed mb-7">
+                <p className="min-h-[70px] text-gray-400 text-[14px] leading-relaxed mb-7 transition-colors duration-300 group-hover:text-gray-300">
                   Our premium pricing plan is designed for businesses looking
                   for advanced features and priority-level support.
                 </p>
 
                 {/* Pills */}
                 <div className="flex gap-3 mb-8">
-                  <span className="px-4 py-1.5 rounded-lg bg-blue-500/10 border border-white/10 text-[13px]">
+                  <span className="px-4 py-1.5 rounded-lg bg-blue-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-blue-400/25 group-hover:bg-blue-500/15">
                     <b>650+</b> <span className="text-gray-400">Projects</span>
                   </span>
-                  <span className="px-4 py-1.5 rounded-lg bg-blue-500/10 border border-white/10 text-[13px]">
+                  <span className="px-4 py-1.5 rounded-lg bg-blue-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-blue-400/25 group-hover:bg-blue-500/15">
                     <b>250+</b> <span className="text-gray-400">Revisions</span>
                   </span>
                 </div>
@@ -1324,9 +1273,7 @@ const Home: React.FC = () => {
                       key={item}
                       className="flex items-center gap-3 text-gray-300"
                     >
-                      <span className="w-5 h-5 rounded-full bg-blue-700 text-white flex items-center justify-center text-[11px]">
-                        âœ"
-                      </span>
+                      <BadgeCheck className="h-5 w-5 text-blue-500" />
                       {item}
                     </li>
                   ))}
@@ -1343,11 +1290,7 @@ const Home: React.FC = () => {
                   href={CALENDLY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="site-button relative z-10 mx-auto flex h-[72px] w-[86%] items-center justify-center !rounded-full
-      bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4]
-      text-white text-[15px] font-bold tracking-tight
-      shadow-[0_0_35px_rgba(47,131,255,0.55)]
-      hover:brightness-110 transition-all duration-300"
+                  className={`${NAVBAR_CTA_BUTTON_CLASS} mx-auto w-full text-center`}
                 >
                   Book an Appointment
                 </a>
@@ -1363,14 +1306,6 @@ const Home: React.FC = () => {
         {/* ambient background */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-blue-600/20 blur-[140px]" />
-          <div
-            className="absolute left-0 top-[35%] w-[30%] h-[45%] bg-[#050914]"
-            style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
-          />
-          <div
-            className="absolute right-0 top-[35%] w-[30%] h-[45%] bg-[#050914]"
-            style={{ clipPath: "polygon(100% 0, 100% 100%, 0 0)" }}
-          />
         </div>
 
         <div className="relative w-full bg-black w-full overflow-hidden xl:mt-24 py-20 px-10">
@@ -1428,11 +1363,7 @@ const Home: React.FC = () => {
                 href={CALENDLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="site-button inline-block w-full sm:w-auto px-8 py-3 rounded-lg
-              text-white text-[14px] font-bold tracking-tight
-              bg-gradient-to-r from-[#1766e8] via-[#2f83ff] to-[#0f4db4]
-              shadow-[0_0_35px_rgba(47,131,255,0.6)]
-              hover:scale-[1.05] transition-all  shadow-lg shadow-blue-500"
+                className={NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS}
               >
                 Let's Work Together
               </a>
@@ -1497,18 +1428,20 @@ const Home: React.FC = () => {
             ].map((t, idx) => (
               <div
                 key={idx}
-                className="midnight-card-gradient relative h-full flex flex-col rounded-[26px]
+                className="group midnight-card-gradient relative h-full flex flex-col rounded-[26px]
               border-t 
               border-blue-800
               p-8
               shadow-[0_30px_90px_rgba(0,0,0,0.9)]
+              hover:-translate-y-3
               hover:border-white/[0.12]
+              hover:shadow-[0_42px_120px_rgba(0,0,0,0.95)]
               transition-all duration-500"
               >
                 {/* top */}
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex flex-col items-start gap-3">
-                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white font-bold">
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white font-bold transition-transform duration-500 group-hover:scale-105">
                       {/* {t.name.charAt(0)} */}
                       <img
                         src={t.image}
@@ -1530,23 +1463,23 @@ const Home: React.FC = () => {
                     <img
                       src={twitter}
                       alt="Twitter"
-                      className="w-6 h-6 opacity-40"
+                      className="w-6 h-6 opacity-40 transition-all duration-300 group-hover:opacity-70 group-hover:scale-110"
                     />
                   </span>
                 </div>
 
                 {/* content */}
-                <p className="text-zinc-400  text-[14px] leading-relaxed mb-10">
+                <p className="text-zinc-400  text-[14px] leading-relaxed mb-10 transition-colors duration-300 group-hover:text-zinc-300">
                   "{t.text}"
                 </p>
 
                 {/* footer */}
-                <div className="mt-auto pt-6 border-t border-white/[0.06]">
-                  <div className="text-white font-semibold flex items-center gap-0.5 text-[14px]">
+                <div className="mt-auto pt-6 border-t border-white/[0.06] transition-colors duration-300 group-hover:border-white/[0.12]">
+                  <div className="text-white font-semibold flex items-center gap-0.5 text-[14px] transition-colors duration-300 group-hover:text-blue-50">
                     {t.name} <Dot />
                     {t.role}
                   </div>
-                  <div className="text-gray-500 font-semibold text-[13px]">
+                  <div className="text-gray-500 font-semibold text-[13px] transition-colors duration-300 group-hover:text-gray-400">
                     {t.company}
                   </div>
                 </div>
@@ -1620,6 +1553,10 @@ const Home: React.FC = () => {
                 <div
                   key={idx}
                   className={`midnight-card-gradient border border-blue-100/15 rounded-[24px] overflow-hidden group hover:border-white/[0.08] transition-all duration-500 cursor-pointer ${activeFaq === idx ? "border-white/[0.12]" : ""}`}
+                  onMouseEnter={() => setActiveFaq(idx)}
+                  onMouseLeave={() =>
+                    setActiveFaq((current) => (current === idx ? null : current))
+                  }
                   onClick={() => toggleFaq(idx)}
                 >
                   <div className="p-8 flex items-center justify-between">
@@ -1637,7 +1574,7 @@ const Home: React.FC = () => {
                     </div>
                   </div>
                   <div
-                    className={`transition-all duration-700 ease-in-out px-8 overflow-hidden ${activeFaq === idx ? "max-h-60 pb-10 opacity-100" : "max-h-0 opacity-0"}`}
+                    className={`transition-all duration-700 ease-in-out px-8 overflow-hidden ${activeFaq === idx ? "max-h-64 pb-10 opacity-100" : "max-h-0 opacity-0"}`}
                   >
                     <div className="h-px w-full bg-white/[0.03] mb-6"></div>
                     <p className="text-gray-400/90 text-[15px] leading-relaxed font-medium">
@@ -1712,12 +1649,8 @@ const Home: React.FC = () => {
 
               {/* CTA Button */}
                 <button
-                  className="site-button mt-12 w-full sm:w-auto px-12 py-5 rounded-2xl text-[18px] font-bold text-white
-      bg-gradient-to-r from-[#1766e8] to-[#0f4db4]
-      shadow-[0_0_40px_rgba(47,131,255,0.5)]
-      hover:shadow-[0_0_60px_rgba(47,131,255,0.7)]
-      shadow-lg shadow-blue-500
-      transition-all duration-300 hover:scale-105"
+                  type="button"
+                  className={`${NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS} mt-12`}
                 >
                   Book an Appointment
                 </button>

@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Mail, Send, MessageCircle, Loader2, Sparkles, ArrowRight, ClipboardList, User, Briefcase, ShieldCheck, AlertCircle } from 'lucide-react';
+import { NAVBAR_CTA_BUTTON_FULL_WIDTH_CLASS } from '../constants/buttonStyles';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -158,7 +159,7 @@ const Contact: React.FC = () => {
 
                  <button 
                   onClick={() => setStatus('idle')}
-                  className="site-button w-full mt-10 py-4 bg-white text-black font-bold rounded-2xl hover:bg-gray-100 transition-all flex items-center justify-center space-x-3 group shadow-xl"
+                  className={`${NAVBAR_CTA_BUTTON_FULL_WIDTH_CLASS} group mt-10`}
                 >
                   <span>Submit Another Brief</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -285,7 +286,7 @@ const Contact: React.FC = () => {
                 <button 
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="glow-btn-custom site-button contact-water-submit w-full py-5 text-white font-bold text-[15px] rounded-full tracking-tight flex items-center justify-center space-x-3 relative overflow-hidden group shadow-2xl animate-water-item"
+                  className={`${NAVBAR_CTA_BUTTON_FULL_WIDTH_CLASS} contact-water-submit relative overflow-hidden group shadow-2xl animate-water-item`}
                   style={{ animationDelay: '460ms' }}
                 >
                   <span className="relative z-10">{status === 'submitting' ? 'Mailing to Studio...' : 'Mail Project to Inbox'}</span>
