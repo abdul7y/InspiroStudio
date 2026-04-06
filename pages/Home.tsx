@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Play,
   Pause,
@@ -345,13 +345,13 @@ const Home: React.FC = () => {
   return (
     <div className="relative min-h-screen">
       {/* 1. Hero Section */}
-      <section className="relative min-h-screen flex items-start px-8 md:px-16 lg:px-24 overflow-hidden bg-gradient-to-r from-black via-[#020916] to-[#0b1f3f]">
+      <section className="relative md:min-h-screen flex items-start px-6 md:px-16 lg:px-24 overflow-hidden bg-gradient-to-r from-black via-[#020916] to-[#0b1f3f]">
         {/* Add a radial gradient overlay for extra depth */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black to-blue-700/35"></div>
 
-        <div className="max-w-[1440px] mx-auto w-full pt-[250px] md:pt-[280px] pb-[140px] md:pb-[180px]">
+        <div className="max-w-[1440px] mx-auto w-full pt-28 sm:pt-36 md:pt-[200px] lg:pt-[280px] pb-10 sm:pb-20 md:pb-[140px] lg:pb-[180px]">
           <div className="max-w-[900px] relative z-10">
-            <h1 className="text-[60px] md:text-[80px] lg:text-[100px] text-white mb-8 tracking-[-0.03em] leading-[1.05]">
+            <h1 className="text-[36px] sm:text-[50px] md:text-[68px] lg:text-[88px] xl:text-[100px] text-white mb-6 md:mb-8 tracking-[-0.03em] leading-[1.05]">
               <span className="font-normal">Video Marketing Agency For</span>
               <br className="hidden lg:block" />
               <span className="inline-flex items-end">
@@ -360,18 +360,18 @@ const Home: React.FC = () => {
               </span>
             </h1>
 
-            <p className="text-[#a1a1aa] text-lg md:text-[19px] mb-12 max-w-[620px] leading-relaxed font-normal">
+            <p className="text-[#a1a1aa] text-base md:text-[19px] mb-8 md:mb-12 max-w-[620px] leading-relaxed font-normal">
               We make stories, animate them, make them sound vibrant and dress
               then with music, so that your business starts booming like a
               rocket.
             </p>
 
-            <div className="flex flex-col items-start mb-24">
+            <div className="flex flex-col items-start mb-10 md:mb-24">
               <a
                 href={CALENDLY_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS} mb-12`}
+                className={`${NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS} mb-8 md:mb-12`}
               >
                 BOOK A DISCOVERY CALL
               </a>
@@ -384,7 +384,7 @@ const Home: React.FC = () => {
             <div className="wave wave-2"></div>
             <div className="wave"></div>
           </div> */}
-        <div className="absolute inset-x-0 bottom-0 h-36 md:h-44 lg:h-52 bg-gradient-to-b from-transparent via-[#060f22]/60 to-black pointer-events-none"></div>
+        <div className="absolute inset-x-0 bottom-0 h-24 md:h-44 lg:h-52 bg-gradient-to-b from-transparent via-[#060f22]/60 to-black pointer-events-none"></div>
       </section>
 
       <div className="relative left-1/2 z-20 -mt-10 w-screen -translate-x-1/2 overflow-hidden pb-6 sm:-mt-12 sm:pb-7 lg:-mt-14 lg:pb-8">
@@ -395,15 +395,17 @@ const Home: React.FC = () => {
               "linear-gradient(90deg, #07173f 0%, #0a1f57 46%, #0f2c7a 74%, #18439f 100%)",
           }}
         />
-        <div className="relative flex min-h-[78px] w-full items-center overflow-hidden select-none sm:min-h-[90px]">
+
+        {/* Infinite-scroll marquee — all screen sizes */}
+        <div className="relative flex min-h-[68px] sm:min-h-[90px] w-full items-center overflow-hidden select-none">
           <div
-            className="animate-infinite-scroll flex h-[78px] min-w-max items-center gap-10 sm:h-[90px] sm:gap-14 lg:gap-20"
+            className="animate-infinite-scroll flex min-w-max items-center gap-8 sm:gap-14 lg:gap-20"
             style={{ animationDuration: "22s" }}
           >
             {[...HERO_BRANDS, ...HERO_BRANDS, ...HERO_BRANDS].map((brand, index) => (
               <div
                 key={`${brand}-${index}`}
-                className="flex h-full min-w-[160px] items-center justify-center sm:min-w-[198px] lg:min-w-[228px]"
+                className="flex h-[68px] sm:h-[90px] min-w-[120px] sm:min-w-[198px] lg:min-w-[228px] items-center justify-center"
               >
                 {renderHeroBrandLogo(brand)}
               </div>
@@ -468,7 +470,7 @@ const Home: React.FC = () => {
         </div>
 
         {/* Match the portfolio cards to the global navbar shell across breakpoints. */}
-        <div className="relative z-10 mx-auto mt-10 w-full max-w-[1680px] px-5 pb-[20vh] sm:mt-12 sm:px-8 lg:mt-16 lg:px-12">
+        <div className="relative z-10 mx-auto mt-10 w-full max-w-[1680px] px-5 pb-10 sm:pb-[15vh] lg:pb-[20vh] sm:mt-12 sm:px-8 lg:mt-16 lg:px-12">
           <div className="relative pb-[6vh] sm:pb-[8vh] lg:pb-[10vh]">
             {/* Keep the portfolio stack pinned near screen center while only the videos progress on scroll. */}
             {portfolioItems.map((item, index) => (
@@ -647,7 +649,7 @@ const Home: React.FC = () => {
       {/* 4. Blogs Section */}
       <section className="relative bg-black overflow-hidden">
         
-        <div className="relative w-full bg-black overflow-hidden xl:mt-24 md:py-20 py-40">
+        <div className="relative w-full bg-black overflow-hidden py-14 md:py-20 xl:mt-24">
           {/* LEFT CURVE */}
           <img
             src={leftcurve}
@@ -675,11 +677,11 @@ const Home: React.FC = () => {
             </div>
 
             {/* HEADINGS */}
-            <h2 className="text-4xl 2xl:text-[56px] lg:text-[40px] text-white tracking-tight leading-[1.05]">
+            <h2 className="text-2xl sm:text-3xl lg:text-[40px] 2xl:text-[56px] text-white tracking-tight leading-[1.05]">
               Delivering Tangible Results
             </h2>
 
-            <h3 className="text-4xl 2xl:text-[56px] lg:text-[40px]  text-gray-400 tracking-tight leading-[1.05]">
+            <h3 className="text-2xl sm:text-3xl lg:text-[40px] 2xl:text-[56px] text-gray-400 tracking-tight leading-[1.05]">
               That Propel Your Success
             </h3>
 
@@ -856,7 +858,7 @@ const Home: React.FC = () => {
           ></div>
         </div> */}
 
-        <div className="relative z-10 mt-32">
+        <div className="relative z-10 mt-16 md:mt-24 lg:mt-32">
           <div className="relative mb-14 md:mb-16">
             {/* LEFT CURVE */}
             <img
@@ -1055,7 +1057,7 @@ const Home: React.FC = () => {
       </section>
       {/* PRICING SECTION */}
       <section className="relative overflow-hidden bg-black">
-        <div className="relative w-full bg-black w-full overflow-hidden py-40">
+        <div className="relative w-full bg-black overflow-hidden py-16 md:py-28 lg:py-40">
         {/* background glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-blue-600/10 blur-[120px]" />
@@ -1308,7 +1310,7 @@ const Home: React.FC = () => {
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-blue-600/20 blur-[140px]" />
         </div>
 
-        <div className="relative w-full bg-black w-full overflow-hidden xl:mt-24 py-20 px-10">
+        <div className="relative w-full bg-black overflow-hidden py-16 px-6 md:px-10">
           <img
             src={leftcurve}
             alt=""
@@ -1381,7 +1383,7 @@ const Home: React.FC = () => {
           {/* header */}
 
           {/* testimonial cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 2xl:px-32 lg:px-22 md:px-16 px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-8 md:px-16 lg:px-20 2xl:px-32">
             {[
               {
                 image: avatar1,
@@ -1589,38 +1591,23 @@ const Home: React.FC = () => {
       </section>
 
       {/* 9. Unique Opportunity Section - Overlay layer that reveals fixed footer */}
-      <section className="relative z-20 h-[150vh] bg-transparent">
-        <div className="sticky top-0 h-screen flex items-end">
-          <div className="w-full">
-            <div className="midnight-card-gradient relative overflow-hidden rounded-none border-y border-white/10 min-h-[100svh] flex items-center">
-            {/* Background Glow Effects */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-600/30 rounded-full blur-[100px]"></div>
-              <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-black rounded-full blur-[100px]"></div>
-              <div className="absolute -top-60 -right-20 w-[400px] h-[400px] bg-blue-800 rounded-full blur-[100px]"></div>
-              <div className="absolute -bottom-60 right-40 w-[700px] h-[600px] bg-black rounded-full blur-[100px]"></div>
-            </div>
+      <section className="relative z-20 h-[100vh] bg-transparent">
+        <div className="sticky top-0 h-screen flex items-center justify-center px-4 md:px-8 lg:px-12">
+          <div className={`group relative w-full max-w-[900px] rounded-[32px] border border-white/[0.08] ${PRICING_CARD_GRADIENT} shadow-[0_45px_140px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-500 hover:border-blue-400/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95)]`}>
+            {/* Top radial blue glow */}
+            <div className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(59,130,246,0.24),transparent_65%)]" />
+            {/* Corner accent glows */}
+            <div className="pointer-events-none absolute -top-28 -right-16 w-[280px] h-[280px] bg-blue-700/20 rounded-full blur-[70px]" />
+            <div className="pointer-events-none absolute -bottom-20 -left-12 w-[240px] h-[240px] bg-blue-900/15 rounded-full blur-[70px]" />
+            {/* Top border accent line */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
-              {/* Content */}
-              <div className="relative z-10 w-full py-24 px-6 md:px-16 lg:px-24 flex flex-col items-center text-center">
-              {/* Tag */}
-              {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-full mb-10">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/80"></span>
-                <span className="text-xs font-medium text-white/80 tracking-wide">
-                  Join Us Now
-                </span>
-              </div> */}
-              <div
-                className="inline-block rounded-lg bg-gradient-to-r 
-                    from-transparent via-blue-700/60 to-transparent 
-                    p-[1px] mb-8"
-              >
-                <div
-                  className="inline-flex items-center space-x-2 px-4 py-2 
-                      rounded-lg border-x border-gray-800 backdrop-blur-xl bg-gradient-to-t 
-                    from-black via-slate-950 to-blue-900/30"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
+            {/* Content */}
+            <div className="relative z-10 py-14 md:py-16 px-8 md:px-16 flex flex-col items-center text-center">
+              {/* Badge */}
+              <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-7">
+                <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 backdrop-blur-xl bg-gradient-to-t from-black via-slate-950 to-blue-900/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white" />
                   <span className="text-xs text-gray-200 tracking-widest uppercase">
                     Join Us Now
                   </span>
@@ -1628,40 +1615,37 @@ const Home: React.FC = () => {
               </div>
 
               {/* Heading */}
-                <h2 className="md:block hidden text-5xl lg:text-6xl 2xl:text-7xl text-white leading-[1.05] max-w-5xl">
-                  Each Project we Undertake
-                  <br />
-                  <span className="text-white/50">is a Unique Opportunity.</span>
-                </h2>
-                <h2 className="md:hidden block text-[44px] text-white leading-[1.05] max-w-4xl">
-                  Each Project, Our
-                  <br />
-                  <span className="text-white/50">Design is Great.</span>
-                </h2>
+              <h2 className="hidden md:block text-4xl lg:text-5xl 2xl:text-6xl text-white leading-[1.05] max-w-3xl">
+                Each Project we Undertake
+                <br />
+                <span className="text-white/50">is a Unique Opportunity.</span>
+              </h2>
+              <h2 className="md:hidden block text-[36px] text-white leading-[1.1] max-w-sm">
+                Each Project, Our
+                <br />
+                <span className="text-white/50">Design is Great.</span>
+              </h2>
 
               {/* Description */}
-                <p className="mt-6 text-white/60 text-base md:text-lg max-w-2xl leading-relaxed">
-                  Ready to take the next step? Join us now and start transforming
-                  your
-                  <br className="hidden md:block" />
-                  vision into reality with expert support.
-                </p>
+              <p className="mt-5 text-white/55 text-sm md:text-base max-w-xl leading-relaxed">
+                Ready to take the next step? Join us now and start transforming your
+                vision into reality with expert support.
+              </p>
 
               {/* CTA Button */}
-                <button
-                  type="button"
-                  className={`${NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS} mt-12`}
-                >
-                  Book an Appointment
-                </button>
-              </div>
+              <button
+                type="button"
+                className={`${NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS} mt-9`}
+              >
+                Book an Appointment
+              </button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Scroll reveal space: allows Join Us layer to fully move up, exposing fixed footer */}
-      <section className="relative z-10 h-[110vh] bg-transparent pointer-events-none" />
+      <section className="relative z-10 h-[40vh] bg-transparent pointer-events-none" />
 
     </div>
   );

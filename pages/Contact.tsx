@@ -82,12 +82,12 @@ const Contact: React.FC = () => {
 
   if (status === 'success') {
     return (
-      <div className="bg-global-gradient pt-56 md:pt-60 lg:pt-64 pb-44 md:pb-48 px-6 sm:px-12 lg:px-24 min-h-screen flex items-center justify-center relative overflow-hidden">
+      <div className="bg-global-gradient pt-32 sm:pt-44 md:pt-56 lg:pt-64 pb-20 sm:pb-32 md:pb-44 lg:pb-48 px-6 sm:px-12 lg:px-24 min-h-screen flex items-center justify-center relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
         <div className="max-w-4xl w-full relative z-10 group">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-500 rounded-[40px] blur opacity-30 animate-pulse"></div>
           
-          <div className="relative bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-[40px] p-12 md:p-16 overflow-hidden shadow-2xl">
+          <div className="relative bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-[40px] p-6 sm:p-10 md:p-16 overflow-hidden shadow-2xl">
             <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
                <div className="absolute -top-1/2 -right-1/4 w-full h-full bg-blue-600/30 blur-[120px] rounded-full animate-float-glow"></div>
                <div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-cyan-500/20 blur-[120px] rounded-full animate-float-glow-reverse"></div>
@@ -173,15 +173,15 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <div className="bg-global-gradient min-h-screen pt-56 md:pt-60 lg:pt-64 pb-44 md:pb-48 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+    <div className="bg-global-gradient min-h-screen pt-32 sm:pt-44 md:pt-56 lg:pt-64 pb-20 sm:pb-32 md:pb-44 lg:pb-48 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
       <div className="max-w-[1440px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1fr)] gap-14 lg:gap-16 xl:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1fr)] gap-10 md:gap-14 lg:gap-16 xl:gap-20 items-start">
           <div className="lg:sticky lg:top-40 max-w-[580px] pr-2">
-            <h1 className="text-[56px] sm:text-[72px] lg:text-[84px] xl:text-[92px] font-bold text-white mb-10 tracking-tight leading-[1.02]">
+            <h1 className="text-[36px] sm:text-[52px] md:text-[64px] lg:text-[84px] xl:text-[92px] font-bold text-white mb-8 md:mb-10 tracking-tight leading-[1.02]">
               TELL US <br/><span className="text-blue-300">EVERYTHING</span>.
             </h1>
-            <p className="text-xl text-[#a1a1aa] mb-16 leading-relaxed max-w-lg font-medium opacity-80">
+            <p className="text-base md:text-xl text-[#a1a1aa] mb-10 md:mb-16 leading-relaxed max-w-lg font-medium opacity-80">
               Your project inquiry is about to be mailed to <span className="text-white border-b border-blue-500/50 pb-1">business@inspirostudio.io</span>. 
             </p>
 
@@ -302,7 +302,7 @@ const Contact: React.FC = () => {
 };
 
 const ContactInfoItem: React.FC<{ icon: React.ReactNode; title: string; content: string }> = ({ icon, title, content }) => (
-  <div className="flex items-start space-x-8 group">
+  <div className="flex items-start space-x-4 sm:space-x-6 md:space-x-8 group">
     <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-300 group-hover:bg-blue-500/10 group-hover:border-blue-500/20 transition-all duration-300 shadow-xl">
       {icon}
     </div>

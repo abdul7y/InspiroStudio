@@ -36,12 +36,12 @@ const Blogs: React.FC = () => {
   };
 
   return (
-    <div className="bg-global-gradient min-h-screen pt-48 pb-24 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+    <div className="bg-global-gradient min-h-screen pt-32 sm:pt-40 md:pt-48 pb-12 md:pb-24 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
       <div className="max-w-[1440px] mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 space-y-8 md:space-y-0">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-20 space-y-6 md:space-y-0">
           <div>
-            <h1 className="text-6xl font-bold text-white tracking-tight mb-6">Insights & <span className="text-blue-300">Perspectives</span></h1>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight mb-4 md:mb-6">Insights & <span className="text-blue-300">Perspectives</span></h1>
             <p className="text-[#a1a1aa] text-lg max-w-xl">Exploring the frontier of video production, tech, and storytelling.</p>
           </div>
           
@@ -63,7 +63,7 @@ const Blogs: React.FC = () => {
               <div className="aspect-[16/10] overflow-hidden">
                 <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
-              <div className="p-10">
+              <div className="p-6 sm:p-8 md:p-10">
                 <div className="flex items-center space-x-3 mb-5">
                   <span className="text-[10px] font-bold text-blue-300 uppercase tracking-[0.15em]">{post.tag}</span>
                   <span className="w-1 h-1 rounded-full bg-gray-600"></span>
@@ -86,7 +86,7 @@ const Blogs: React.FC = () => {
           </div>
         )}
 
-        <div className="mt-24 text-center">
+        <div className="mt-12 md:mt-24 text-center">
           <button
             type="button"
             onClick={handleArchiveClick}

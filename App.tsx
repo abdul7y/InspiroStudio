@@ -107,57 +107,57 @@ const CustomCursor: React.FC = () => {
 const JoinUsRevealLayer: React.FC = () => {
   return (
     <>
-      <section className="relative z-20 h-[150vh] bg-transparent">
-        <div className="sticky top-0 h-screen flex items-end">
-          <div className="w-full">
-            <div className="midnight-card-gradient relative overflow-hidden rounded-none border-y border-white/10 min-h-[100svh] flex items-center">
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-600/30 rounded-full blur-[100px]" />
-                <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-black rounded-full blur-[100px]" />
-                <div className="absolute -top-60 -right-20 w-[400px] h-[400px] bg-blue-800 rounded-full blur-[100px]" />
-                <div className="absolute -bottom-60 right-40 w-[700px] h-[600px] bg-black rounded-full blur-[100px]" />
-              </div>
+      <section className="relative z-20 h-[100vh] bg-transparent">
+        <div className="sticky top-0 h-screen flex items-center justify-center px-4 md:px-8 lg:px-12">
+          <div className="group relative w-full max-w-[900px] rounded-[32px] border border-white/[0.08] bg-gradient-to-br from-[#070b1a] via-[#050814] to-black shadow-[0_45px_140px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-500 hover:border-blue-400/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95)]">
+            {/* Top radial blue glow */}
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(59,130,246,0.24),transparent_65%)] opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+            {/* Corner accent glows */}
+            <div className="pointer-events-none absolute -top-28 -right-16 w-[280px] h-[280px] bg-blue-700/20 rounded-full blur-[70px]" />
+            <div className="pointer-events-none absolute -bottom-20 -left-12 w-[240px] h-[240px] bg-blue-900/15 rounded-full blur-[70px]" />
+            {/* Top border accent line */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
-              <div className="relative z-10 w-full py-24 px-6 md:px-16 lg:px-24 flex flex-col items-center text-center">
-                <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-8">
-                  <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 backdrop-blur-xl bg-gradient-to-t from-black via-slate-950 to-blue-900/30">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                    <span className="text-xs text-gray-200 tracking-widest uppercase">
-                      Join Us Now
-                    </span>
-                  </div>
+            <div className="relative z-10 py-14 md:py-16 px-8 md:px-16 flex flex-col items-center text-center">
+              {/* Badge */}
+              <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-7">
+                <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 backdrop-blur-xl bg-gradient-to-t from-black via-slate-950 to-blue-900/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                  <span className="text-xs text-gray-200 tracking-widest uppercase">
+                    Join Us Now
+                  </span>
                 </div>
-
-                <h2 className="hidden md:block text-5xl lg:text-6xl 2xl:text-7xl text-white leading-[1.05] max-w-5xl">
-                  Each Project we Undertake
-                  <br />
-                  <span className="text-white/50">is a Unique Opportunity.</span>
-                </h2>
-                <h2 className="md:hidden block text-[44px] text-white leading-[1.05] max-w-4xl">
-                  Each Project, Our
-                  <br />
-                  <span className="text-white/50">Design is Great.</span>
-                </h2>
-
-                <p className="mt-6 text-white/60 text-base md:text-lg max-w-2xl leading-relaxed">
-                  Ready to take the next step? Join us now and start transforming your
-                  vision into reality with expert support.
-                </p>
-
-                <a
-                  href={CALENDLY_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS} mt-12`}
-                >
-                  Book an Appointment
-                </a>
               </div>
+
+              <h2 className="hidden md:block text-4xl lg:text-5xl 2xl:text-6xl text-white leading-[1.05] max-w-3xl">
+                Each Project we Undertake
+                <br />
+                <span className="text-white/50">is a Unique Opportunity.</span>
+              </h2>
+              <h2 className="md:hidden block text-[36px] text-white leading-[1.1] max-w-sm">
+                Each Project, Our
+                <br />
+                <span className="text-white/50">Design is Great.</span>
+              </h2>
+
+              <p className="mt-5 text-white/55 text-sm md:text-base max-w-xl leading-relaxed">
+                Ready to take the next step? Join us now and start transforming your
+                vision into reality with expert support.
+              </p>
+
+              <a
+                href={CALENDLY_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS} mt-9`}
+              >
+                Book an Appointment
+              </a>
             </div>
           </div>
         </div>
       </section>
-      <section className="relative z-10 h-[110vh] bg-transparent pointer-events-none" />
+      <section className="relative z-10 h-[40vh] bg-transparent pointer-events-none" />
     </>
   );
 };

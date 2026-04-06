@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Play, Star, Plus, ArrowRight } from 'lucide-react';
+import { Star, Plus, ArrowRight } from 'lucide-react';
 import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
 
 const About: React.FC = () => {
@@ -41,7 +41,7 @@ const About: React.FC = () => {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
       <div className="relative z-10">
       {/* 1. Hero Section */}
-      <section className="relative pt-48 pb-24 px-6 md:px-12 lg:px-24 text-center overflow-hidden">
+      <section className="relative pt-28 sm:pt-36 md:pt-44 pb-10 md:pb-16 px-6 md:px-12 lg:px-24 text-center overflow-hidden">
         <div className="max-w-[1440px] mx-auto relative z-10">
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-white/10 bg-blue-500/10 mb-8 backdrop-blur-sm">
             <div className="w-4 h-4 bg-blue-500 flex items-center justify-center rounded-sm">
@@ -50,7 +50,7 @@ const About: React.FC = () => {
             <span className="text-[11px] font-bold text-blue-300 uppercase tracking-widest">Dig Deep About Us</span>
           </div>
           
-            <h1 className="text-5xl md:text-7xl lg:text-[100px] font-bold text-white mb-8 tracking-tighter leading-[0.95]">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[100px] font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[0.95]">
             Learn More About Inspiro Studio <br />
             <span className="text-white">Let&apos;s Deep Dive!</span>
           </h1>
@@ -59,7 +59,7 @@ const About: React.FC = () => {
             Inspiro Studio is your creative partner for premium video marketing, motion systems, and conversion-focused digital storytelling.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-24">
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-12 md:mb-24">
             <a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className={primaryButtonClass}>
               Connect With Us
             </a>
@@ -68,20 +68,6 @@ const About: React.FC = () => {
             </button>
           </div>
 
-          <div className="max-w-[1200px] mx-auto relative group aspect-video rounded-[40px] overflow-hidden border border-white/5 shadow-2xl bg-black">
-             <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                <div className="absolute w-[80%] h-[80%] bg-blue-600/10 blur-[150px] rounded-full"></div>
-                <div className="relative z-10 flex items-center justify-center">
-                  <svg width="400" height="400" viewBox="0 0 200 200" className="opacity-90 scale-150">
-                    <path d="M100 20 L180 100 L100 180 L20 100 Z" fill="none" stroke="#3b82f6" strokeWidth="0.5" />
-                    <path d="M100 40 L160 100 L100 160 L40 100 Z" fill="none" stroke="#2f83ff" strokeWidth="1.5" />
-                  </svg>
-                  <div className="absolute z-20 w-16 h-16 rounded-full bg-white/10 backdrop-blur-2xl flex items-center justify-center border border-white/20 hover:scale-110 transition-transform cursor-pointer">
-                    <Play className="w-6 h-6 text-white fill-white translate-x-0.5" />
-                  </div>
-                </div>
-             </div>
-          </div>
         </div>
       </section>
 
@@ -141,17 +127,17 @@ const About: React.FC = () => {
       </section>
 
       {/* 4. Team Section - Human Portraits */}
-      <section className="py-32 px-6 md:px-12 lg:px-24">
+      <section className="py-12 md:py-20 lg:py-24 px-6 md:px-12 lg:px-24">
         <div className="max-w-[1440px] mx-auto text-center">
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-10">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
             <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Team Members</span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">Meet the Team Making</h2>
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">Meet the Team Making</h2>
           <h3 className="text-3xl md:text-4xl font-medium text-gray-400 mb-8">Things Happen Every Day</h3>
           <p className="text-gray-500 max-w-xl mx-auto mb-16 font-medium text-[16px]">Our team is made up of passionate professionals who bring their expertise and creativity to every project.</p>
           
-          <a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className={`${primaryButtonClass} mb-24`}>
+          <a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className={`${primaryButtonClass} mb-12 md:mb-24`}>
             Book a 15-min call
           </a>
 
@@ -177,7 +163,7 @@ const About: React.FC = () => {
       </section>
 
       {/* 5. Awards Section - Main cart with Themed Sub-Carts */}
-      <section className="py-32 md:py-40 px-6 md:px-12 lg:px-24">
+      <section className="py-12 md:py-20 lg:py-24 px-6 md:px-12 lg:px-24">
         <div className="midnight-card-gradient max-w-[1440px] mx-auto border border-white/10 rounded-[40px] p-8 md:p-12 xl:p-16 shadow-[0_40px_140px_rgba(0,0,0,0.55)]">
           <div className="grid grid-cols-1 xl:grid-cols-[0.85fr_1.15fr] gap-12 xl:gap-16 items-start">
             <div className="max-w-xl">
@@ -211,22 +197,22 @@ const About: React.FC = () => {
       </section>
 
       {/* 6. Tools Section - Fixed SVG Icons */}
-      <section className="py-48 px-6 md:px-12 lg:px-24 text-center">
+      <section className="py-12 md:py-20 lg:py-24 px-6 md:px-12 lg:px-24 text-center">
         <div className="max-w-[1440px] mx-auto">
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-10">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
             <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Tools</span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">Tools and Technologies</h2>
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">Tools and Technologies</h2>
           <h3 className="text-3xl md:text-4xl font-medium text-gray-400 mb-16">Powering Our Productivity</h3>
           
-          <a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className={`${primaryButtonClass} mb-24`}>
+          <a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className={`${primaryButtonClass} mb-12 md:mb-24`}>
             Book an Appointment
           </a>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {tools.map((tool, i) => (
-              <div key={i} className="midnight-card-gradient border border-white/10 rounded-[40px] p-10 text-left hover:border-white/20 transition-all group relative overflow-hidden shadow-xl flex flex-col justify-between aspect-[5/4]">
+              <div key={i} className="midnight-card-gradient border border-white/10 rounded-[40px] p-6 sm:p-8 md:p-10 text-left hover:border-white/20 transition-all group relative overflow-hidden shadow-xl flex flex-col justify-between aspect-[5/4]">
                 <div>
                   <div className="flex justify-between items-start mb-10">
                     <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-[20px] flex items-center justify-center p-4 group-hover:bg-white/10 transition-all">
