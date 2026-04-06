@@ -26,7 +26,10 @@ const Header: React.FC = () => {
       setHideOnFooter(pageBottomDistance <= 64);
     };
 
-    onScroll();
+    // Don't run on mount — default states (scrolled=false, hideOnFooter=false)
+    // are correct for a fresh page load at the top. Running immediately causes
+    // a false positive: lazy-loaded content hasn't rendered yet so scrollHeight
+    // is tiny, making pageBottomDistance ≤ 64 and hiding the header.
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {

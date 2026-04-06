@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Mail, Send, MessageCircle, Loader2, Sparkles, ArrowRight, ClipboardList, User, Briefcase, ShieldCheck, AlertCircle } from 'lucide-react';
 import { NAVBAR_CTA_BUTTON_FULL_WIDTH_CLASS } from '../constants/buttonStyles';
+import SEOHead from '../components/SEOHead';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -83,6 +84,11 @@ const Contact: React.FC = () => {
   if (status === 'success') {
     return (
       <div className="bg-global-gradient pt-32 sm:pt-44 md:pt-56 lg:pt-64 pb-20 sm:pb-32 md:pb-44 lg:pb-48 px-6 sm:px-12 lg:px-24 min-h-screen flex items-center justify-center relative overflow-hidden">
+        <SEOHead
+          title="Contact Inspiro Studio"
+          description="Book a discovery call or send a project brief. Get expert video marketing and motion design support from Inspiro Studio."
+          path="/contact"
+        />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
         <div className="max-w-4xl w-full relative z-10 group">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-500 rounded-[40px] blur opacity-30 animate-pulse"></div>
@@ -174,6 +180,11 @@ const Contact: React.FC = () => {
 
   return (
     <div className="bg-global-gradient min-h-screen pt-32 sm:pt-44 md:pt-56 lg:pt-64 pb-20 sm:pb-32 md:pb-44 lg:pb-48 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+      <SEOHead
+        title="Contact Inspiro Studio"
+        description="Book a discovery call or send a project brief. Get expert video marketing and motion design support from Inspiro Studio."
+        path="/contact"
+      />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
       <div className="max-w-[1440px] mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1fr)] gap-10 md:gap-14 lg:gap-16 xl:gap-20 items-start">

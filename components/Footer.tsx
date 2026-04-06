@@ -160,7 +160,7 @@ const Footer: React.FC = () => {
               </Link>
             ))}
           </nav>
-          <p className="text-[12px] uppercase tracking-[0.1em] text-blue-100/35 shrink-0">
+          <p className="text-[12px] uppercase tracking-[0.1em] text-blue-100/60 shrink-0">
             © {year} Inspiro Studio
           </p>
         </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import SEOHead from "../components/SEOHead";
 import {
   Play,
   Pause,
@@ -344,6 +345,50 @@ const Home: React.FC = () => {
 
   return (
     <div className="relative min-h-screen">
+      <SEOHead
+        title="Inspiro Studio | Video Marketing Agency"
+        description="Premium video production, motion design, and conversion-focused digital storytelling. Transform your brand with expert creative support from Inspiro Studio."
+        path="/"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Inspiro Studio",
+            url: "https://inspirostudio.io",
+            logo: "https://inspirostudio.io/images/inspiro-logo.svg",
+            sameAs: [
+              "https://facebook.com",
+              "https://instagram.com",
+              "https://x.com",
+              "https://linkedin.com",
+            ],
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "sales",
+              email: "business@inspirostudio.io",
+              url: "https://calendly.com/inspirostudio-io/30min",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Inspiro Studio",
+            url: "https://inspirostudio.io",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqItems.map((item) => ({
+              "@type": "Question",
+              name: item.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.a,
+              },
+            })),
+          },
+        ]}
+      />
       {/* 1. Hero Section */}
       <section className="relative md:min-h-screen flex items-start px-6 md:px-16 lg:px-24 overflow-hidden bg-gradient-to-r from-black via-[#020916] to-[#0b1f3f]">
         {/* Add a radial gradient overlay for extra depth */}
@@ -653,14 +698,20 @@ const Home: React.FC = () => {
           {/* LEFT CURVE */}
           <img
             src={leftcurve}
-            alt="Left Curve"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
             className="absolute lg:left-0 lg:top-1/2 left-0 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
           />
 
           {/* RIGHT CURVE */}
           <img
             src={leftcurve}
-            alt="Right Curve"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
             className="absolute lg:right-0 lg:top-1/2 right-1 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px]  pointer-events-none"
           />
 
@@ -785,6 +836,8 @@ const Home: React.FC = () => {
                         <img
                           src={card.image}
                           alt={card.title}
+                          loading="lazy"
+                          decoding="async"
                           className="h-full w-full scale-105 object-cover opacity-70 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent transition-all duration-500 group-hover:via-black/55 group-hover:from-black/95" />
@@ -801,9 +854,9 @@ const Home: React.FC = () => {
                             {/* LOGO / ICON */}
                             <div className="mb-4">
                               <div className="rounded-md flex text-start">
-                                <h1 className="text-white text-2xl font-bold tracking-tight transition-colors duration-300 group-hover:text-blue-50">
+                                <h3 className="text-white text-2xl font-bold tracking-tight transition-colors duration-300 group-hover:text-blue-50">
                                   {card.title}
-                                </h1>
+                                </h3>
                               </div>
                             </div>
 
@@ -1060,14 +1113,14 @@ const Home: React.FC = () => {
         <div className="relative w-full bg-black overflow-hidden py-16 md:py-28 lg:py-40">
         {/* background glow */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-blue-600/10 blur-[120px]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-blue-600/10 blur-[120px] transform-gpu" />
         </div>
 
         <div className="relative mb-20">
           {/* LEFT CURVE */}
           <img
             src={leftcurve}
-            alt="Left Curve"
+            alt="" aria-hidden="true" loading="lazy" decoding="async"
             className="absolute left-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
           />
 
@@ -1096,7 +1149,7 @@ const Home: React.FC = () => {
               Personal Brands, Agencies, Startups.
             </h3>
 
-            <p className="text-zinc-500 text-[18px] mt-6 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-zinc-400 text-[18px] mt-6 max-w-2xl mx-auto leading-relaxed">
               Our pricing plans are designed to make getting started as
               effortless as possible. With flexible options tailored to suit a
               variety of needs and budgets.
@@ -1307,7 +1360,7 @@ const Home: React.FC = () => {
       <section className="relative overflow-hidden bg-black">
         {/* ambient background */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-blue-600/20 blur-[140px]" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-blue-600/20 blur-[140px] transform-gpu" />
         </div>
 
         <div className="relative w-full bg-black overflow-hidden py-16 px-6 md:px-10">
@@ -1343,7 +1396,7 @@ const Home: React.FC = () => {
               Process and Final Quality
             </h3>
 
-            <p className="text-zinc-500 font-semibold text-[15px] mt-6 w-full max-w-lg mx-auto">
+            <p className="text-zinc-400 font-semibold text-[15px] mt-6 w-full max-w-lg mx-auto">
               We keep it easy: clear checkpoints, fast feedback loops, and work
               that looks sharp on launch day.
             </p>
@@ -1452,8 +1505,9 @@ const Home: React.FC = () => {
                       />
                     </div>
                     <div className="flex gap-[2px] text-white text-[11px]">
-                      {Array.from({ length: 5 }, () => (
+                      {Array.from({ length: 5 }, (_, i) => (
                         <Star
+                          key={i}
                           fill="white"
                           strokeWidth={0}
                           className="h-4 w-4"
@@ -1593,12 +1647,9 @@ const Home: React.FC = () => {
       {/* 9. Unique Opportunity Section - Overlay layer that reveals fixed footer */}
       <section className="relative z-20 h-[100vh] bg-transparent">
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 md:px-8 lg:px-12">
-          <div className={`group relative w-full max-w-[900px] rounded-[32px] border border-white/[0.08] ${PRICING_CARD_GRADIENT} shadow-[0_45px_140px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-500 hover:border-blue-400/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95)]`}>
-            {/* Top radial blue glow */}
+          <div className={`group relative w-full max-w-[900px] rounded-[32px] border border-white/[0.08] ${PRICING_CARD_GRADIENT} shadow-[0_45px_140px_rgba(0,0,0,0.9),0_0_60px_rgba(59,130,246,0.08)] overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-blue-400/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95),0_0_80px_rgba(59,130,246,0.12)]`}>
+            {/* Top radial blue glow - CSS only, no blur filter */}
             <div className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(59,130,246,0.24),transparent_65%)]" />
-            {/* Corner accent glows */}
-            <div className="pointer-events-none absolute -top-28 -right-16 w-[280px] h-[280px] bg-blue-700/20 rounded-full blur-[70px]" />
-            <div className="pointer-events-none absolute -bottom-20 -left-12 w-[240px] h-[240px] bg-blue-900/15 rounded-full blur-[70px]" />
             {/* Top border accent line */}
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 

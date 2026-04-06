@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
 
   const Faqs: React.FC = () => {
@@ -32,6 +33,23 @@ import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
 
   return (
     <div className="bg-global-gradient min-h-screen pt-32 sm:pt-40 md:pt-48 pb-12 md:pb-24 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+      <SEOHead
+        title="Frequently Asked Questions"
+        description="Common questions about Inspiro Studio pricing, creative process, turnaround times, and partnership details."
+        path="/faqs"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((item) => ({
+            "@type": "Question",
+            name: item.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.a,
+            },
+          })),
+        }}
+      />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
       <div className="relative z-10">
       <div className="max-w-3xl mx-auto text-center mb-12 md:mb-24">

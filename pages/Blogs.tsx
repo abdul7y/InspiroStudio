@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Search } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
 
 const Blogs: React.FC = () => {
@@ -37,6 +38,11 @@ const Blogs: React.FC = () => {
 
   return (
     <div className="bg-global-gradient min-h-screen pt-32 sm:pt-40 md:pt-48 pb-12 md:pb-24 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+      <SEOHead
+        title="Insights & Perspectives"
+        description="Explore video marketing tips, production insights, and storytelling trends from the Inspiro Studio team."
+        path="/blogs"
+      />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
       <div className="max-w-[1440px] mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-20 space-y-6 md:space-y-0">
@@ -61,7 +67,7 @@ const Blogs: React.FC = () => {
           {visiblePosts.map((post, idx) => (
             <article key={idx} className="midnight-card-gradient border border-white/10 rounded-[24px] group cursor-pointer overflow-hidden transition-all duration-500 hover:translate-y-[-8px] hover:border-blue-400/35">
               <div className="aspect-[16/10] overflow-hidden">
-                <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src={post.img} alt={post.title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <div className="p-6 sm:p-8 md:p-10">
                 <div className="flex items-center space-x-3 mb-5">

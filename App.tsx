@@ -1,11 +1,13 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Blogs from './pages/Blogs';
-import Contact from './pages/Contact';
-import Faqs from './pages/Faqs';
+import { HelmetProvider } from 'react-helmet-async';
+const Home = React.lazy(() => import('./pages/Home'));
+const About = React.lazy(() => import('./pages/About'));
+const Blogs = React.lazy(() => import('./pages/Blogs'));
+const Contact = React.lazy(() => import('./pages/Contact'));
+const Faqs = React.lazy(() => import('./pages/Faqs'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from './constants/buttonStyles';
@@ -109,12 +111,9 @@ const JoinUsRevealLayer: React.FC = () => {
     <>
       <section className="relative z-20 h-[100vh] bg-transparent">
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 md:px-8 lg:px-12">
-          <div className="group relative w-full max-w-[900px] rounded-[32px] border border-white/[0.08] bg-gradient-to-br from-[#070b1a] via-[#050814] to-black shadow-[0_45px_140px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-500 hover:border-blue-400/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95)]">
-            {/* Top radial blue glow */}
+          <div className="group relative w-full max-w-[900px] rounded-[32px] border border-white/[0.08] bg-gradient-to-br from-[#070b1a] via-[#050814] to-black shadow-[0_45px_140px_rgba(0,0,0,0.9),0_0_60px_rgba(59,130,246,0.08)] overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-blue-400/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95),0_0_80px_rgba(59,130,246,0.12)]">
+            {/* Top radial blue glow - CSS only, no blur filter */}
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(59,130,246,0.24),transparent_65%)] opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
-            {/* Corner accent glows */}
-            <div className="pointer-events-none absolute -top-28 -right-16 w-[280px] h-[280px] bg-blue-700/20 rounded-full blur-[70px]" />
-            <div className="pointer-events-none absolute -bottom-20 -left-12 w-[240px] h-[240px] bg-blue-900/15 rounded-full blur-[70px]" />
             {/* Top border accent line */}
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
@@ -170,6 +169,7 @@ const AppShell: React.FC = () => {
     <div className="bg-global-gradient min-h-screen flex flex-col">
       <Header />
       <main className="relative z-10 flex-grow">
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin" /></div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -183,8 +183,9 @@ const AppShell: React.FC = () => {
           <Route path="/portfolio" element={<Navigate to="/" replace />} />
           <Route path="/services" element={<Navigate to="/" replace />} />
           <Route path="/testimonials" element={<Navigate to="/" replace />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </main>
       {!isHome && <JoinUsRevealLayer />}
       <Footer />
@@ -194,11 +195,13 @@ const AppShell: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <CustomCursor />
-      <ScrollToTop />
-      <AppShell />
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <CustomCursor />
+        <ScrollToTop />
+        <AppShell />
+      </Router>
+    </HelmetProvider>
   );
 };
 

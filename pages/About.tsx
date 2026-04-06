@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Star, Plus, ArrowRight } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
 
 const About: React.FC = () => {
@@ -38,6 +39,11 @@ const About: React.FC = () => {
 
   return (
     <div className="bg-global-gradient min-h-screen relative overflow-hidden">
+      <SEOHead
+        title="About Inspiro Studio"
+        description="Meet the creative team behind Inspiro Studio. Discover our awards, tools, and story — serving brands across 30+ countries with premium video marketing and motion design."
+        path="/about"
+      />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
       <div className="relative z-10">
       {/* 1. Hero Section */}
@@ -80,7 +86,9 @@ const About: React.FC = () => {
                 <div className="relative rounded-[40px] overflow-hidden border border-white/10 aspect-[4/3] group shadow-2xl">
                   <img
                     src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000"
-                    alt="Professional session"
+                    alt="Inspiro Studio professional team session"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
@@ -145,7 +153,7 @@ const About: React.FC = () => {
             {teamMembers.map((member) => (
               <div key={member.name} className="midnight-card-gradient group relative border border-white/10 rounded-[32px] overflow-hidden shadow-2xl">
                 <div className="aspect-[4/5] overflow-hidden">
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={member.img} alt={member.name} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className="p-6 border-t border-white/10 flex justify-between items-center text-left bg-black/40 backdrop-blur-md absolute bottom-0 left-0 right-0">
                   <div>
@@ -216,7 +224,7 @@ const About: React.FC = () => {
                 <div>
                   <div className="flex justify-between items-start mb-10">
                     <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-[20px] flex items-center justify-center p-4 group-hover:bg-white/10 transition-all">
-                      <img src={tool.icon} alt={tool.name} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all" />
+                      <img src={tool.icon} alt={tool.name} loading="lazy" decoding="async" className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all" />
                     </div>
                     {tool.tag && (
                       <span className="text-[10px] font-black bg-blue-500/20 text-blue-400 border border-blue-500/20 px-3 py-1 rounded uppercase tracking-[0.1em]">{tool.tag}</span>
