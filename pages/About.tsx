@@ -49,11 +49,11 @@ const About: React.FC = () => {
       {/* 1. Hero Section */}
       <section className="relative pt-28 sm:pt-36 md:pt-44 pb-10 md:pb-16 px-6 md:px-12 lg:px-24 text-center overflow-hidden">
         <div className="max-w-[1440px] mx-auto relative z-10">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-white/10 bg-blue-500/10 mb-8 backdrop-blur-sm">
-            <div className="w-4 h-4 bg-blue-500 flex items-center justify-center rounded-sm">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-white/10 bg-violet-500/10 mb-8 backdrop-blur-sm">
+            <div className="w-4 h-4 bg-violet-500 flex items-center justify-center rounded-sm">
               <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
             </div>
-            <span className="text-[11px] font-bold text-blue-300 uppercase tracking-widest">Dig Deep About Us</span>
+            <span className="text-[11px] font-bold text-violet-300 uppercase tracking-widest">Dig Deep About Us</span>
           </div>
           
             <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[100px] font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[0.95]">
@@ -96,7 +96,7 @@ const About: React.FC = () => {
 
                 <div className="space-y-8 max-w-[560px]">
                   <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-white/10 bg-white/5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">About Inspiro Studio</span>
                   </div>
                   <h2 className="text-[38px] md:text-[52px] lg:text-[60px] font-bold text-white tracking-tight leading-[1.05]">
@@ -138,7 +138,7 @@ const About: React.FC = () => {
       <section className="py-12 md:py-20 lg:py-24 px-6 md:px-12 lg:px-24">
         <div className="max-w-[1440px] mx-auto text-center">
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-10">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
             <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Team Members</span>
           </div>
           <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">Meet the Team Making</h2>
@@ -176,7 +176,7 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 xl:grid-cols-[0.85fr_1.15fr] gap-12 xl:gap-16 items-start">
             <div className="max-w-xl">
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-8">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Awards</span>
               </div>
               <h2 className="text-4xl md:text-6xl xl:text-[72px] font-bold text-white mb-6 tracking-tighter leading-[0.94]">Awards <br /> & Recognition</h2>
@@ -208,7 +208,7 @@ const About: React.FC = () => {
       <section className="py-12 md:py-20 lg:py-24 px-6 md:px-12 lg:px-24 text-center">
         <div className="max-w-[1440px] mx-auto">
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-10">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
             <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Tools</span>
           </div>
           <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">Tools and Technologies</h2>
@@ -227,7 +227,7 @@ const About: React.FC = () => {
                       <img src={tool.icon} alt={tool.name} loading="lazy" decoding="async" className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all" />
                     </div>
                     {tool.tag && (
-                      <span className="text-[10px] font-black bg-blue-500/20 text-blue-400 border border-blue-500/20 px-3 py-1 rounded uppercase tracking-[0.1em]">{tool.tag}</span>
+                      <span className="text-[10px] font-black bg-violet-500/20 text-violet-400 border border-violet-500/20 px-3 py-1 rounded uppercase tracking-[0.1em]">{tool.tag}</span>
                     )}
                   </div>
                   <h4 className="text-[24px] font-bold text-white mb-4 tracking-tight">{tool.name}</h4>

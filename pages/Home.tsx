@@ -53,7 +53,7 @@ const HERO_BRANDS: HeroBrandId[] = [
 const PRICING_CARD_GRADIENT =
   "bg-gradient-to-br from-[#070b1a] via-[#050814] to-black";
 const PRICING_CARD_GLOW =
-  "bg-[radial-gradient(85%_65%_at_20%_0%,rgba(59,130,246,0.22),transparent_60%)]";
+  "bg-[radial-gradient(85%_65%_at_20%_0%,rgba(168,85,247,0.24),transparent_60%)]";
 
 const renderHeroBrandLogo = (brand: HeroBrandId) => {
   switch (brand) {
@@ -286,7 +286,7 @@ const Home: React.FC = () => {
       stats: ["25% Conversion Rates", "50% Reduced in CPA"],
       image:
         "https://images.unsplash.com/photo-1545239351-ef35f43d514b?auto=format&fit=crop&w=1200&q=80",
-      accent: "from-indigo-500/20 via-sky-500/10 to-transparent",
+      accent: "from-violet-500/20 via-fuchsia-500/10 to-transparent",
     },
     {
       id: 3,
@@ -298,7 +298,7 @@ const Home: React.FC = () => {
       stats: ["80% Increased Traffic", "35% Growth in Sales"],
       image:
         "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
-      accent: "from-blue-500/20 via-violet-500/10 to-transparent",
+      accent: "from-violet-500/20 via-violet-500/10 to-transparent",
     },
   ];
   const blogSlidesLoop = [...blogSlides, ...blogSlides];
@@ -389,10 +389,15 @@ const Home: React.FC = () => {
           },
         ]}
       />
-      {/* 1. Hero Section */}
-      <section className="relative md:min-h-screen flex items-start px-6 md:px-16 lg:px-24 overflow-hidden bg-gradient-to-r from-black via-[#020916] to-[#0b1f3f]">
-        {/* Add a radial gradient overlay for extra depth */}
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black to-blue-700/35"></div>
+      {/* 1. Hero Section — prod-style: one dominant bloom from the right edge + black base */}
+      <section className="relative md:min-h-screen flex items-start px-6 md:px-16 lg:px-24 overflow-hidden bg-black">
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          {/* Main right-edge bloom — same placement as inspirostudio.io; purple via CSS vars */}
+          <div className="prod-grad-hero-right absolute inset-y-[-8%] right-0 w-[min(92vw,820px)] md:w-[min(78vw,760px)]" />
+          <div className="prod-grad-hero-left absolute inset-0 opacity-90" />
+        </div>
+        {/* Fade to pure black toward bottom (logo strip) */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 md:h-40 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
         <div className="max-w-[1440px] mx-auto w-full pt-28 sm:pt-36 md:pt-[200px] lg:pt-[280px] pb-10 sm:pb-20 md:pb-[140px] lg:pb-[180px]">
           <div className="max-w-[900px] relative z-10">
@@ -400,8 +405,8 @@ const Home: React.FC = () => {
               <span className="font-normal">Video Marketing Agency For</span>
               <br className="hidden lg:block" />
               <span className="inline-flex items-end">
-                <span className="bg-gradient-to-r from-[#53a5ff] via-[#2f83ff] to-[#00a3ff] bg-clip-text text-transparent font-extrabold">{heroTypedText}</span>
-                <span className="ml-1 inline-block h-[0.88em] w-[3px] rounded-full bg-blue-400 animate-pulse" />
+                <span className="bg-gradient-to-r from-[#e9d5ff] via-[#c084fc] to-[#a855f7] bg-clip-text text-transparent font-extrabold">{heroTypedText}</span>
+                <span className="ml-1 inline-block h-[0.88em] w-[3px] rounded-full bg-violet-400 animate-pulse" />
               </span>
             </h1>
 
@@ -429,17 +434,11 @@ const Home: React.FC = () => {
             <div className="wave wave-2"></div>
             <div className="wave"></div>
           </div> */}
-        <div className="absolute inset-x-0 bottom-0 h-24 md:h-44 lg:h-52 bg-gradient-to-b from-transparent via-[#060f22]/60 to-black pointer-events-none"></div>
+        <div className="absolute inset-x-0 bottom-0 h-20 md:h-36 lg:h-44 bg-gradient-to-b from-transparent to-black pointer-events-none" />
       </section>
 
       <div className="relative left-1/2 z-20 -mt-10 w-screen -translate-x-1/2 overflow-hidden pb-6 sm:-mt-12 sm:pb-7 lg:-mt-14 lg:pb-8">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(90deg, #07173f 0%, #0a1f57 46%, #0f2c7a 74%, #18439f 100%)",
-          }}
-        />
+        <div className="pointer-events-none absolute inset-0 prod-grad-marquee-bg" />
 
         {/* Infinite-scroll marquee — all screen sizes */}
         <div className="relative flex min-h-[68px] sm:min-h-[90px] w-full items-center overflow-hidden select-none">
@@ -478,7 +477,7 @@ const Home: React.FC = () => {
             />
 
             <div className="relative z-10 max-w-3xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
-              <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-4">
+              <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-violet-700/60 to-transparent p-[1px] mb-4">
                 <div
                   className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-r border-l border-gray-800
                     bg-black backdrop-blur-xl"
@@ -588,7 +587,7 @@ const Home: React.FC = () => {
             />
 
             <div className="relative z-10 max-w-3xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
-                <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-4">
+                <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-violet-700/60 to-transparent p-[1px] mb-4">
                   <div
                     className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-r border-l border-gray-800
                     bg-black backdrop-blur-xl"
@@ -612,8 +611,8 @@ const Home: React.FC = () => {
             <div className="relative z-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
               <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
                 <div className="group relative w-full max-w-[520px] transition-transform duration-300 hover:-translate-y-2">
-                  <div className="rounded-[34px] bg-[linear-gradient(135deg,#1456ff_0%,#1f7dff_58%,#00a3ff_100%)] p-[1px] shadow-[0_18px_45px_rgba(20,112,255,0.3)] transition-all duration-300 group-hover:shadow-[0_22px_70px_rgba(39,145,255,0.45)]">
-                    <div className="relative aspect-square w-full overflow-hidden rounded-[32px] border border-white/10 bg-[radial-gradient(circle_at_30%_20%,rgba(46,125,255,0.28),rgba(8,18,38,0.8)_42%,rgba(0,0,0,0.2)_72%,transparent_100%)] shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
+                  <div className="rounded-[34px] bg-[linear-gradient(135deg,#7c3aed_0%,#a855f7_58%,#c084fc_100%)] p-[1px] shadow-[0_18px_45px_rgba(147,51,234,0.35)] transition-all duration-300 group-hover:shadow-[0_22px_70px_rgba(192,132,252,0.45)]">
+                    <div className="prod-grad-media-card relative aspect-square w-full overflow-hidden rounded-[32px] border border-white/10 shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
                     <video
                       className="absolute inset-0 h-full w-full object-cover opacity-88 transition-transform duration-500 group-hover:scale-[1.04]"
                       src={ABOUT_VIDEO_SRC}
@@ -624,10 +623,10 @@ const Home: React.FC = () => {
                       preload="metadata"
                     />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.16),transparent_42%)]"></div>
-                    <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(20,86,255,0.14)_0%,rgba(31,125,255,0.08)_42%,rgba(0,0,0,0.4)_100%)] transition-opacity duration-300 group-hover:opacity-90"></div>
+                    <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(124,58,237,0.16)_0%,rgba(168,85,247,0.1)_42%,rgba(0,0,0,0.4)_100%)] transition-opacity duration-300 group-hover:opacity-90"></div>
                     <div className="absolute inset-x-0 -bottom-10 h-28 bg-gradient-to-t from-black via-black/65 to-transparent blur-2xl"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-blue-100/30 bg-[linear-gradient(135deg,rgba(20,86,255,0.88)_0%,rgba(31,125,255,0.84)_58%,rgba(0,163,255,0.8)_100%)] backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.35)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_45px_rgba(39,145,255,0.55)]">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-violet-100/30 bg-[linear-gradient(135deg,rgba(124,58,237,0.9)_0%,rgba(168,85,247,0.85)_58%,rgba(192,132,252,0.82)_100%)] backdrop-blur-md shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_45px_rgba(192,132,252,0.5)]">
                         <Play className="w-6 h-6 text-white fill-white" />
                       </div>
                     </div>
@@ -648,13 +647,13 @@ const Home: React.FC = () => {
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-center gap-3 text-[14px] text-gray-300 lg:justify-start">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-700">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-violet-700">
                       <BadgeCheck className="h-4 w-4 text-white" />
                     </span>
                     <span>From $0 to $500,000 in revenue.</span>
                   </div>
                   <div className="flex items-center justify-center gap-3 text-[14px] text-gray-300 lg:justify-start">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-700">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-violet-700">
                       <BadgeCheck className="h-4 w-4 text-white" />
                     </span>
                     <span>70% growth in new customers.</span>
@@ -718,7 +717,7 @@ const Home: React.FC = () => {
           {/* CENTER CONTENT */}
           <div className="relative z-10 max-w-[900px] mx-auto text-center px-6 flex flex-col items-center">
             {/* BLOG BADGE */}
-            <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-6">
+            <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-violet-700/60 to-transparent p-[1px] mb-6">
               <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 bg-black backdrop-blur-xl">
                 <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
                 <span className="text-xs text-gray-200 tracking-widest">
@@ -789,7 +788,7 @@ const Home: React.FC = () => {
                 //           <span className="text-white text-[15px] font-bold">
                 //             {card.title}
                 //           </span>
-                //           <span className="px-2 py-0.5 rounded-ful                                                                                                                                                                                                          l bg-blue-500/20 text-blue-300 text-[9px] font-bold tracking-wide uppercase">
+                //           <span className="px-2 py-0.5 rounded-ful                                                                                                                                                                                                          l bg-violet-500/20 text-violet-300 text-[9px] font-bold tracking-wide uppercase">
                 //             {card.badge}
                 //           </span>
                 //         </div>
@@ -817,7 +816,7 @@ const Home: React.FC = () => {
                   aria-hidden={index >= blogSlides.length}
                 >
                   <div
-                    className={`relative rounded-[28px] border border-white/[0.08] p-[2px] ${PRICING_CARD_GRADIENT} shadow-[0_40px_120px_rgba(0,0,0,0.9)] transition-all duration-500 group-hover:border-blue-400/30 group-hover:shadow-[0_55px_150px_rgba(4,10,24,0.95)]`}
+                    className={`relative rounded-[28px] border border-white/[0.08] p-[2px] ${PRICING_CARD_GRADIENT} shadow-[0_40px_120px_rgba(0,0,0,0.9)] transition-all duration-500 group-hover:border-violet-400/30 group-hover:shadow-[0_55px_150px_rgba(4,10,24,0.95)]`}
                   >
                     <div
                       className={`pointer-events-none absolute inset-0 rounded-[28px] opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`}
@@ -844,7 +843,7 @@ const Home: React.FC = () => {
 
                         {/* CONTENT SECTION */}
                         <div
-                          className={`absolute bottom-0 left-0 right-0 m-3 flex-1 rounded-[21px] border border-white/[0.08] p-6 transition-all duration-500 group-hover:-translate-y-2 group-hover:border-blue-400/25 ${PRICING_CARD_GRADIENT}`}
+                          className={`absolute bottom-0 left-0 right-0 m-3 flex-1 rounded-[21px] border border-white/[0.08] p-6 transition-all duration-500 group-hover:-translate-y-2 group-hover:border-violet-400/25 ${PRICING_CARD_GRADIENT}`}
                         >
                           <div
                             className={`pointer-events-none absolute inset-0 rounded-[21px] opacity-70 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`}
@@ -854,7 +853,7 @@ const Home: React.FC = () => {
                             {/* LOGO / ICON */}
                             <div className="mb-4">
                               <div className="rounded-md flex text-start">
-                                <h3 className="text-white text-2xl font-bold tracking-tight transition-colors duration-300 group-hover:text-blue-50">
+                                <h3 className="text-white text-2xl font-bold tracking-tight transition-colors duration-300 group-hover:text-violet-50">
                                   {card.title}
                                 </h3>
                               </div>
@@ -863,12 +862,18 @@ const Home: React.FC = () => {
                             {/* TITLE */}
                             <h3 className="text-white text-[20px] font-semibold mb-2 flex items-center gap-2">
                               {card.client}{" "}
-                              <span className="bg-blue-700 text-[10px] font-semibold px-2 py-0.5 rounded transition-colors duration-300 group-hover:bg-blue-600">
+                              <span
+                                className={
+                                  card.badge === "NEW"
+                                    ? "bg-blue-600 text-[10px] font-semibold px-2 py-0.5 rounded transition-colors duration-300 group-hover:bg-blue-500"
+                                    : "bg-violet-700 text-[10px] font-semibold px-2 py-0.5 rounded transition-colors duration-300 group-hover:bg-violet-600"
+                                }
+                              >
                                 {card.badge}
                               </span>
                             </h3>
 
-                            <div className="border-t border-zinc-500/80 w-24 rounded-full mb-4 transition-colors duration-300 group-hover:border-blue-400/50"></div>
+                            <div className="border-t border-zinc-500/80 w-24 rounded-full mb-4 transition-colors duration-300 group-hover:border-violet-400/50"></div>
 
                             {/* DESCRIPTION */}
                             <p className="text-zinc-400 text-[14px] leading-relaxed mb-6 transition-colors duration-300 group-hover:text-zinc-300">
@@ -878,12 +883,12 @@ const Home: React.FC = () => {
                             {/* STATS PILLS */}
                             <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
                               <span
-                                className="px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-gray-400 text-sm font-medium text-center transition-all duration-300 group-hover:border-blue-400/20 group-hover:bg-blue-500/10 group-hover:text-gray-200"
+                                className="px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-gray-400 text-sm font-medium text-center transition-all duration-300 group-hover:border-violet-400/20 group-hover:bg-violet-500/10 group-hover:text-gray-200"
                               >
                                 {card.stats[0]}
                               </span>
                               <span
-                                className="px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-gray-400 text-sm font-medium text-center transition-all duration-300 group-hover:border-blue-400/20 group-hover:bg-blue-500/10 group-hover:text-gray-200"
+                                className="px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-gray-400 text-sm font-medium text-center transition-all duration-300 group-hover:border-violet-400/20 group-hover:bg-violet-500/10 group-hover:text-gray-200"
                               >
                                 {card.stats[1]}
                               </span>
@@ -903,7 +908,7 @@ const Home: React.FC = () => {
       <section className="relative overflow-hidden bg-black">
 
         {/* <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-[radial-gradient(circle_at_70%_20%,rgba(59,130,246,0.18),transparent_60%)]"></div>
+          <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-[radial-gradient(circle_at_70%_20%,rgba(168,85,247,0.2),transparent_60%)]"></div>
           <div className="absolute -top-20 right-10 w-[40%] h-[40%] bg-[radial-gradient(circle,rgba(168,85,247,0.18),transparent_65%)]"></div>
           <div
             className="absolute top-0 right-0 w-[65%] h-[40%] bg-[#0b1628]/80"
@@ -929,14 +934,14 @@ const Home: React.FC = () => {
 
             <div className="relative z-10 max-w-4xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
           {/* <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
             <span className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em]">
               Inspiro Benefits
             </span>
           </div> */}
           <div
             className="inline-block rounded-lg bg-gradient-to-r 
-                    from-transparent via-blue-700/60 to-transparent 
+                    from-transparent via-violet-700/60 to-transparent 
                     p-[1px] mb-8"
           >
             <div
@@ -972,9 +977,9 @@ const Home: React.FC = () => {
           <div className="max-w-[1440px] mx-auto px-8 md:px-16 lg:px-24">
             <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-8 mt-12">
             <div className="space-y-6">
-              <div className="group relative w-full md:h-[420px]  2xl:h-[430px] lg:h-[450px] rounded-[26px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 shadow-[0_35px_90px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:shadow-[0_45px_110px_rgba(5,12,32,0.85)]">
+              <div className="group relative w-full md:h-[420px]  2xl:h-[430px] lg:h-[450px] rounded-[26px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 shadow-[0_35px_90px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-violet-400/25 hover:shadow-[0_45px_110px_rgba(5,12,32,0.85)]">
                 {/* bottom accent glow */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-tr from-[#7c3aed]/38 via-[#a855f7]/22 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
 
                 {/* Image container */}
                 <div className="relative h-[230px] rounded-[18px] overflow-hidden border border-white/10 mb-5">
@@ -987,11 +992,11 @@ const Home: React.FC = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-white font-semibold text-[15px] mb-2 transition-colors duration-300 group-hover:text-blue-50">
+                <h3 className="text-white font-semibold text-[15px] mb-2 transition-colors duration-300 group-hover:text-violet-50">
                   Submit Unlimited Requests
                 </h3>
 
-                <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-blue-400/40" />
+                <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-violet-400/40" />
 
                 <p className="text-violet-100 text-[13px] leading-relaxed mb-4 transition-colors duration-300 group-hover:text-violet-50/90">
                   Enjoy the freedom to submit unlimited requests without any
@@ -1002,8 +1007,8 @@ const Home: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="group relative 2xl:h-[250px] lg:h-[280px] rounded-[20px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
+                <div className="group relative 2xl:h-[250px] lg:h-[280px] rounded-[20px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-violet-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#7c3aed]/38 via-[#a855f7]/22 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
                   <div className="relative h-[110px] rounded-[12px] overflow-hidden border border-white/10 mb-3">
                     <img
                       src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
@@ -1013,22 +1018,22 @@ const Home: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                   </div>
                   <div className="flex items-center gap-2 mb-2">
-                    <h4 className="text-white font-bold text-[13px] transition-colors duration-300 group-hover:text-blue-50">
+                    <h4 className="text-white font-bold text-[13px] transition-colors duration-300 group-hover:text-violet-50">
                       Quick Turnaround
                     </h4>
-                    <span className="px-2 py-0.5 rounded bg-blue-700 border-2 border-blue-600 text-white text-[8px] font-bold uppercase transition-colors duration-300 group-hover:bg-blue-600">
+                    <span className="px-2 py-0.5 rounded bg-blue-600 border-2 border-blue-500 text-white text-[8px] font-bold uppercase transition-colors duration-300 group-hover:bg-blue-500">
                       NEW
                     </span>
                   </div>
-                  <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-blue-400/40" />
+                  <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-violet-400/40" />
 
                   <p className="text-violet-100 text-[13px] leading-relaxed transition-colors duration-300 group-hover:text-violet-50/90">
                     We prioritize efficiency without compromising quality.
                   </p>
                 </div>
 
-                <div className="group relative 2xl:h-[250px] lg:h-[280px] rounded-[20px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
+                <div className="group relative 2xl:h-[250px] lg:h-[280px] rounded-[20px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-5 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-violet-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-tr from-[#7c3aed]/38 via-[#a855f7]/22 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
                   <div className="relative h-[110px] rounded-[12px] overflow-hidden border border-white/10 mb-3">
                     <img
                       src="https://images.unsplash.com/photo-1556155092-8707de31f9c4?auto=format&fit=crop&w=900&q=80"
@@ -1037,10 +1042,10 @@ const Home: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                   </div>
-                  <h4 className="text-white font-bold text-[13px] mb-2 transition-colors duration-300 group-hover:text-blue-50">
+                  <h4 className="text-white font-bold text-[13px] mb-2 transition-colors duration-300 group-hover:text-violet-50">
                     Publish in Seconds
                   </h4>
-                  <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-blue-400/40" />
+                  <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-violet-400/40" />
 
                   <p className="text-violet-100 text-[13px] leading-relaxed transition-colors duration-300 group-hover:text-violet-50/90">
                     Publish your site in seconds with our streamlined process.
@@ -1050,8 +1055,8 @@ const Home: React.FC = () => {
             </div>
 
             <div className="space-y-6">
-              <div className="group relative  2xl:h-[340px] lg:h-[360px] rounded-[22px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-6 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
+              <div className="group relative  2xl:h-[340px] lg:h-[360px] rounded-[22px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-6 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-violet-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#7c3aed]/38 via-[#a855f7]/22 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
                 <div className="relative h-[170px] rounded-[14px] overflow-hidden border border-white/10 mb-4">
                   <img
                     src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=900&q=80"
@@ -1061,14 +1066,14 @@ const Home: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 </div>
                 <div className="flex items-center space-x-2 mb-2">
-                  <h4 className="text-white font-bold text-[14px] transition-colors duration-300 group-hover:text-blue-50">
+                  <h4 className="text-white font-bold text-[14px] transition-colors duration-300 group-hover:text-violet-50">
                     Requests & Revisions
                   </h4>
-                  <span className="px-2 py-0.5 rounded bg-blue-700 border-2 border-blue-600 text-white text-[8px] font-bold uppercase transition-colors duration-300 group-hover:bg-blue-600">
+                  <span className="px-2 py-0.5 rounded bg-blue-600 border-2 border-blue-500 text-white text-[8px] font-bold uppercase transition-colors duration-300 group-hover:bg-blue-500">
                     NEW
                   </span>
                 </div>
-                <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-blue-400/40" />
+                <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-violet-400/40" />
 
                 <p className="text-violet-100 text-[13px] leading-relaxed transition-colors duration-300 group-hover:text-violet-50/90">
                   Our process includes multiple rounds of requests and
@@ -1077,8 +1082,8 @@ const Home: React.FC = () => {
                 </p>
               </div>
 
-              <div className="group relative 2xl:h-[340px] lg:h-[360px] rounded-[22px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-6 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#1766e8]/40 via-[#2f83ff]/20 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
+              <div className="group relative 2xl:h-[340px] lg:h-[360px] rounded-[22px] bg-gradient-to-br from-[#1a0f2e] via-[#0b0b12] to-black border border-violet-950 p-6 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.55)] transition-all duration-500 hover:-translate-y-2 hover:border-violet-400/25 hover:shadow-[0_38px_90px_rgba(5,12,32,0.8)]">
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-tr from-[#7c3aed]/38 via-[#a855f7]/22 to-transparent blur-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100"></div>
                 <div className="relative h-[170px] rounded-[14px] overflow-hidden border border-white/10 mb-4">
                   <img
                     src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=80"
@@ -1088,14 +1093,14 @@ const Home: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 </div>
                 <div className="flex items-center space-x-2 mb-2">
-                  <h4 className="text-white font-bold text-[14px] transition-colors duration-300 group-hover:text-blue-50">
+                  <h4 className="text-white font-bold text-[14px] transition-colors duration-300 group-hover:text-violet-50">
                     Worry Free Pricing
                   </h4>
-                  <span className="px-2 py-0.5 rounded bg-blue-700 border-2 border-blue-600 text-white text-[8px] font-bold uppercase transition-colors duration-300 group-hover:bg-blue-600">
+                  <span className="px-2 py-0.5 rounded bg-blue-600 border-2 border-blue-500 text-white text-[8px] font-bold uppercase transition-colors duration-300 group-hover:bg-blue-500">
                     NEW
                   </span>
                 </div>
-                <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-blue-400/40" />
+                <div className="border border-violet-500/30 w-24 mb-3 transition-colors duration-300 group-hover:border-violet-400/40" />
 
                 <p className="text-violet-100 text-[13px] leading-relaxed transition-colors duration-300 group-hover:text-violet-50/90">
                   Whether you're just starting or scaling up, our flexible
@@ -1113,7 +1118,7 @@ const Home: React.FC = () => {
         <div className="relative w-full bg-black overflow-hidden py-16 md:py-28 lg:py-40">
         {/* background glow */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-blue-600/10 blur-[120px] transform-gpu" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-violet-600/10 blur-[120px] transform-gpu" />
         </div>
 
         <div className="relative mb-20">
@@ -1133,7 +1138,7 @@ const Home: React.FC = () => {
 
           {/* heading */}
           <div className="relative z-10 max-w-4xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
-            <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-6">
+            <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-violet-700/60 to-transparent p-[1px] mb-6">
               <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 bg-black backdrop-blur-xl">
                 <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
                 <span className="text-xs text-gray-200 tracking-widest">
@@ -1165,7 +1170,7 @@ const Home: React.FC = () => {
             <div
               className={`group relative h-full w-full max-w-[460px] mx-auto rounded-[34px] border border-white/[0.08] 
                   ${PRICING_CARD_GRADIENT}
-                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-blue-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
+                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-violet-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
             >
               {/* top blue glow */}
               <div className={`absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`} />
@@ -1174,17 +1179,17 @@ const Home: React.FC = () => {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex flex-col  items-start gap-3">
-                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-blue-900 border border-blue-900 flex items-center justify-center transition-all duration-500 group-hover:border-blue-400/40 group-hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
+                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-violet-950 border border-violet-900 flex items-center justify-center transition-all duration-500 group-hover:border-violet-400/40 group-hover:shadow-[0_0_35px_rgba(168,85,247,0.28)]">
                       <Rocket />
                     </div>
-                    <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-blue-50">
+                    <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-violet-50">
                       Pro Weekly
                     </span>
                   </div>
 
                   <span
-                    className="px-3 py-2 rounded-lg bg-blue-500/10 border bg-gradient-to-t from-gray-500/20 to-blue-900/20 border-blue-500/20 transition-all duration-300 group-hover:border-blue-400/30 group-hover:text-white 
-        text-[13px] font-semibold text-blue-100"
+                    className="px-3 py-2 rounded-lg bg-violet-500/10 border bg-gradient-to-t from-gray-500/20 to-violet-900/20 border-violet-500/20 transition-all duration-300 group-hover:border-violet-400/30 group-hover:text-white 
+        text-[13px] font-semibold text-violet-100"
                   >
                     Most Pick
                   </span>
@@ -1213,10 +1218,10 @@ const Home: React.FC = () => {
 
                 {/* Pills */}
                 <div className="flex gap-3 mb-8">
-                  <span className="px-4 py-1.5 rounded-lg  bg-blue-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-blue-400/25 group-hover:bg-blue-500/15">
+                  <span className="px-4 py-1.5 rounded-lg  bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
                     <b>100+</b> <span className="text-gray-400">Projects</span>
                   </span>
-                  <span className="px-4 py-1.5 rounded-lg bg-blue-500/10 border border-white/10 text-[13px] text-gray-300 transition-all duration-300 group-hover:border-blue-400/25 group-hover:bg-blue-500/15">
+                  <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] text-gray-300 transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
                     <b>75+</b> <span className="text-gray-400">Revisions</span>
                   </span>
                 </div>
@@ -1234,7 +1239,7 @@ const Home: React.FC = () => {
                       key={item}
                       className="flex items-center gap-3 text-gray-300"
                     >
-                      <BadgeCheck className="h-5 w-5 text-blue-500" />
+                      <BadgeCheck className="h-5 w-5 text-violet-500" />
                       {item}
                     </li>
                   ))}
@@ -1257,7 +1262,7 @@ const Home: React.FC = () => {
             <div
               className={`group relative h-full w-full max-w-[460px] mx-auto rounded-[34px] border border-white/[0.08] 
                   ${PRICING_CARD_GRADIENT}
-                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-blue-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
+                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-violet-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
             >
               {/* top indigo/blue glow */}
               <div className={`absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`} />
@@ -1266,18 +1271,18 @@ const Home: React.FC = () => {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex flex-col items-start gap-3">
-                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-blue-900 border border-blue-900 flex items-center justify-center transition-all duration-500 group-hover:border-blue-400/40 group-hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
+                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-violet-950 border border-violet-900 flex items-center justify-center transition-all duration-500 group-hover:border-violet-400/40 group-hover:shadow-[0_0_35px_rgba(168,85,247,0.28)]">
                       <Power /> {/* or Rocket if you want consistency */}
                     </div>
 
-                    <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-blue-50">
+                    <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-violet-50">
                       Premium
                     </span>
                   </div>
 
                   <span
-                    className="px-3 py-2 rounded-lg bg-blue-500/10 border bg-gradient-to-t from-gray-500/20 to-blue-900/20 border-blue-500/20 transition-all duration-300 group-hover:border-blue-400/30 group-hover:text-white 
-        text-[13px] font-semibold text-blue-100"
+                    className="px-3 py-2 rounded-lg bg-violet-500/10 border bg-gradient-to-t from-gray-500/20 to-violet-900/20 border-violet-500/20 transition-all duration-300 group-hover:border-violet-400/30 group-hover:text-white 
+        text-[13px] font-semibold text-violet-100"
                   >
                     Recommended
                   </span>
@@ -1307,10 +1312,10 @@ const Home: React.FC = () => {
 
                 {/* Pills */}
                 <div className="flex gap-3 mb-8">
-                  <span className="px-4 py-1.5 rounded-lg bg-blue-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-blue-400/25 group-hover:bg-blue-500/15">
+                  <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
                     <b>650+</b> <span className="text-gray-400">Projects</span>
                   </span>
-                  <span className="px-4 py-1.5 rounded-lg bg-blue-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-blue-400/25 group-hover:bg-blue-500/15">
+                  <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
                     <b>250+</b> <span className="text-gray-400">Revisions</span>
                   </span>
                 </div>
@@ -1328,7 +1333,7 @@ const Home: React.FC = () => {
                       key={item}
                       className="flex items-center gap-3 text-gray-300"
                     >
-                      <BadgeCheck className="h-5 w-5 text-blue-500" />
+                      <BadgeCheck className="h-5 w-5 text-violet-500" />
                       {item}
                     </li>
                   ))}
@@ -1360,7 +1365,7 @@ const Home: React.FC = () => {
       <section className="relative overflow-hidden bg-black">
         {/* ambient background */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-blue-600/20 blur-[140px] transform-gpu" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-violet-600/20 blur-[140px] transform-gpu" />
         </div>
 
         <div className="relative w-full bg-black overflow-hidden py-16 px-6 md:px-10">
@@ -1373,7 +1378,7 @@ const Home: React.FC = () => {
           <div className="text-center max-w-3xl mx-auto mb-28 flex flex-col items-center  relative z-10">
             <div
               className="inline-block rounded-lg bg-gradient-to-r 
-                    from-transparent via-blue-700/60 to-transparent 
+                    from-transparent via-violet-700/60 to-transparent 
                     p-[1px] mb-8"
             >
               <div
@@ -1485,7 +1490,7 @@ const Home: React.FC = () => {
                 key={idx}
                 className="group midnight-card-gradient relative h-full flex flex-col rounded-[26px]
               border-t 
-              border-blue-800
+              border-violet-800
               p-8
               shadow-[0_30px_90px_rgba(0,0,0,0.9)]
               hover:-translate-y-3
@@ -1531,7 +1536,7 @@ const Home: React.FC = () => {
 
                 {/* footer */}
                 <div className="mt-auto pt-6 border-t border-white/[0.06] transition-colors duration-300 group-hover:border-white/[0.12]">
-                  <div className="text-white font-semibold flex items-center gap-0.5 text-[14px] transition-colors duration-300 group-hover:text-blue-50">
+                  <div className="text-white font-semibold flex items-center gap-0.5 text-[14px] transition-colors duration-300 group-hover:text-violet-50">
                     {t.name} <Dot />
                     {t.role}
                   </div>
@@ -1548,8 +1553,8 @@ const Home: React.FC = () => {
       <section className="relative overflow-hidden bg-black">
         <div className="relative w-full bg-black overflow-hidden py-40">
           {/* <div className="absolute inset-0 bg-gradient-to-b from-[#08030b] via-[#1a0a1e] to-[#0a050f] pointer-events-none"></div>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-600/50 to-transparent z-20"></div>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-blue-600/10 blur-[80px] pointer-events-none z-10"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-violet-600/50 to-transparent z-20"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-violet-600/10 blur-[80px] pointer-events-none z-10"></div>
            */}
 
           <div className="relative mb-16">
@@ -1569,14 +1574,14 @@ const Home: React.FC = () => {
 
             <div className="relative z-10 max-w-4xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center mb-16">
               {/* <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-[#1a0a1e]/80 border border-white/[0.05] mb-10 backdrop-blur-xl">
-                <span className="w-1 h-1 rounded-full bg-blue-400"></span>
+                <span className="w-1 h-1 rounded-full bg-violet-400"></span>
                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.25em]">
                   FAQ
                 </span>
               </div> */}
               <div
                 className="inline-block rounded-lg bg-gradient-to-r 
-                    from-transparent via-blue-700/60 to-transparent 
+                    from-transparent via-violet-700/60 to-transparent 
                     p-[1px] mb-8"
               >
                 <div
@@ -1608,7 +1613,7 @@ const Home: React.FC = () => {
               {faqItems.map((item, idx) => (
                 <div
                   key={idx}
-                  className={`midnight-card-gradient border border-blue-100/15 rounded-[24px] overflow-hidden group hover:border-white/[0.08] transition-all duration-500 cursor-pointer ${activeFaq === idx ? "border-white/[0.12]" : ""}`}
+                  className={`midnight-card-gradient border border-violet-100/15 rounded-[24px] overflow-hidden group hover:border-white/[0.08] transition-all duration-500 cursor-pointer ${activeFaq === idx ? "border-white/[0.12]" : ""}`}
                   onMouseEnter={() => setActiveFaq(idx)}
                   onMouseLeave={() =>
                     setActiveFaq((current) => (current === idx ? null : current))
@@ -1647,22 +1652,20 @@ const Home: React.FC = () => {
       {/* 9. Unique Opportunity Section - Overlay layer that reveals fixed footer */}
       <section className="relative z-20 h-[100vh] bg-transparent">
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 md:px-8 lg:px-12">
-          <div className={`group relative w-full max-w-[900px] rounded-[32px] border border-white/[0.08] ${PRICING_CARD_GRADIENT} shadow-[0_45px_140px_rgba(0,0,0,0.9),0_0_60px_rgba(59,130,246,0.08)] overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-blue-400/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95),0_0_80px_rgba(59,130,246,0.12)]`}>
+          <div className={`group relative w-full max-w-[900px] rounded-[32px] border border-white/[0.08] ${PRICING_CARD_GRADIENT} shadow-[0_45px_140px_rgba(0,0,0,0.9),0_0_60px_rgba(168,85,247,0.1)] overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-violet-400/25 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95),0_0_80px_rgba(192,132,252,0.15)]`}>
             {/* Top radial blue glow - CSS only, no blur filter */}
-            <div className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(59,130,246,0.24),transparent_65%)]" />
+            <div className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(192,132,252,0.22),transparent_65%)]" />
             {/* Top border accent line */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent" />
 
             {/* Content */}
             <div className="relative z-10 py-14 md:py-16 px-8 md:px-16 flex flex-col items-center text-center">
-              {/* Badge */}
-              <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-7">
-                <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 backdrop-blur-xl bg-gradient-to-t from-black via-slate-950 to-blue-900/30">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                  <span className="text-xs text-gray-200 tracking-widest uppercase">
-                    Join Us Now
-                  </span>
-                </div>
+              {/* Badge — compact horizontal pill (reference) */}
+              <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-white/[0.14] bg-black/50 px-3 py-1 backdrop-blur-md sm:px-3.5 sm:py-1">
+                <span className="h-1 w-1 shrink-0 rounded-full bg-white" aria-hidden />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/90 sm:text-[11px]">
+                  Join Us Now
+                </span>
               </div>
 
               {/* Heading */}

@@ -53,7 +53,7 @@ import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
       <div className="relative z-10">
       <div className="max-w-3xl mx-auto text-center mb-12 md:mb-24">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 md:mb-8 tracking-tight">Got <span className="text-blue-300">Questions?</span></h1>
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 md:mb-8 tracking-tight">Got <span className="text-violet-300">Questions?</span></h1>
         <p className="text-[#a1a1aa] text-lg">Detailed insights into our creative process and partnerships.</p>
       </div>
 
@@ -64,7 +64,7 @@ import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
       </div>
 
       <div className="midnight-card-gradient max-w-3xl mx-auto mt-16 md:mt-24 lg:mt-32 border border-white/10 rounded-[24px] p-8 sm:p-12 md:p-16 text-center">
-        <div className="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-300 mx-auto mb-8">
+        <div className="w-16 h-16 bg-violet-500/10 rounded-2xl flex items-center justify-center text-violet-300 mx-auto mb-8">
           <HelpCircle className="w-8 h-8" />
         </div>
         <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">Still curious?</h3>
@@ -87,7 +87,7 @@ const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, ans
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`midnight-card-gradient border border-white/10 rounded-[24px] overflow-hidden transition-all duration-500 ${isOpen ? 'border-blue-400/40' : 'hover:border-blue-400/25'}`}>
+    <div className={`midnight-card-gradient border border-white/10 rounded-[24px] overflow-hidden transition-all duration-500 ${isOpen ? 'border-violet-400/40' : 'hover:border-violet-400/25'}`}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-5 sm:p-8 flex items-center justify-between text-left"

@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
   const location = useLocation();
   const [isFooterVisible, setIsFooterVisible] = useState(false);
   const footerClasses =
-    "fixed inset-x-0 bottom-0 z-0 border-t border-blue-200/10 bg-[#030a18] text-white px-4 sm:px-8 lg:px-14 overflow-hidden";
+    "fixed inset-x-0 bottom-0 z-0 border-t border-violet-200/10 bg-[#050208] text-white px-4 sm:px-8 lg:px-14 overflow-hidden";
 
   useEffect(() => {
     const updateReveal = () => {
@@ -41,8 +41,8 @@ const Footer: React.FC = () => {
   return (
     <footer className={footerClasses}>
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-44 -left-36 h-[420px] w-[420px] rounded-full bg-blue-600/20 blur-[110px]" />
-        <div className="absolute top-20 -right-24 h-[300px] w-[300px] rounded-full bg-sky-500/15 blur-[90px]" />
+        <div className="absolute -top-44 -left-36 h-[420px] w-[420px] rounded-full bg-violet-600/20 blur-[110px]" />
+        <div className="absolute top-20 -right-24 h-[300px] w-[300px] rounded-full bg-fuchsia-500/18 blur-[90px]" />
       </div>
 
       <div
@@ -54,12 +54,12 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 mb-6 pt-8">
           {/* Col 1 – Studio */}
           <div>
-            <h3 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-blue-100/50 mb-4">
+            <h3 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-violet-100/50 mb-4">
               Studio
             </h3>
-            <div className="space-y-3 text-[15px] text-blue-100/80 leading-relaxed">
+            <div className="space-y-3 text-[15px] text-violet-100/80 leading-relaxed">
               <p className="flex items-start gap-3">
-                <Phone className="w-4 h-4 mt-[3px] shrink-0 text-blue-400" />
+                <Phone className="w-4 h-4 mt-[3px] shrink-0 text-violet-400" />
                 <a
                   href={CALENDLY_LINK}
                   target="_blank"
@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
                 </a>
               </p>
               <p className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 mt-[3px] shrink-0 text-blue-400" />
+                <MapPin className="w-4 h-4 mt-[3px] shrink-0 text-violet-400" />
                 <span>Remote-first creative team serving brands worldwide</span>
               </p>
             </div>
@@ -78,12 +78,12 @@ const Footer: React.FC = () => {
 
           {/* Col 2 – Support */}
           <div>
-            <h3 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-blue-100/50 mb-4">
+            <h3 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-violet-100/50 mb-4">
               Support
             </h3>
-            <div className="space-y-3 text-[15px] text-blue-100/80 leading-relaxed">
+            <div className="space-y-3 text-[15px] text-violet-100/80 leading-relaxed">
               <p className="flex items-start gap-3">
-                <Mail className="w-4 h-4 mt-[3px] shrink-0 text-blue-400" />
+                <Mail className="w-4 h-4 mt-[3px] shrink-0 text-violet-400" />
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
                   className="hover:text-white transition-colors"
@@ -92,7 +92,7 @@ const Footer: React.FC = () => {
                 </a>
               </p>
               <p className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 mt-[3px] shrink-0 text-blue-400" />
+                <MapPin className="w-4 h-4 mt-[3px] shrink-0 text-violet-400" />
                 <span>Project briefs reviewed within 24 hours</span>
               </p>
             </div>
@@ -100,12 +100,12 @@ const Footer: React.FC = () => {
 
           {/* Col 3 – Reach out */}
           <div>
-            <h3 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-blue-100/50 mb-4">
+            <h3 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-violet-100/50 mb-4">
               Reach out to us
             </h3>
-            <div className="space-y-3 text-[15px] text-blue-100/80 leading-relaxed">
+            <div className="space-y-3 text-[15px] text-violet-100/80 leading-relaxed">
               <p className="flex items-start gap-3">
-                <Mail className="w-4 h-4 mt-[3px] shrink-0 text-blue-400" />
+                <Mail className="w-4 h-4 mt-[3px] shrink-0 text-violet-400" />
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
                   className="hover:text-white transition-colors"
@@ -126,7 +126,7 @@ const Footer: React.FC = () => {
                     aria-label={label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-9 w-9 rounded-full border border-blue-100/20 bg-white/[0.04] text-blue-100 flex items-center justify-center hover:bg-blue-500/20 hover:border-blue-400/40 hover:text-white transition-all duration-200"
+                    className="h-9 w-9 rounded-full border border-violet-100/20 bg-white/[0.04] text-violet-100 flex items-center justify-center hover:bg-violet-500/20 hover:border-violet-400/40 hover:text-white transition-all duration-200"
                   >
                     {icon}
                   </a>
@@ -148,8 +148,8 @@ const Footer: React.FC = () => {
         </Link>
 
         {/* Bottom bar */}
-        <div className="mt-1 pt-3 border-t border-blue-100/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <nav className="flex flex-wrap items-center justify-center sm:justify-start gap-x-7 gap-y-2 text-[12px] uppercase tracking-[0.1em] text-blue-100/50">
+        <div className="mt-1 pt-3 border-t border-violet-100/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <nav className="flex flex-wrap items-center justify-center sm:justify-start gap-x-7 gap-y-2 text-[12px] uppercase tracking-[0.1em] text-violet-100/50">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.name}
@@ -160,7 +160,7 @@ const Footer: React.FC = () => {
               </Link>
             ))}
           </nav>
-          <p className="text-[12px] uppercase tracking-[0.1em] text-blue-100/60 shrink-0">
+          <p className="text-[12px] uppercase tracking-[0.1em] text-violet-100/60 shrink-0">
             © {year} Inspiro Studio
           </p>
         </div>

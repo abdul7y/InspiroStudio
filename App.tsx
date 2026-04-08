@@ -111,21 +111,19 @@ const JoinUsRevealLayer: React.FC = () => {
     <>
       <section className="relative z-20 h-[100vh] bg-transparent">
         <div className="sticky top-0 h-screen flex items-center justify-center px-4 md:px-8 lg:px-12">
-          <div className="group relative w-full max-w-[900px] rounded-[32px] border border-white/[0.08] bg-gradient-to-br from-[#070b1a] via-[#050814] to-black shadow-[0_45px_140px_rgba(0,0,0,0.9),0_0_60px_rgba(59,130,246,0.08)] overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-blue-400/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95),0_0_80px_rgba(59,130,246,0.12)]">
-            {/* Top radial blue glow - CSS only, no blur filter */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(59,130,246,0.24),transparent_65%)] opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+          <div className="group relative w-full max-w-[900px] rounded-[32px] border border-white/[0.08] bg-gradient-to-br from-[#070b1a] via-[#050814] to-black shadow-[0_45px_140px_rgba(0,0,0,0.9),0_0_60px_rgba(168,85,247,0.1)] overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-violet-400/25 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95),0_0_80px_rgba(192,132,252,0.15)]">
+            {/* Top radial purple glow */}
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(192,132,252,0.22),transparent_65%)] opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
             {/* Top border accent line */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent" />
 
             <div className="relative z-10 py-14 md:py-16 px-8 md:px-16 flex flex-col items-center text-center">
-              {/* Badge */}
-              <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-7">
-                <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 backdrop-blur-xl bg-gradient-to-t from-black via-slate-950 to-blue-900/30">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                  <span className="text-xs text-gray-200 tracking-widest uppercase">
-                    Join Us Now
-                  </span>
-                </div>
+              {/* Badge — compact horizontal pill (reference) */}
+              <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-white/[0.14] bg-black/50 px-3 py-1 backdrop-blur-md sm:px-3.5 sm:py-1">
+                <span className="h-1 w-1 shrink-0 rounded-full bg-white" aria-hidden />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/90 sm:text-[11px]">
+                  Join Us Now
+                </span>
               </div>
 
               <h2 className="hidden md:block text-4xl lg:text-5xl 2xl:text-6xl text-white leading-[1.05] max-w-3xl">
@@ -169,7 +167,7 @@ const AppShell: React.FC = () => {
     <div className="bg-global-gradient min-h-screen flex flex-col">
       <Header />
       <main className="relative z-10 flex-grow">
-        <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin" /></div>}>
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-2 border-violet-500/30 border-t-violet-500 rounded-full animate-spin" /></div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
