@@ -14,7 +14,7 @@ import { NAV_LINKS } from "../constants/navigation";
 import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from "../constants/buttonStyles";
 
 const CONTACT_EMAIL = "business@inspirostudio.io";
-const CALENDLY_LINK = "https://calendly.com/inspirostudio-io/30min";
+const CALENDLY_LINK = "https://calendly.com/inspirosudio-io/30min";
 
 const Footer: React.FC = () => {
   const year = new Date().getFullYear();
