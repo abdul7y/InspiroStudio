@@ -12,6 +12,12 @@ import {
   BadgeCheck,
   Dot,
   Slack as SlackIcon,
+  Palette,
+  PenTool,
+  Clapperboard,
+  Sparkles,
+  Fingerprint,
+  Monitor,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
@@ -47,6 +53,58 @@ const HERO_BRANDS: HeroBrandId[] = [
   "slack",
   "sony",
   "microsoft",
+];
+
+/* Services data for gradient cards */
+const SERVICES = [
+  {
+    title: "UI/UX Design",
+    description:
+      "Intuitive interfaces and seamless user experiences that captivate and convert.",
+    icon: <Palette className="w-7 h-7 text-blue-300" />,
+
+    iconBg: "rgba(59,130,246,0.15)",
+  },
+  {
+    title: "Product Design",
+    description:
+      "End-to-end product design from concept to launch-ready prototypes.",
+    icon: <PenTool className="w-7 h-7 text-emerald-300" />,
+
+    iconBg: "rgba(52,211,153,0.15)",
+  },
+  {
+    title: "2D Storyboarding",
+    description:
+      "Compelling visual narratives that bring your script to life frame by frame.",
+    icon: <Clapperboard className="w-7 h-7 text-amber-300" />,
+
+    iconBg: "rgba(251,191,36,0.15)",
+  },
+  {
+    title: "Animation",
+    description:
+      "Smooth motion graphics and character animation that tell your story dynamically.",
+    icon: <Sparkles className="w-7 h-7 text-pink-300" />,
+
+    iconBg: "rgba(236,72,153,0.15)",
+  },
+  {
+    title: "Branding",
+    description:
+      "Complete brand identity systems including logos, color palettes, and guidelines.",
+    icon: <Fingerprint className="w-7 h-7 text-purple-300" />,
+
+    iconBg: "rgba(167,139,250,0.15)",
+  },
+  {
+    title: "Web Design",
+    description:
+      "Responsive, modern websites built with performance and aesthetics in mind.",
+    icon: <Monitor className="w-7 h-7 text-cyan-300" />,
+
+    iconBg: "rgba(34,211,238,0.15)",
+  },
 ];
 
 const PRICING_CARD_GRADIENT =
@@ -143,7 +201,6 @@ const Home: React.FC = () => {
   const [heroIsDeleting, setHeroIsDeleting] = useState(false);
 
   const CALENDLY_LINK = "https://calendly.com/inspirostudio-io/30min";
-  const ABOUT_VIDEO_SRC = video;
 
   // TODO: Replace these poster images if needed when you switch to final project videos.
   const PORTFOLIO_MEDIA_POSTERS = {
@@ -387,14 +444,7 @@ const Home: React.FC = () => {
         <div className="absolute inset-x-0 bottom-0 h-36 md:h-44 lg:h-52 bg-gradient-to-b from-transparent via-[#060f22]/60 to-black pointer-events-none"></div>
       </section>
 
-      <div className="relative left-1/2 z-20 -mt-10 w-screen -translate-x-1/2 overflow-hidden pb-6 sm:-mt-12 sm:pb-7 lg:-mt-14 lg:pb-8">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(90deg, #07173f 0%, #0a1f57 46%, #0f2c7a 74%, #18439f 100%)",
-          }}
-        />
+      <div className="relative left-1/2 z-20 -mt-10 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-b from-[#060f22] to-black pb-6 sm:-mt-12 sm:pb-7 lg:-mt-14 lg:pb-8">
         <div className="relative flex min-h-[78px] w-full items-center overflow-hidden select-none sm:min-h-[90px]">
           <div
             className="animate-infinite-scroll flex h-[78px] min-w-max items-center gap-10 sm:h-[90px] sm:gap-14 lg:gap-20"
@@ -521,125 +571,86 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. About Inspiro Section */}
-
+      {/* 3. Services Section — Design & Animation with gradient cards */}
       <section className="relative overflow-hidden bg-black">
-        <div className="relative w-full bg-black overflow-hidden pt-16 md:pt-20 lg:pt-24">
-          <div className="relative mb-14 md:mb-16">
-            {/* LEFT CURVE */}
-            <img
-              src={leftcurve}
-              alt="Left Curve"
-              className="absolute left-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
-            />
+        {/* ambient glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-blue-600/20 blur-[140px]" />
+        </div>
 
-            {/* RIGHT CURVE */}
-            <img
-              src={leftcurve}
-              alt="Right Curve"
-              className="absolute right-0 lg:top-1/2 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
-            />
+        <div className="relative w-full bg-black overflow-hidden py-20 px-10">
+          {/* LEFT CURVE */}
+          <img
+            src={leftcurve}
+            alt=""
+            className="absolute lg:left-0 lg:top-1/2 left-0 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+          />
 
-            <div className="relative z-10 max-w-3xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
-                <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-4">
-                  <div
-                    className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-r border-l border-gray-800
-                    bg-black backdrop-blur-xl"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                    <span className="text-xs text-gray-200 tracking-widest uppercase">
-                      About Inspiro
-                    </span>
-                  </div>
-                </div>
-                <h2 className="text-[38px] md:text-[52px] text-white leading-[1.08] tracking-tight">
-                  Building Stronger Brands
-                </h2>
-                <h3 className="text-[30px] md:text-[44px] text-gray-400 leading-[1.1] tracking-tight mt-2">
-                  Across 30+ Countries
-                </h3>
+          {/* Section Header — water drop entrance */}
+          <div className="text-center max-w-3xl mx-auto mb-20 flex flex-col items-center relative z-10 animate-water-drop-in">
+            {/* Badge */}
+            <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-blue-700/60 to-transparent p-[1px] mb-8">
+              <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 bg-black backdrop-blur-xl">
+                <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                <span className="text-xs text-gray-200 tracking-widest uppercase">
+                  Services
+                </span>
+              </div>
             </div>
+
+            {/* Heading */}
+            <h2 className="text-4xl md:text-[48px] text-white tracking-tight leading-[1.05]">
+              Our Design & Animation
+            </h2>
+            <h3 className="text-4xl md:text-[48px] text-gray-400 tracking-tight leading-[1.1] mt-2">
+              Services
+            </h3>
+
+            {/* Subtitle */}
+            <p className="text-zinc-500 font-semibold text-[15px] mt-6 w-full max-w-lg mx-auto">
+              From concept to final render — we craft pixel-perfect designs that
+              tell your brand's story.
+            </p>
           </div>
 
-          <div className="max-w-[1440px] mx-auto relative z-10 px-8 md:px-16 lg:px-24">
-            <div className="relative z-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
-              <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
-                <div className="group relative w-full max-w-[520px] transition-transform duration-300 hover:-translate-y-2">
-                  <div className="rounded-[34px] bg-[linear-gradient(135deg,#1456ff_0%,#1f7dff_58%,#00a3ff_100%)] p-[1px] shadow-[0_18px_45px_rgba(20,112,255,0.3)] transition-all duration-300 group-hover:shadow-[0_22px_70px_rgba(39,145,255,0.45)]">
-                    <div className="relative aspect-square w-full overflow-hidden rounded-[32px] border border-white/10 bg-[radial-gradient(circle_at_30%_20%,rgba(46,125,255,0.28),rgba(8,18,38,0.8)_42%,rgba(0,0,0,0.2)_72%,transparent_100%)] shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
-                    <video
-                      className="absolute inset-0 h-full w-full object-cover opacity-88 transition-transform duration-500 group-hover:scale-[1.04]"
-                      src={ABOUT_VIDEO_SRC}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                    />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.16),transparent_42%)]"></div>
-                    <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(20,86,255,0.14)_0%,rgba(31,125,255,0.08)_42%,rgba(0,0,0,0.4)_100%)] transition-opacity duration-300 group-hover:opacity-90"></div>
-                    <div className="absolute inset-x-0 -bottom-10 h-28 bg-gradient-to-t from-black via-black/65 to-transparent blur-2xl"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-blue-100/30 bg-[linear-gradient(135deg,rgba(20,86,255,0.88)_0%,rgba(31,125,255,0.84)_58%,rgba(0,163,255,0.8)_100%)] backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.35)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_45px_rgba(39,145,255,0.55)]">
-                        <Play className="w-6 h-6 text-white fill-white" />
-                      </div>
-                    </div>
-                    <div className="absolute bottom-5 left-6 text-[10px] uppercase tracking-[0.35em] text-white/70">
-                      Video Preview
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
+          {/* RIGHT CURVE */}
+          <img
+            src={leftcurve}
+            alt=""
+            className="absolute lg:right-0 lg:top-1/2 right-1 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+          />
+        </div>
 
-              <div className="order-1 space-y-8 text-center lg:order-2 lg:ml-auto lg:max-w-[540px] lg:text-left">
-                <p className="max-w-[520px] text-[15px] leading-relaxed text-gray-400 md:text-[16px] lg:max-w-none">
-                  Delivering expert solutions that transform modern businesses.
-                  Driving innovation globally, partnering with clients for
-                  impact.
+        {/* Service Cards — gradient-colored with staggered water item animation */}
+        <div className="max-w-[1440px] mx-auto relative z-10 pb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 2xl:px-32 lg:px-22 md:px-16 px-8">
+            {SERVICES.map((service, idx) => (
+              <div
+                key={idx}
+                className="group midnight-card-gradient relative h-full flex flex-col rounded-[26px] border-t border-blue-800 py-12 px-8 shadow-[0_30px_90px_rgba(0,0,0,0.9)] hover:-translate-y-3 hover:border-white/[0.12] hover:shadow-[0_42px_120px_rgba(0,0,0,0.95)] transition-all duration-500 animate-water-item"
+                style={{
+                  animationDelay: `${200 + idx * 100}ms`,
+                }}
+              >
+                {/* Service icon */}
+                <div
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110"
+                  style={{ background: service.iconBg }}
+                >
+                  {service.icon}
+                </div>
+
+                {/* Service title */}
+                <h4 className="text-white text-xl font-semibold mb-4">
+                  {service.title}
+                </h4>
+
+                {/* Service description */}
+                <p className="text-zinc-400 text-[14px] leading-relaxed transition-colors duration-300 group-hover:text-zinc-300">
+                  {service.description}
                 </p>
-
-                <div className="space-y-4">
-                  <div className="flex items-center justify-center gap-3 text-[14px] text-gray-300 lg:justify-start">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-700">
-                      <BadgeCheck className="h-4 w-4 text-white" />
-                    </span>
-                    <span>From $0 to $500,000 in revenue.</span>
-                  </div>
-                  <div className="flex items-center justify-center gap-3 text-[14px] text-gray-300 lg:justify-start">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-700">
-                      <BadgeCheck className="h-4 w-4 text-white" />
-                    </span>
-                    <span>70% growth in new customers.</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-start">
-                  <button
-                    type="button"
-                    className={NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS}
-                  >
-                    About Inspiro
-                  </button>
-                  <div className="hidden lg:block h-6 w-px bg-gray-700"></div>
-                  <div className="px-1 py-2">
-                    <div className="flex flex-col items-center gap-2 lg:items-start">
-                      <div className="flex items-center gap-1">
-                        {[1, 2, 3, 4, 5].map((s) => (
-                          <Star
-                            key={s}
-                            className="w-3 h-3 text-white fill-white"
-                          />
-                        ))}
-                      </div>
-                      <span className="text-[12px] text-gray-400">
-                        200+ Agencies Rated
-                      </span>
-                    </div>
-                  </div>
-                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
