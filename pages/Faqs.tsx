@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
 
   const Faqs: React.FC = () => {
@@ -31,11 +32,28 @@ import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
   ];
 
   return (
-    <div className="bg-global-gradient min-h-screen pt-48 pb-24 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+    <div className="bg-global-gradient min-h-screen pt-32 sm:pt-40 md:pt-48 pb-12 md:pb-24 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+      <SEOHead
+        title="Frequently Asked Questions"
+        description="Common questions about Inspiro Studio pricing, creative process, turnaround times, and partnership details."
+        path="/faqs"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((item) => ({
+            "@type": "Question",
+            name: item.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.a,
+            },
+          })),
+        }}
+      />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
       <div className="relative z-10">
-      <div className="max-w-3xl mx-auto text-center mb-24">
-        <h1 className="text-6xl font-bold text-white mb-8 tracking-tight">Got <span className="text-blue-300">Questions?</span></h1>
+      <div className="max-w-3xl mx-auto text-center mb-12 md:mb-24">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 md:mb-8 tracking-tight">Got <span className="text-violet-300">Questions?</span></h1>
         <p className="text-[#a1a1aa] text-lg">Detailed insights into our creative process and partnerships.</p>
       </div>
 
@@ -45,8 +63,8 @@ import { NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS } from '../constants/buttonStyles';
         ))}
       </div>
 
-      <div className="midnight-card-gradient max-w-3xl mx-auto mt-32 border border-white/10 rounded-[24px] p-16 text-center">
-        <div className="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-300 mx-auto mb-8">
+      <div className="midnight-card-gradient max-w-3xl mx-auto mt-16 md:mt-24 lg:mt-32 border border-white/10 rounded-[24px] p-8 sm:p-12 md:p-16 text-center">
+        <div className="w-16 h-16 bg-violet-500/10 rounded-2xl flex items-center justify-center text-violet-300 mx-auto mb-8">
           <HelpCircle className="w-8 h-8" />
         </div>
         <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">Still curious?</h3>
@@ -69,16 +87,16 @@ const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, ans
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`midnight-card-gradient border border-white/10 rounded-[24px] overflow-hidden transition-all duration-500 ${isOpen ? 'border-blue-400/40' : 'hover:border-blue-400/25'}`}>
+    <div className={`midnight-card-gradient border border-white/10 rounded-[24px] overflow-hidden transition-all duration-500 ${isOpen ? 'border-violet-400/40' : 'hover:border-violet-400/25'}`}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-8 flex items-center justify-between text-left"
+        className="w-full p-5 sm:p-8 flex items-center justify-between text-left"
       >
-        <span className="text-xl font-bold text-white pr-8 tracking-tight">{question}</span>
+        <span className="text-base sm:text-xl font-bold text-white pr-4 sm:pr-8 tracking-tight">{question}</span>
         <ChevronDown className={`text-gray-500 transition-transform duration-500 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96 opacity-100 py-8 border-t border-white/10' : 'max-h-0 opacity-0'}`}>
-        <p className="px-8 text-[#a1a1aa] leading-relaxed text-[17px]">
+        <p className="px-5 sm:px-8 text-[#a1a1aa] leading-relaxed text-[15px] sm:text-[17px]">
           {answer}
         </p>
       </div>

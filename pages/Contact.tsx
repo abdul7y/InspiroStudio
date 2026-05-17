@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Mail, Send, MessageCircle, Loader2, Sparkles, ArrowRight, ClipboardList, User, Briefcase, ShieldCheck, AlertCircle } from 'lucide-react';
 import { NAVBAR_CTA_BUTTON_FULL_WIDTH_CLASS } from '../constants/buttonStyles';
+import SEOHead from '../components/SEOHead';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -82,15 +83,20 @@ const Contact: React.FC = () => {
 
   if (status === 'success') {
     return (
-      <div className="bg-global-gradient pt-56 md:pt-60 lg:pt-64 pb-44 md:pb-48 px-6 sm:px-12 lg:px-24 min-h-screen flex items-center justify-center relative overflow-hidden">
+      <div className="bg-global-gradient pt-32 sm:pt-44 md:pt-56 lg:pt-64 pb-20 sm:pb-32 md:pb-44 lg:pb-48 px-6 sm:px-12 lg:px-24 min-h-screen flex items-center justify-center relative overflow-hidden">
+        <SEOHead
+          title="Contact Inspiro Studio"
+          description="Book a discovery call or send a project brief. Get expert video marketing and motion design support from Inspiro Studio."
+          path="/contact"
+        />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
         <div className="max-w-4xl w-full relative z-10 group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-500 rounded-[40px] blur opacity-30 animate-pulse"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 via-fuchsia-500 to-violet-500 rounded-[40px] blur opacity-30 animate-pulse"></div>
           
-          <div className="relative bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-[40px] p-12 md:p-16 overflow-hidden shadow-2xl">
+          <div className="relative bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-[40px] p-6 sm:p-10 md:p-16 overflow-hidden shadow-2xl">
             <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-               <div className="absolute -top-1/2 -right-1/4 w-full h-full bg-blue-600/30 blur-[120px] rounded-full animate-float-glow"></div>
-               <div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-cyan-500/20 blur-[120px] rounded-full animate-float-glow-reverse"></div>
+               <div className="absolute -top-1/2 -right-1/4 w-full h-full bg-violet-600/30 blur-[120px] rounded-full animate-float-glow"></div>
+               <div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-fuchsia-500/20 blur-[120px] rounded-full animate-float-glow-reverse"></div>
                <div className="waves-container !opacity-20">
                   <div className="wave wave-3"></div>
                   <div className="wave wave-2"></div>
@@ -100,8 +106,8 @@ const Contact: React.FC = () => {
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="text-center lg:text-left">
-                <div className="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-8 border border-blue-500/20 mx-auto lg:mx-0 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
-                  <ShieldCheck className="w-8 h-8 text-blue-400" />
+                <div className="w-16 h-16 bg-violet-500/10 rounded-2xl flex items-center justify-center mb-8 border border-violet-500/20 mx-auto lg:mx-0 shadow-[0_0_20px_rgba(168,85,247,0.25)]">
+                  <ShieldCheck className="w-8 h-8 text-violet-400" />
                 </div>
                 
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">Mailed to Inbox.</h2>
@@ -115,10 +121,10 @@ const Contact: React.FC = () => {
                 {aiInsight && (
                   <div className="bg-white/5 border border-white/10 rounded-3xl p-8 text-left backdrop-blur-xl relative overflow-hidden shadow-inner group/ai">
                     <div className="absolute top-0 right-0 p-4 opacity-30">
-                      <Sparkles className="w-5 h-5 text-blue-300" />
+                      <Sparkles className="w-5 h-5 text-violet-300" />
                     </div>
-                    <h4 className="text-[10px] font-black text-blue-300 uppercase tracking-[0.3em] mb-4 flex items-center">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-300 mr-2 animate-pulse"></span>
+                    <h4 className="text-[10px] font-black text-violet-300 uppercase tracking-[0.3em] mb-4 flex items-center">
+                      <span className="w-1.5 h-1.5 rounded-full bg-violet-300 mr-2 animate-pulse"></span>
                       Studio Intelligence
                     </h4>
                     <p className="text-gray-300 italic leading-relaxed font-medium text-[15px]">
@@ -136,14 +142,14 @@ const Contact: React.FC = () => {
 
                  <div className="space-y-6">
                     <div className="flex items-start space-x-4">
-                       <User className="w-4 h-4 text-blue-300 mt-1" />
+                       <User className="w-4 h-4 text-violet-300 mt-1" />
                        <div>
                           <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">Identity</p>
                           <p className="text-white font-bold">{formData.name}</p>
                        </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                       <Briefcase className="w-4 h-4 text-blue-400 mt-1" />
+                       <Briefcase className="w-4 h-4 text-violet-400 mt-1" />
                        <div>
                           <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">Service Type</p>
                           <p className="text-white font-bold">{formData.category}</p>
@@ -173,16 +179,21 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <div className="bg-global-gradient min-h-screen pt-56 md:pt-60 lg:pt-64 pb-44 md:pb-48 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+    <div className="bg-global-gradient min-h-screen pt-32 sm:pt-44 md:pt-56 lg:pt-64 pb-20 sm:pb-32 md:pb-44 lg:pb-48 px-6 sm:px-12 lg:px-24 relative overflow-hidden">
+      <SEOHead
+        title="Contact Inspiro Studio"
+        description="Book a discovery call or send a project brief. Get expert video marketing and motion design support from Inspiro Studio."
+        path="/contact"
+      />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/50"></div>
       <div className="max-w-[1440px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1fr)] gap-14 lg:gap-16 xl:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1fr)] gap-10 md:gap-14 lg:gap-16 xl:gap-20 items-start">
           <div className="lg:sticky lg:top-40 max-w-[580px] pr-2">
-            <h1 className="text-[56px] sm:text-[72px] lg:text-[84px] xl:text-[92px] font-bold text-white mb-10 tracking-tight leading-[1.02]">
-              TELL US <br/><span className="text-blue-300">EVERYTHING</span>.
+            <h1 className="text-[36px] sm:text-[52px] md:text-[64px] lg:text-[84px] xl:text-[92px] font-bold text-white mb-8 md:mb-10 tracking-tight leading-[1.02]">
+              TELL US <br/><span className="text-violet-300">EVERYTHING</span>.
             </h1>
-            <p className="text-xl text-[#a1a1aa] mb-16 leading-relaxed max-w-lg font-medium opacity-80">
-              Your project inquiry is about to be mailed to <span className="text-white border-b border-blue-500/50 pb-1">business@inspirostudio.io</span>. 
+            <p className="text-base md:text-xl text-[#a1a1aa] mb-10 md:mb-16 leading-relaxed max-w-lg font-medium opacity-80">
+              Your project inquiry is about to be mailed to <span className="text-white border-b border-violet-500/50 pb-1">business@inspirostudio.io</span>. 
             </p>
 
             <div className="space-y-12">
@@ -204,12 +215,12 @@ const Contact: React.FC = () => {
             <div className="contact-water-drop-secondary"></div>
             <div className="contact-water-ripple contact-water-ripple-one"></div>
             <div className="contact-water-ripple contact-water-ripple-two"></div>
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 via-cyan-400/25 to-blue-500/20 rounded-[32px] blur-xl opacity-75 group-hover:opacity-100 transition duration-700"></div>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-500/25 via-fuchsia-400/25 to-violet-500/25 rounded-[32px] blur-xl opacity-75 group-hover:opacity-100 transition duration-700"></div>
             
             <div className="midnight-card-gradient relative border border-white/10 rounded-[24px] p-8 md:p-10 xl:p-12 shadow-2xl animate-water-drop-in">
               <h3 className="text-2xl font-bold text-white mb-10 tracking-tight flex items-center animate-water-item" style={{ animationDelay: '120ms' }}>
                 Project Contact Form
-                {status === 'submitting' && <Loader2 className="ml-4 w-5 h-5 text-blue-300 animate-spin" />}
+                {status === 'submitting' && <Loader2 className="ml-4 w-5 h-5 text-violet-300 animate-spin" />}
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-8">
@@ -302,12 +313,12 @@ const Contact: React.FC = () => {
 };
 
 const ContactInfoItem: React.FC<{ icon: React.ReactNode; title: string; content: string }> = ({ icon, title, content }) => (
-  <div className="flex items-start space-x-8 group">
-    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-300 group-hover:bg-blue-500/10 group-hover:border-blue-500/20 transition-all duration-300 shadow-xl">
+  <div className="flex items-start space-x-4 sm:space-x-6 md:space-x-8 group">
+    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-violet-300 group-hover:bg-violet-500/10 group-hover:border-violet-500/20 transition-all duration-300 shadow-xl">
       {icon}
     </div>
     <div>
-      <h4 className="text-lg font-bold text-white mb-1 tracking-tight group-hover:text-blue-300 transition-colors">{title}</h4>
+      <h4 className="text-lg font-bold text-white mb-1 tracking-tight group-hover:text-violet-300 transition-colors">{title}</h4>
       <p className="text-gray-400 font-medium text-[15px]">{content}</p>
     </div>
   </div>

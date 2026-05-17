@@ -11,14 +11,12 @@ export default defineConfig({
   plugins: [react()],
   build: {
     chunkSizeWarningLimit: 1000,
+    target: 'es2015',
+    modulePreload: false,
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('react')) return 'react-vendor'
-            return 'vendor'
-          }
-        }
+        format: 'iife',
+        manualChunks: undefined, // must disable this when using iife format
       }
     }
   },

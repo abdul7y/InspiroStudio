@@ -107,7 +107,7 @@ const Admin: React.FC = () => {
               <div className="grid grid-cols-1 gap-8">
                 {submissions.map((sub) => (
                   <div key={sub.id} className="glass-card p-10 border-white/10 hover:bg-white/[0.04] transition-all group overflow-hidden relative shadow-xl">
-                    <div className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-purple-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     
                     <div className="flex flex-col lg:flex-row justify-between gap-12">
                       <div className="flex-grow space-y-8">
@@ -119,7 +119,7 @@ const Admin: React.FC = () => {
                           <span className="text-xs text-gray-500 bg-white/5 border border-white/10 px-4 py-2 rounded-xl flex items-center">
                             <Clock className="w-3.5 h-3.5 mr-2" /> {sub.date}
                           </span>
-                          <span className="text-[10px] font-black bg-blue-500/10 text-blue-400 border border-blue-500/20 px-3 py-1 rounded uppercase tracking-[0.1em]">
+                          <span className="text-[10px] font-black bg-violet-500/10 text-violet-400 border border-violet-500/20 px-3 py-1 rounded uppercase tracking-[0.1em]">
                             {sub.category}
                           </span>
                           {sub.deliveredTo && (

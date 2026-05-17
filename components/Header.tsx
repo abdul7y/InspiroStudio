@@ -26,7 +26,10 @@ const Header: React.FC = () => {
       setHideOnFooter(pageBottomDistance <= 64);
     };
 
-    onScroll();
+    // Don't run on mount — default states (scrolled=false, hideOnFooter=false)
+    // are correct for a fresh page load at the top. Running immediately causes
+    // a false positive: lazy-loaded content hasn't rendered yet so scrollHeight
+    // is tiny, making pageBottomDistance ≤ 64 and hiding the header.
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
@@ -45,12 +48,20 @@ const Header: React.FC = () => {
         hideOnFooter ? "opacity-0 -translate-y-8 pointer-events-none" : "opacity-100 translate-y-0"
       }`}
     >
-      <div className="mx-auto w-full max-w-[1680px] px-5 sm:px-8 lg:px-12">
+      {/* Single soft glow behind header CTA — same “right bloom” language as hero, lighter */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[280px] overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="prod-grad-header-right absolute top-0 right-0 h-full w-[min(480px,75vw)] translate-x-[18%] opacity-[0.55] sm:opacity-[0.65] md:right-[max(0px,calc((100vw-1680px)/2-20px))] md:translate-x-[10%]" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1680px] px-5 sm:px-8 lg:px-12">
         <nav
           className={`mt-4 rounded-[120px] border px-6 sm:px-8 lg:px-10 transition-all duration-300 ${
             scrolled
-              ? "border-blue-200/20 bg-[#050d1f]/88 py-3.5 shadow-[0_18px_55px_rgba(1,6,16,0.6)] backdrop-blur-xl"
-              : "border-blue-200/15 bg-[#060f22]/70 py-4 backdrop-blur-md"
+              ? "border-white/[0.12] bg-black/55 py-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl"
+              : "border-white/[0.1] bg-black/40 py-4 backdrop-blur-xl"
           }`}
         >
           <div className="grid grid-cols-[auto_auto] items-center gap-4 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
@@ -70,12 +81,12 @@ const Header: React.FC = () => {
                     key={link.name}
                     to={link.path}
                     className={`relative text-[13px] font-semibold uppercase tracking-[0.11em] transition-colors ${
-                      isActive ? "text-white" : "text-blue-100/70 hover:text-white"
+                      isActive ? "text-white" : "text-violet-100/70 hover:text-white"
                     }`}
                   >
                     {link.name}
                     <span
-                      className={`absolute -bottom-2 left-0 h-[2px] rounded-full bg-blue-300 transition-all ${
+                      className={`absolute -bottom-2 left-0 h-[2px] rounded-full bg-violet-300 transition-all ${
                         isActive ? "w-full opacity-100" : "w-0 opacity-0"
                       }`}
                     />
@@ -98,7 +109,7 @@ const Header: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsOpen((prev) => !prev)}
-              className="col-start-2 inline-flex h-12 w-12 items-center justify-center justify-self-end rounded-full border border-blue-100/20 bg-white/5 text-white md:hidden"
+              className="col-start-2 inline-flex h-12 w-12 items-center justify-center justify-self-end rounded-full border border-violet-100/20 bg-white/5 text-white md:hidden"
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
             >
@@ -112,7 +123,7 @@ const Header: React.FC = () => {
             isOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="mt-3 rounded-2xl border border-blue-200/20 bg-[#050d1f]/95 p-5 backdrop-blur-xl">
+          <div className="mt-3 rounded-2xl border border-white/[0.12] bg-black/60 p-5 backdrop-blur-xl">
             <div className="flex flex-col gap-5">
               {NAV_LINKS.map((link) => {
                 const isActive = location.pathname === link.path;
@@ -121,7 +132,7 @@ const Header: React.FC = () => {
                     key={link.name}
                     to={link.path}
                     className={`text-sm font-semibold uppercase tracking-[0.11em] ${
-                      isActive ? "text-white" : "text-blue-100/75"
+                      isActive ? "text-white" : "text-violet-100/75"
                     }`}
                   >
                     {link.name}
