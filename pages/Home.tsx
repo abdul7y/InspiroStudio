@@ -494,16 +494,8 @@ const Home: React.FC = () => {
         <div className="absolute inset-x-0 bottom-0 h-20 md:h-36 lg:h-44 bg-gradient-to-b from-transparent to-black pointer-events-none" />
       </section>
 
-<<<<<<< HEAD
       <div className="relative left-1/2 z-20 -mt-10 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-b from-[#060f22] to-black pb-6 sm:-mt-12 sm:pb-7 lg:-mt-14 lg:pb-8">
         <div className="relative flex min-h-[78px] w-full items-center overflow-hidden select-none sm:min-h-[90px]">
-=======
-      <div className="relative left-1/2 z-20 -mt-10 w-screen -translate-x-1/2 overflow-hidden pb-6 sm:-mt-12 sm:pb-7 lg:-mt-14 lg:pb-8">
-        <div className="pointer-events-none absolute inset-0 prod-grad-marquee-bg" />
-
-        {/* Infinite-scroll marquee — all screen sizes */}
-        <div className="relative flex min-h-[68px] sm:min-h-[90px] w-full items-center overflow-hidden select-none">
->>>>>>> 287e7e6648bd663be453974f12c4a41776aeca7a
           <div
             className="animate-infinite-scroll flex min-w-max items-center gap-8 sm:gap-14 lg:gap-20"
             style={{ animationDuration: "22s" }}
@@ -644,7 +636,6 @@ const Home: React.FC = () => {
             className="absolute lg:left-0 lg:top-1/2 left-0 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
           />
 
-<<<<<<< HEAD
           {/* Section Header — water drop entrance */}
           <div className="text-center max-w-3xl mx-auto mb-20 flex flex-col items-center relative z-10 animate-water-drop-in">
             {/* Badge */}
@@ -655,26 +646,6 @@ const Home: React.FC = () => {
                   Services
                 </span>
               </div>
-=======
-            <div className="relative z-10 max-w-3xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
-                <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-violet-700/60 to-transparent p-[1px] mb-4">
-                  <div
-                    className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-r border-l border-gray-800
-                    bg-black backdrop-blur-xl"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                    <span className="text-xs text-gray-200 tracking-widest uppercase">
-                      About Inspiro
-                    </span>
-                  </div>
-                </div>
-                <h2 className="text-[38px] md:text-[52px] text-white leading-[1.08] tracking-tight">
-                  Building Stronger Brands
-                </h2>
-                <h3 className="text-[30px] md:text-[44px] text-gray-400 leading-[1.1] tracking-tight mt-2">
-                  Across 30+ Countries
-                </h3>
->>>>>>> 287e7e6648bd663be453974f12c4a41776aeca7a
             </div>
 
             {/* Heading */}
@@ -692,7 +663,6 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-<<<<<<< HEAD
           {/* RIGHT CURVE */}
           <img
             src={leftcurve}
@@ -700,38 +670,6 @@ const Home: React.FC = () => {
             className="absolute lg:right-0 lg:top-1/2 right-1 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
           />
         </div>
-=======
-          <div className="max-w-[1440px] mx-auto relative z-10 px-8 md:px-16 lg:px-24">
-            <div className="relative z-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
-              <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
-                <div className="group relative w-full max-w-[520px] transition-transform duration-300 hover:-translate-y-2">
-                  <div className="rounded-[34px] bg-[linear-gradient(135deg,#7c3aed_0%,#a855f7_58%,#c084fc_100%)] p-[1px] shadow-[0_18px_45px_rgba(147,51,234,0.35)] transition-all duration-300 group-hover:shadow-[0_22px_70px_rgba(192,132,252,0.45)]">
-                    <div className="prod-grad-media-card relative aspect-square w-full overflow-hidden rounded-[32px] border border-white/10 shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
-                    <video
-                      className="absolute inset-0 h-full w-full object-cover opacity-88 transition-transform duration-500 group-hover:scale-[1.04]"
-                      src={ABOUT_VIDEO_SRC}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                    />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.16),transparent_42%)]"></div>
-                    <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(124,58,237,0.16)_0%,rgba(168,85,247,0.1)_42%,rgba(0,0,0,0.4)_100%)] transition-opacity duration-300 group-hover:opacity-90"></div>
-                    <div className="absolute inset-x-0 -bottom-10 h-28 bg-gradient-to-t from-black via-black/65 to-transparent blur-2xl"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-violet-100/30 bg-[linear-gradient(135deg,rgba(124,58,237,0.9)_0%,rgba(168,85,247,0.85)_58%,rgba(192,132,252,0.82)_100%)] backdrop-blur-md shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_45px_rgba(192,132,252,0.5)]">
-                        <Play className="w-6 h-6 text-white fill-white" />
-                      </div>
-                    </div>
-                    <div className="absolute bottom-5 left-6 text-[10px] uppercase tracking-[0.35em] text-white/70">
-                      Video Preview
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
->>>>>>> 287e7e6648bd663be453974f12c4a41776aeca7a
 
         {/* Service Cards — gradient-colored with staggered water item animation */}
         <div className="max-w-[1440px] mx-auto relative z-10 pb-20">
@@ -761,49 +699,7 @@ const Home: React.FC = () => {
                 <p className="text-zinc-400 text-[14px] leading-relaxed transition-colors duration-300 group-hover:text-zinc-300">
                   {service.description}
                 </p>
-<<<<<<< HEAD
-=======
 
-                <div className="space-y-4">
-                  <div className="flex items-center justify-center gap-3 text-[14px] text-gray-300 lg:justify-start">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-violet-700">
-                      <BadgeCheck className="h-4 w-4 text-white" />
-                    </span>
-                    <span>From $0 to $500,000 in revenue.</span>
-                  </div>
-                  <div className="flex items-center justify-center gap-3 text-[14px] text-gray-300 lg:justify-start">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-violet-700">
-                      <BadgeCheck className="h-4 w-4 text-white" />
-                    </span>
-                    <span>70% growth in new customers.</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-start">
-                  <button
-                    type="button"
-                    className={NAVBAR_CTA_BUTTON_AUTO_WIDTH_CLASS}
-                  >
-                    About Inspiro
-                  </button>
-                  <div className="hidden lg:block h-6 w-px bg-gray-700"></div>
-                  <div className="px-1 py-2">
-                    <div className="flex flex-col items-center gap-2 lg:items-start">
-                      <div className="flex items-center gap-1">
-                        {[1, 2, 3, 4, 5].map((s) => (
-                          <Star
-                            key={s}
-                            className="w-3 h-3 text-white fill-white"
-                          />
-                        ))}
-                      </div>
-                      <span className="text-[12px] text-gray-400">
-                        200+ Agencies Rated
-                      </span>
-                    </div>
-                  </div>
-                </div>
->>>>>>> 287e7e6648bd663be453974f12c4a41776aeca7a
               </div>
             ))}
           </div>
