@@ -346,6 +346,120 @@ body {
   }
 }
 
+/* ── Tools Marquee Cubes ── */
+.tools-marquee {
+  overflow: hidden;
+  position: relative;
+}
+
+.tools-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 28px;
+  padding: 12px 0;
+  will-change: transform;
+}
+
+/* Different speeds for visual rhythm */
+.tools-marquee-track.speed-slow {
+  animation: infinite-scroll 50s linear infinite;
+}
+.tools-marquee-track.speed-medium {
+  animation: infinite-scroll 35s linear infinite;
+}
+.tools-marquee-track.speed-fast {
+  animation: infinite-scroll 22s linear infinite;
+}
+.tools-marquee-track.speed-xfast {
+  animation: infinite-scroll 16s linear infinite;
+}
+
+/* Pause on hover for the entire row */
+.tools-marquee:hover .tools-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Cube container */
+.tool-cube {
+  width: 104px;
+  height: 104px;
+  border-radius: 22px;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: default;
+  position: relative;
+}
+
+/* Glow ring */
+.tool-cube::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  background: inherit;
+  opacity: 0;
+  filter: blur(14px);
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.tool-cube:hover {
+  border-color: rgba(167, 139, 250, 0.35);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.45),
+    0 0 36px rgba(167, 139, 250, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-8px) scale(1.06);
+}
+
+.tool-cube:hover::before {
+  opacity: 1;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.35), transparent 70%);
+}
+
+.tool-cube img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.tool-cube svg {
+  width: 32px;
+  height: 32px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.tool-cube:hover img {
+  transform: scale(1.1);
+}
+
+.tool-cube-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(161, 161, 170, 0.6);
+  white-space: nowrap;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.tool-cube:hover .tool-cube-label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .contact-water-shell {
   isolation: isolate;
 }
@@ -479,7 +593,7 @@ body {
   position: absolute;
   inset: -120% 46% auto -46%;
   height: 220%;
-  transform: rotate(18deg);
+  transform: rotate(25deg);
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -491,7 +605,7 @@ body {
 }
 
 .contact-water-submit:hover::after {
-  transform: rotate(18deg) translateX(30%);
+  transform: rotate(25deg) translateX(40%) translateY(-25%);
 }
 
 .custom-cursor-outer,
