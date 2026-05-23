@@ -17,11 +17,19 @@ const CALENDLY_LINK = "https://calendly.com/inspirosudio-io/30min";
 const Footer: React.FC = () => {
   const year = new Date().getFullYear();
   const location = useLocation();
-  const [isFooterVisible, setIsFooterVisible] = useState(false);
-  const footerClasses =
-    "fixed inset-x-0 bottom-0 z-0 border-t border-violet-200/10 bg-[#050208] text-white px-4 sm:px-8 lg:px-14 overflow-hidden";
+  const isHome = location.pathname === "/";
+  const [isFooterVisible, setIsFooterVisible] = useState(isHome);
+
+  const footerClasses = `${
+    isHome ? "relative" : "fixed inset-x-0 bottom-0"
+  } z-0 border-t border-violet-200/10 bg-[#050208] text-white px-4 sm:px-8 lg:px-14 overflow-hidden`;
 
   useEffect(() => {
+    if (isHome) {
+      setIsFooterVisible(true);
+      return;
+    }
+
     const updateReveal = () => {
       const distanceToBottom =
         document.documentElement.scrollHeight -
@@ -36,7 +44,7 @@ const Footer: React.FC = () => {
       window.removeEventListener("scroll", updateReveal);
       window.removeEventListener("resize", updateReveal);
     };
-  }, [location.pathname]);
+  }, [location.pathname, isHome]);
 
   return (
     <footer className={footerClasses}>
@@ -142,7 +150,7 @@ const Footer: React.FC = () => {
           className="flex w-full items-end justify-center mb-2"
           aria-label="Inspiro Studio"
         >
-          <span className="logo-wordmark block whitespace-nowrap text-center leading-[0.84] text-[32px] text-white/90 sm:text-[52px] md:text-[72px] lg:text-[96px] xl:text-[112px] 2xl:text-[124px] hover:text-white transition-colors duration-300">
+          <span className="logo-wordmark block whitespace-nowrap text-center leading-[0.84] text-[32px] text-white/90 sm:text-[52px] md:text-[72px] lg:text-[96px] xl:text-[112px] 2xl:text-[124px] hover:text-white transition-colors duration-300" style={{ paddingBottom: '30px' }}>
             Inspiro Studio
           </span>
         </Link>
