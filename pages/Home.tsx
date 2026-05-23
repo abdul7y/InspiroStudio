@@ -984,7 +984,7 @@ const Home: React.FC = () => {
                             : "border-zinc-600/50 text-zinc-400 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                         }`}
                       >
-                        <span className="text-sm sm:text-lg">{stage.number}</span>
+                        <span className="text-sm sm:text-lg pr-[10px]">{stage.number}</span>
                       </button>
                       <span className={`text-[10px] sm:text-xs font-medium tracking-wide mt-3 whitespace-nowrap transition-colors duration-300 ${
                         isActive ? "text-white" : isPast ? "text-violet-300/70" : "text-zinc-500"
@@ -1016,7 +1016,7 @@ const Home: React.FC = () => {
             <div className="midnight-card-gradient rounded-[26px] border border-violet-800/40 p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-16 items-center">
               {/* Left: Large number */}
               <div className="flex-shrink-0">
-                <span className="text-[100px] md:text-[140px] font-extrabold leading-none bg-gradient-to-br from-white via-violet-200 to-violet-500/40 bg-clip-text text-transparent" style={{ fontFamily: "'Poppins','Plus Jakarta Sans',sans-serif", letterSpacing: "-0.04em", fontStyle: "italic" }}>
+                <span className="text-[90px] md:text-[140px] font-extrabold leading-none bg-gradient-to-br from-white via-violet-200 to-violet-500/40 bg-clip-text " style={{ fontFamily: "'Poppins','Plus Jakarta Sans',sans-serif", letterSpacing: "-0.0em", fontStyle: "italic" }}>
                   {activeStage === "research" ? "1" :
                    activeStage === "strategy" ? "2" :
                    activeStage === "design" ? "3" :
