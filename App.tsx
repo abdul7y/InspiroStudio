@@ -6,7 +6,7 @@ const Home = React.lazy(() => import('./pages/Home'));
 const About = React.lazy(() => import('./pages/About'));
 const Blogs = React.lazy(() => import('./pages/Blogs'));
 const Contact = React.lazy(() => import('./pages/Contact'));
-const Faqs = React.lazy(() => import('./pages/Faqs'));
+const Services = React.lazy(() => import('./pages/Services'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -173,13 +173,13 @@ const AppShell: React.FC = () => {
           <Route path="/about" element={<About />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/faqs" element={<Faqs />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/about-us" element={<Navigate to="/about" replace />} />
           <Route path="/blog" element={<Navigate to="/blogs" replace />} />
-          <Route path="/faq" element={<Navigate to="/faqs" replace />} />
+          <Route path="/faq" element={<Navigate to="/services" replace />} />
+          <Route path="/faqs" element={<Navigate to="/services" replace />} />
           <Route path="/portfolio" element={<Navigate to="/" replace />} />
-          <Route path="/services" element={<Navigate to="/" replace />} />
           <Route path="/testimonials" element={<Navigate to="/" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
