@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import SEOHead from "../components/SEOHead";
 import {
   Play,
@@ -69,49 +69,49 @@ const HERO_BRANDS: HeroBrandId[] = [
 /* Services data for gradient cards */
 const SERVICES = [
   {
-    title: "UI/UX Design",
+    title: "Digital Advertising",
     description:
-      "Intuitive interfaces and seamless user experiences that captivate and convert.",
+      "Run great ads with our digital advertising agency. We do Times Square billboard advertising and digital out-of-home advertising and work as a top screen advertising company. We also use programmatic display advertising, LED billboard advertising services, an outdoor digital advertising agency setup, video advertising production, a fresh brand advertising campaign, and smart DOOH advertising solutions.",
     icon: <Palette className="w-7 h-7 text-blue-300" />,
 
     iconBg: "rgba(59,130,246,0.15)",
   },
   {
-    title: "Product Design",
+    title: "SEO, PPC & Digital Marketing",
     description:
-      "End-to-end product design from concept to launch-ready prototypes.",
+      "Get seen by more people and find new customers with SEO services for small businesses. A dedicated PPC management agency team and a smart search engine optimization consultant. At Inspiro Studio, we also offer local SEO services and smart marketing help.",
     icon: <PenTool className="w-7 h-7 text-emerald-300" />,
 
     iconBg: "rgba(52,211,153,0.15)",
   },
   {
-    title: "2D Storyboarding",
+    title: "Social Media Marketing",
     description:
-      "Compelling visual narratives that bring your script to life frame by frame.",
+      "Grow your name with our social media marketing services, fun posts, and real fan growth. We also manage social media management pricing plans and run a Facebook ads agency setup to help you succeed.",
     icon: <Clapperboard className="w-7 h-7 text-amber-300" />,
 
     iconBg: "rgba(251,191,36,0.15)",
   },
   {
-    title: "Animation",
+    title: "Animation & Explainer Videos",
     description:
-      "Smooth motion graphics and character animation that tell your story dynamically.",
+      "As a top explainer video production company, Inspiro Studio makes great 2D animation services, a fun SaaS explainer video, and a clear product demo video. We also work as a 3D motion graphics company and offer animation design services, as well as whiteboard animation service plans.",
     icon: <Sparkles className="w-7 h-7 text-pink-300" />,
 
     iconBg: "rgba(236,72,153,0.15)",
   },
   {
-    title: "Branding",
+    title: "Branding & Graphic Design",
     description:
-      "Complete brand identity systems including logos, color palettes, and guidelines.",
+      "From professional logo design services and a custom logo design online tool to complete brand identity design, we make clear visuals. Our creative graphic design company experts offer great branding and design services with a full visual identity design agency experience. We produce affordable logo designs and also make logo designs for startups.",
     icon: <Fingerprint className="w-7 h-7 text-purple-300" />,
 
     iconBg: "rgba(167,139,250,0.15)",
   },
   {
-    title: "Web Design",
+    title: "Web & App Development",
     description:
-      "Responsive, modern websites built with performance and aesthetics in mind.",
+      "At Inspiro Studio, we build great digital tools with our custom website development services. We are a mobile app development agency that supports e-commerce website development and responsive web design services made for growth.",
     icon: <Monitor className="w-7 h-7 text-cyan-300" />,
 
     iconBg: "rgba(34,211,238,0.15)",
@@ -133,7 +133,12 @@ const renderHeroBrandLogo = (brand: HeroBrandId) => {
             viewBox="0 0 24 24"
             className="h-8 w-8 sm:h-10 sm:w-10"
           >
-            <g fill="none" stroke="#5B5CE2" strokeLinecap="round" strokeWidth="2.3">
+            <g
+              fill="none"
+              stroke="#5B5CE2"
+              strokeLinecap="round"
+              strokeWidth="2.3"
+            >
               <path d="M12 2.7v4.6" />
               <path d="M12 16.7v4.6" />
               <path d="M2.7 12h4.6" />
@@ -157,7 +162,9 @@ const renderHeroBrandLogo = (brand: HeroBrandId) => {
           className="flex flex-col whitespace-nowrap text-white/90 leading-[0.82]"
           style={{ fontFamily: '"Times New Roman", Georgia, serif' }}
         >
-          <span className="text-[20px] font-semibold leading-none sm:text-[24px]">Johnson</span>
+          <span className="text-[20px] font-semibold leading-none sm:text-[24px]">
+            Johnson
+          </span>
           <span className="-mt-0.5 text-[20px] font-semibold leading-none sm:text-[24px]">
             &amp;Johnson
           </span>
@@ -213,43 +220,45 @@ const Home: React.FC = () => {
   const [heroIsDeleting, setHeroIsDeleting] = useState(false);
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    category: 'Video Marketing',
-    brief: ''
+    name: "",
+    email: "",
+    category: "Video Marketing",
+    brief: "",
   });
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
   const [aiInsight, setAiInsight] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const buildInsightFallback = (category: string) => {
     const fallbackByCategory: Record<string, string> = {
-      'Video Marketing':
-        'Your brief is a strong fit for a high-converting narrative video strategy focused on clarity, retention, and conversion.',
-      'Product Animation':
-        'Your concept is ideal for a product-led animation flow that simplifies technical details and improves buyer confidence.',
-      'Branding Package':
-        'Your direction supports a premium branding system with cohesive visual language and clear market positioning.',
-      'Social Strategy':
-        'Your request aligns with a social-first content system built for engagement, consistency, and repeatable creative output.',
+      "Video Marketing":
+        "Your brief is a strong fit for a high-converting narrative video strategy focused on clarity, retention, and conversion.",
+      "Product Animation":
+        "Your concept is ideal for a product-led animation flow that simplifies technical details and improves buyer confidence.",
+      "Branding Package":
+        "Your direction supports a premium branding system with cohesive visual language and clear market positioning.",
+      "Social Strategy":
+        "Your request aligns with a social-first content system built for engagement, consistency, and repeatable creative output.",
     };
     return (
       fallbackByCategory[category] ||
-      'Your project direction is clear and commercially strong, and we can map it into a focused production roadmap quickly.'
+      "Your project direction is clear and commercially strong, and we can map it into a focused production roadmap quickly."
     );
   };
 
   const resolveContactApiUrl = () => {
     const hostname = window.location.hostname;
-    const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1';
-    return isLocalHost ? 'http://localhost:3001/api/contact' : '/api/contact';
+    const isLocalHost = hostname === "localhost" || hostname === "127.0.0.1";
+    return isLocalHost ? "http://localhost:3001/api/contact" : "/api/contact";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.brief) return;
 
-    setStatus('submitting');
+    setStatus("submitting");
     setErrorMessage(null);
     setAiInsight(null);
 
@@ -257,15 +266,20 @@ const Home: React.FC = () => {
       const fallbackInsight = buildInsightFallback(formData.category);
 
       const mailResponse = await fetch(resolveContactApiUrl(), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
-          aiInsight: fallbackInsight
-        })
+          aiInsight: fallbackInsight,
+        }),
       });
 
-      let payload: { message?: string; aiInsight?: string; error?: string; details?: string } = {};
+      let payload: {
+        message?: string;
+        aiInsight?: string;
+        error?: string;
+        details?: string;
+      } = {};
       try {
         payload = await mailResponse.json();
       } catch {
@@ -273,17 +287,23 @@ const Home: React.FC = () => {
       }
 
       if (!mailResponse.ok) {
-        throw new Error(payload.details || payload.error || 'Server rejected the email dispatch.');
+        throw new Error(
+          payload.details ||
+            payload.error ||
+            "Server rejected the email dispatch.",
+        );
       }
 
       setAiInsight(payload.aiInsight || fallbackInsight);
-      setStatus('success');
+      setStatus("success");
     } catch (error: any) {
       console.error("Submission error:", error);
-      setErrorMessage(error.message === 'Failed to fetch'
-        ? 'Connection refused. Please ensure your Node.js backend (server.cjs) is running on port 3001.'
-        : error.message);
-      setStatus('error');
+      setErrorMessage(
+        error.message === "Failed to fetch"
+          ? "Connection refused. Please ensure your Node.js backend (server.cjs) is running on port 3001."
+          : error.message,
+      );
+      setStatus("error");
     }
   };
 
@@ -334,7 +354,7 @@ const Home: React.FC = () => {
 
   const portfolioVideoRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const [portfolioPlaying, setPortfolioPlaying] = useState<boolean[]>(
-    portfolioItems.map(() => true)
+    portfolioItems.map(() => true),
   );
 
   const togglePortfolioVideo = (index: number) => {
@@ -381,32 +401,30 @@ const Home: React.FC = () => {
 
   const faqItems = [
     {
-      q: "What do I need to get started?",
-      a: "To get started, simply book a call or send us your project brief. We will guide you through the initial requirements including brand guidelines and goals.",
+      q: "How much does web development cost in 2026?",
+      a: "The web development cost in 2026 relies on how big your page is and what it needs to do. Small pages cost less, while big apps with lots of buttons cost more. We always tell you the exact price before we start.",
     },
     {
-      q: "What kind of customization is available?",
-      a: "We offer full customization of animations, styleframes, and brand aesthetics to match your specific vision and messaging needs.",
+      q: "Do you provide full-stack development services?",
+      a: "Yes! We offer full-stack development services. We build the front part that people see and the back part that keeps everything running behind the scenes.",
     },
     {
-      q: "How easy is it to edit for beginners?",
-      a: "Our workflow is designed for clarity. We provide simple checkpoints and a dedicated manager so you don't need technical skills to provide feedback.",
+      q: "Can you handle SEO and paid advertising together?",
+      a: "Yes, we can. We can make your site better for search engines and run paid ads at the exact same time to bring you more visitors.",
     },
     {
-      q: "Let me know more about moneyback guarantee?",
-      a: "We stand by our quality. If we don't meet the agreed-upon standards or milestones, we offer transparent refund policies as per our contract.",
+      q: "Do you work with startups and SaaS companies?",
+      a: "Yes, we do! We love working with new teams and software brands. We help turn your ideas into real, working apps.",
     },
     {
-      q: "Do I need to know how to code?",
-      a: "Not at all. We handle all technical aspects of video marketing and motion design for you, from concept to final export.",
+      q: "What is included in your branding and design services?",
+      a: "We draw your logo, pick your colors, and make your business look neat and professional across the entire internet.",
     },
     {
-      q: "What will I get after purchasing the template?",
-      a: "You'll receive full production files, multiple format exports, and the master video optimized for your selected social and ad platforms.",
+      q: "How long does a typical website or app project take? ",
+      a: "It changes based on the job. A simple page can take just a few weeks, while a huge mobile app might take a few months.",
     },
   ];
-
-
 
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -420,28 +438,31 @@ const Home: React.FC = () => {
     const holdDelay = 1400;
     const restartDelay = 260;
 
-    const timer = window.setTimeout(() => {
-      if (!heroIsDeleting) {
-        if (!isWordComplete) {
-          setHeroTypedText(currentWord.slice(0, heroTypedText.length + 1));
+    const timer = window.setTimeout(
+      () => {
+        if (!heroIsDeleting) {
+          if (!isWordComplete) {
+            setHeroTypedText(currentWord.slice(0, heroTypedText.length + 1));
+            return;
+          }
+          setHeroIsDeleting(true);
           return;
         }
-        setHeroIsDeleting(true);
-        return;
-      }
 
-      if (!isWordCleared) {
-        setHeroTypedText(currentWord.slice(0, heroTypedText.length - 1));
-        return;
-      }
+        if (!isWordCleared) {
+          setHeroTypedText(currentWord.slice(0, heroTypedText.length - 1));
+          return;
+        }
 
-      setHeroIsDeleting(false);
-      setHeroWordIndex((prev) => (prev + 1) % HERO_TYPING_WORDS.length);
-    }, !heroIsDeleting && isWordComplete
-      ? holdDelay
-      : heroIsDeleting && isWordCleared
-        ? restartDelay
-        : typingDelay);
+        setHeroIsDeleting(false);
+        setHeroWordIndex((prev) => (prev + 1) % HERO_TYPING_WORDS.length);
+      },
+      !heroIsDeleting && isWordComplete
+        ? holdDelay
+        : heroIsDeleting && isWordCleared
+          ? restartDelay
+          : typingDelay,
+    );
 
     return () => {
       window.clearTimeout(timer);
@@ -496,7 +517,10 @@ const Home: React.FC = () => {
       />
       {/* 1. Hero Section — prod-style: one dominant bloom from the right edge + black base */}
       <section className="relative md:min-h-screen flex items-start px-6 md:px-16 lg:px-24 overflow-hidden bg-black">
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden="true"
+        >
           {/* Main right-edge bloom — same placement as inspirostudio.io; purple via CSS vars */}
           <div className="prod-grad-hero-right absolute inset-y-[-8%] right-0 w-[min(92vw,820px)] md:w-[min(78vw,760px)]" />
           <div className="prod-grad-hero-left absolute inset-0 opacity-90" />
@@ -507,18 +531,23 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto w-full pt-28 sm:pt-36 md:pt-[200px] lg:pt-[280px] pb-10 sm:pb-20 md:pb-[140px] lg:pb-[180px]">
           <div className="max-w-[900px] relative z-10">
             <h1 className="text-[36px] sm:text-[50px] md:text-[68px] lg:text-[88px] xl:text-[100px] text-white mb-6 md:mb-8 tracking-[-0.03em] leading-[1.05]">
-              <span className="font-normal">Video Marketing Agency For</span>
+              <span className="font-normal">
+                A Web Development Company Built for Businesses That Refuse to
+                Blend In
+              </span>
               <br className="hidden lg:block" />
               <span className="inline-flex items-end">
-                <span className="bg-gradient-to-r from-[#e9d5ff] via-[#c084fc] to-[#a855f7] bg-clip-text text-transparent font-extrabold">{heroTypedText}</span>
+                <span className="bg-gradient-to-r from-[#e9d5ff] via-[#c084fc] to-[#a855f7] bg-clip-text text-transparent font-extrabold">
+                  {heroTypedText}
+                </span>
                 <span className="ml-1 inline-block h-[0.88em] w-[3px] rounded-full bg-violet-400 animate-pulse" />
               </span>
             </h1>
 
             <p className="text-[#a1a1aa] text-base md:text-[19px] mb-8 md:mb-12 max-w-[620px] leading-relaxed font-normal">
-              We make stories, animate them, make them sound vibrant and dress
-              then with music, so that your business starts booming like a
-              rocket.
+              We combine custom website development services, mobile app
+              development, SEO, branding, animation, and digital advertising to
+              help businesses attract more customers and grow faster.
             </p>
 
             <div className="flex flex-col items-start mb-10 md:mb-24">
@@ -530,7 +559,6 @@ const Home: React.FC = () => {
               >
                 BOOK A DISCOVERY CALL
               </a>
-
             </div>
           </div>
         </div>
@@ -548,14 +576,16 @@ const Home: React.FC = () => {
             className="animate-infinite-scroll flex min-w-max items-center gap-8 sm:gap-14 lg:gap-20"
             style={{ animationDuration: "22s" }}
           >
-            {[...HERO_BRANDS, ...HERO_BRANDS, ...HERO_BRANDS].map((brand, index) => (
-              <div
-                key={`${brand}-${index}`}
-                className="flex h-[68px] sm:h-[90px] min-w-[120px] sm:min-w-[198px] lg:min-w-[228px] items-center justify-center"
-              >
-                {renderHeroBrandLogo(brand)}
-              </div>
-            ))}
+            {[...HERO_BRANDS, ...HERO_BRANDS, ...HERO_BRANDS].map(
+              (brand, index) => (
+                <div
+                  key={`${brand}-${index}`}
+                  className="flex h-[68px] sm:h-[90px] min-w-[120px] sm:min-w-[198px] lg:min-w-[228px] items-center justify-center"
+                >
+                  {renderHeroBrandLogo(brand)}
+                </div>
+              ),
+            )}
           </div>
         </div>
       </div>
@@ -595,12 +625,14 @@ const Home: React.FC = () => {
                 Portfolio
               </h2>
               <h3 className="text-[30px] md:text-[44px] text-gray-400 leading-[1.1] tracking-tight mt-2">
-                Product Success Stories
+                Featured Projects & Success Stories
               </h3>
 
               <p className="text-gray-400 max-w-[560px] mt-6 text-lg">
-                Explainers, onboarding, launch films and social content built to
-                be watched and understood.
+                Custom websites, mobile apps, branding, SEO, animation, and
+                marketing campaigns crafted to elevate brands, increase
+                visibility, and drive growth. Explore our work and discover
+                what's possible for your business.
               </p>
 
               <div className="mt-10">
@@ -640,12 +672,16 @@ const Home: React.FC = () => {
                     autoPlay
                     onPlay={() =>
                       setPortfolioPlaying((prev) =>
-                        prev.map((value, idx) => (idx === index ? true : value))
+                        prev.map((value, idx) =>
+                          idx === index ? true : value,
+                        ),
                       )
                     }
                     onPause={() =>
                       setPortfolioPlaying((prev) =>
-                        prev.map((value, idx) => (idx === index ? false : value))
+                        prev.map((value, idx) =>
+                          idx === index ? false : value,
+                        ),
                       )
                     }
                   />
@@ -653,7 +689,9 @@ const Home: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => togglePortfolioVideo(index)}
-                    aria-label={portfolioPlaying[index] ? "Pause video" : "Play video"}
+                    aria-label={
+                      portfolioPlaying[index] ? "Pause video" : "Play video"
+                    }
                     className="absolute inset-0 m-auto h-16 w-16 sm:h-20 sm:w-20 rounded-full border border-white/65 bg-black/55 text-white flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300"
                   >
                     {portfolioPlaying[index] ? (
@@ -691,23 +729,23 @@ const Home: React.FC = () => {
               <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 bg-black backdrop-blur-xl">
                 <span className="w-1.5 h-1.5 rounded-full bg-white" />
                 <span className="text-xs text-gray-200 tracking-widest uppercase">
-                  Services
+                  Our Digital Growth Solutions
                 </span>
               </div>
             </div>
 
             {/* Heading */}
             <h2 className="text-4xl md:text-[48px] text-white tracking-tight leading-[1.05]">
-              Our Design & Animation
+              End-to-End Digital Solutions For
             </h2>
             <h3 className="text-4xl md:text-[48px] text-gray-400 tracking-tight leading-[1.1] mt-2">
-              Services
+              Modern Brands
             </h3>
 
             {/* Subtitle */}
             <p className="text-zinc-500 font-semibold text-[15px] mt-6 w-full max-w-lg mx-auto">
-              From concept to final render — we craft pixel-perfect designs that
-              tell your brand's story.
+              Simple services built to help businesses create, market, and grow
+              great websites and apps.
             </p>
           </div>
 
@@ -747,7 +785,6 @@ const Home: React.FC = () => {
                 <p className="text-zinc-400 text-[14px] leading-relaxed transition-colors duration-300 group-hover:text-zinc-300">
                   {service.description}
                 </p>
-
               </div>
             ))}
           </div>
@@ -794,12 +831,12 @@ const Home: React.FC = () => {
               Our Recent Projects
             </h2>
             <h3 className="text-4xl md:text-[48px] text-gray-400 tracking-tight leading-[1.1] mt-2">
-              Creative Stories That Inspire
+              Built for Growth. Designed for Impact.
             </h3>
 
             <p className="text-zinc-500 font-semibold text-[15px] mt-6 w-full max-w-lg mx-auto">
-              From film production to motion graphics — each project reflects our
-              passion for creative storytelling.
+              Explore the way we help companies initiate, grow, and succeed
+              through creativity, technology, and marketing strategy. .
             </p>
           </div>
         </div>
@@ -809,41 +846,51 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 2xl:px-32 lg:px-22 md:px-16 px-8">
             {[
               {
-                title: "Film Editing",
-                description: "End-to-end video production from concept development to final cut — crafting cinematic narratives that captivate audiences.",
-                image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80",
-                tags: ["Film", "Direction"],
+                title: "Digital Products",
+                description:
+                  "Modern mobile apps, websites, and e-commerce platforms have been created to draw in visitors, simplify daily operations, and support long-term success.",
+                image:
+                  "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80",
+                tags: ["Web Apps"],
               },
               {
-                title: "2D Animation Studio",
-                description: "Frame-by-frame character animation and storytelling for explainers, commercials, and branded content that stands out.",
-                image: "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&w=800&q=80",
-                tags: ["Animation", "Illustration"],
+                title: "Brand Experiences",
+                description:
+                  "Unique brand identities, logo systems, and creative elements designed to foster trust, visibility, and long-term client relationships.",
+                image:
+                  "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&w=800&q=80",
+                tags: ["Brand Identity"],
               },
               {
-                title: "Art Direction & Design",
-                description: "Visual identity and creative direction for brands — from concept art and mood boards to polished styleframes.",
-                image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80",
-                tags: ["Art", "Branding"],
+                title: "Audience Growth",
+                description:
+                  "SEO, paid advertising, social media, and email advertising strategies were prioritized to improve exposure, generate qualified leads, and drive conversions.",
+                image:
+                  "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80",
+                tags: ["SEO Marketing"],
               },
               {
-                title: "Motion Graphics & VFX",
-                description: "Dynamic motion design and visual effects for social media, product launches, and immersive brand experiences.",
-                image: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80",
-                tags: ["Motion", "VFX"],
+                title: "Visual Storytelling",
+                description:
+                  "Dynamic motion design and visual effects for social media, product launches, and immersive brand experiences.",
+                image:
+                  "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80",
+                tags: ["Motion Media"],
               },
             ].map((project, idx) => (
               <div
                 key={idx}
                 className="group relative h-[580px] rounded-[28px] border border-white/[0.08] p-[2px] transition-all duration-500 hover:-translate-y-3 hover:border-violet-400/30 hover:shadow-[0_55px_150px_rgba(4,10,24,0.95)]"
                 style={{
-                  background: "linear-gradient(180deg, rgba(7,11,26,1) 0%, rgba(5,8,20,1) 50%, rgba(0,0,0,1) 100%)",
+                  background:
+                    "linear-gradient(180deg, rgba(7,11,26,1) 0%, rgba(5,8,20,1) 50%, rgba(0,0,0,1) 100%)",
                 }}
               >
                 <div
                   className="pointer-events-none absolute inset-0 rounded-[28px] opacity-80 transition-opacity duration-500 group-hover:opacity-100"
                   style={{
-                    background: "radial-gradient(85% 65% at 20% 0%, rgba(168,85,247,0.24), transparent 60%)",
+                    background:
+                      "radial-gradient(85% 65% at 20% 0%, rgba(168,85,247,0.24), transparent 60%)",
                   }}
                 />
 
@@ -852,7 +899,8 @@ const Home: React.FC = () => {
                     <div
                       className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100"
                       style={{
-                        background: "radial-gradient(85% 65% at 20% 0%, rgba(168,85,247,0.24), transparent 60%)",
+                        background:
+                          "radial-gradient(85% 65% at 20% 0%, rgba(168,85,247,0.24), transparent 60%)",
                       }}
                     />
 
@@ -870,15 +918,18 @@ const Home: React.FC = () => {
 
                     {/* CONTENT */}
                     <div className="absolute bottom-0 left-0 right-0 p-8">
-                      <div className="rounded-[21px] border border-white/[0.08] p-6 backdrop-blur-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:border-violet-400/25"
+                      <div
+                        className="rounded-[21px] border border-white/[0.08] p-6 backdrop-blur-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:border-violet-400/25"
                         style={{
-                          background: "linear-gradient(180deg, rgba(7,11,26,0.95) 0%, rgba(5,8,20,0.95) 100%)",
+                          background:
+                            "linear-gradient(180deg, rgba(7,11,26,0.95) 0%, rgba(5,8,20,0.95) 100%)",
                         }}
                       >
                         <div
                           className="pointer-events-none absolute inset-0 rounded-[21px] opacity-70 transition-opacity duration-500 group-hover:opacity-100"
                           style={{
-                            background: "radial-gradient(85% 65% at 20% 0%, rgba(168,85,247,0.24), transparent 60%)",
+                            background:
+                              "radial-gradient(85% 65% at 20% 0%, rgba(168,85,247,0.24), transparent 60%)",
                           }}
                         />
 
@@ -918,7 +969,6 @@ const Home: React.FC = () => {
       {/* 5. Process Section */}
       <section className="relative overflow-hidden bg-black">
         <div className="relative z-10 mt-16 md:mt-24 lg:mt-32">
-
           {/* HEADER BLOCK */}
           <div className="relative mb-16">
             {/* LEFT CURVE */}
@@ -939,19 +989,24 @@ const Home: React.FC = () => {
               <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-violet-700/60 to-transparent p-[1px] mb-8">
                 <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 bg-black backdrop-blur-xl">
                   <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                  <span className="text-xs text-gray-200 tracking-widest uppercase">Process</span>
+                  <span className="text-xs text-gray-200 tracking-widest uppercase">
+                    Work Flow
+                  </span>
                 </div>
               </div>
 
               <h2 className="text-[30px] md:text-[44px] text-white leading-[1.1] tracking-tight">
-                A structured approach
+                Where Structure Meets Creativity:
               </h2>
               <h3 className="text-[26px] md:text-[40px] text-gray-400 leading-[1.1] tracking-tight">
-                to great design.
+                A Smarter Way to Design
               </h3>
 
               <p className="text-zinc-500 font-semibold text-[15px] mt-6 w-full max-w-2xl mx-auto">
-                Five stages, one outcome — quality work that ships and performs. Tap a stage to explore.
+                We follow a simple, step-by-step plan that turns your basic
+                thoughts into great digital tools. Every step has a goal so that
+                every design choice is made for a good reason, not just by
+                guessing.
               </p>
             </div>
           </div>
@@ -966,7 +1021,13 @@ const Home: React.FC = () => {
                 { id: "animation", number: "4", title: "Animation" },
                 { id: "delivery", number: "5", title: "Delivery" },
               ].map((stage, i) => {
-                const stageOrder = ["research", "strategy", "design", "animation", "delivery"];
+                const stageOrder = [
+                  "research",
+                  "strategy",
+                  "design",
+                  "animation",
+                  "delivery",
+                ];
                 const activeIdx = stageOrder.indexOf(activeStage);
                 const currentIdx = stageOrder.indexOf(stage.id);
                 const isActive = activeStage === stage.id;
@@ -976,28 +1037,45 @@ const Home: React.FC = () => {
                     <div className="flex flex-col items-center shrink-0">
                       <button
                         onClick={() => setActiveStage(stage.id)}
-                         className={`w-10 h-10 sm:w-[72px] sm:h-[72px] rounded-full flex items-center justify-center text-sm sm:text-xl font-bold border-2 transition-all duration-300 shrink-0 midnight-card-gradient ${
+                        className={`w-10 h-10 sm:w-[72px] sm:h-[72px] rounded-full flex items-center justify-center text-sm sm:text-xl font-bold border-2 transition-all duration-300 shrink-0 midnight-card-gradient ${
                           isActive
                             ? "border-white text-white shadow-[0_0_30px_rgba(255,255,255,0.35),0_0_60px_rgba(255,255,255,0.15)]"
                             : isPast
-                            ? "border-violet-400/40 text-violet-200/80 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
-                            : "border-zinc-600/50 text-zinc-400 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                              ? "border-violet-400/40 text-violet-200/80 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                              : "border-zinc-600/50 text-zinc-400 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                         }`}
                       >
-                        <span className="text-sm sm:text-lg pr-[10px]">{stage.number}</span>
+                        <span className="text-sm sm:text-lg pr-[10px]">
+                          {stage.number}
+                        </span>
                       </button>
-                      <span className={`text-[10px] sm:text-xs font-medium tracking-wide mt-3 whitespace-nowrap transition-colors duration-300 ${
-                        isActive ? "text-white" : isPast ? "text-violet-300/70" : "text-zinc-500"
-                      }`}>
+                      <span
+                        className={`text-[10px] sm:text-xs font-medium tracking-wide mt-3 whitespace-nowrap transition-colors duration-300 ${
+                          isActive
+                            ? "text-white"
+                            : isPast
+                              ? "text-violet-300/70"
+                              : "text-zinc-500"
+                        }`}
+                      >
                         {stage.title}
                       </span>
                     </div>
                     {i < 4 && (
                       <div className="flex-1 flex items-center self-center mx-0 sm:mx-2 min-w-[16px] sm:min-w-[60px]">
-                        <svg className="w-full h-4 sm:h-8" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg
+                          className="w-full h-4 sm:h-8"
+                          viewBox="0 0 120 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
                           <path
                             d="M1 12 Q30 0 60 12 Q90 24 119 12"
-                            stroke={isPast ? "rgba(139,92,246,0.5)" : "rgba(63,63,70,0.6)"}
+                            stroke={
+                              isPast
+                                ? "rgba(139,92,246,0.5)"
+                                : "rgba(63,63,70,0.6)"
+                            }
                             strokeWidth="2"
                             strokeLinecap="round"
                             fill="none"
@@ -1016,40 +1094,69 @@ const Home: React.FC = () => {
             <div className="midnight-card-gradient rounded-[26px] border border-violet-800/40 p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-16 items-center">
               {/* Left: Large number */}
               <div className="flex-shrink-0">
-                <span className="text-[90px] md:text-[140px] font-extrabold leading-none bg-gradient-to-br from-white via-violet-200 to-violet-500/40 bg-clip-text " style={{ fontFamily: "'Poppins','Plus Jakarta Sans',sans-serif", letterSpacing: "-0.0em", fontStyle: "italic" }}>
-                  {activeStage === "research" ? "1" :
-                   activeStage === "strategy" ? "2" :
-                   activeStage === "design" ? "3" :
-                   activeStage === "animation" ? "4" : "5"}
+                <span
+                  className="text-[90px] md:text-[140px] font-extrabold leading-none bg-gradient-to-br from-white via-violet-200 to-violet-500/40 bg-clip-text "
+                  style={{
+                    fontFamily: "'Poppins','Plus Jakarta Sans',sans-serif",
+                    letterSpacing: "-0.0em",
+                    fontStyle: "italic",
+                  }}
+                >
+                  {activeStage === "research"
+                    ? "1"
+                    : activeStage === "strategy"
+                      ? "2"
+                      : activeStage === "design"
+                        ? "3"
+                        : activeStage === "animation"
+                          ? "4"
+                          : "5"}
                 </span>
               </div>
 
               {/* Right: Content */}
               <div className="flex-1 w-full">
                 <h3 className="text-white text-2xl md:text-3xl font-bold mb-4">
-                  {activeStage === "research" ? "Research" :
-                   activeStage === "strategy" ? "Strategy" :
-                   activeStage === "design" ? "Design" :
-                   activeStage === "animation" ? "Animation" : "Delivery"}
+                  {activeStage === "research"
+                    ? "Research"
+                    : activeStage === "strategy"
+                      ? "Strategy"
+                      : activeStage === "design"
+                        ? "Design"
+                        : activeStage === "animation"
+                          ? "Animation"
+                          : "Delivery"}
                 </h3>
                 <p className="text-zinc-400 text-[14px] leading-relaxed mb-6">
                   {activeStage === "delivery"
-                    ? "Production-ready assets, hand-off documentation, and launch support to ship with confidence."
+                    ? "We pack everything up perfectly for the coding team. Clean files, organized pictures, and launch tools make sure the final handoff is smooth and safe."
                     : activeStage === "research"
-                    ? "Deep market analysis, user research, and competitor benchmarking to inform every design decision."
-                    : activeStage === "strategy"
-                    ? "Defining the creative direction, visual identity, and project roadmap aligned with your business goals."
-                    : activeStage === "design"
-                    ? "Crafting pixel-perfect interfaces, motion concepts, and visual assets that bring the strategy to life."
-                    : "Bringing designs to life with smooth motion graphics, character animation, and dynamic visual effects."}
+                      ? "We start by learning about the people who use your app, your market, and the other companies out there. It helps us find real problems and neat ideas."
+                      : activeStage === "strategy"
+                        ? "Next, we pick the main path for your product. We sketch how a user moves through the app, design the map of the pages, and set clear goals."
+                        : activeStage === "design"
+                          ? "We change the plan into beautiful, clean, and real-looking screens. We also built a matching design kit, so every single page looks like it belongs together."
+                          : "We make your app feel alive with smooth movement. From tiny button bounces to clean videos, we add motion that makes the app easy and fun to use."}
                 </p>
 
                 {activeStage === "delivery" && (
                   <div className="mb-6">
-                    <h4 className="text-white/70 text-xs font-semibold mb-3 uppercase tracking-widest">Deliverables</h4>
+                    <h4 className="text-white/70 text-xs font-semibold mb-3 uppercase tracking-widest">
+                      Deliverables
+                    </h4>
                     <div className="flex flex-wrap gap-2">
-                      {["Dev hand-off", "Asset library", "Launch toolkit", "Post-launch QA"].map((d) => (
-                        <span key={d} className="px-3 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[12px] text-zinc-300">{d}</span>
+                      {[
+                        "Dev hand-off",
+                        "Asset library",
+                        "Launch toolkit",
+                        "Post-launch QA",
+                      ].map((d) => (
+                        <span
+                          key={d}
+                          className="px-3 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[12px] text-zinc-300"
+                        >
+                          {d}
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -1058,30 +1165,62 @@ const Home: React.FC = () => {
                 <div className="flex items-center gap-3 text-zinc-400 text-[13px] mb-4">
                   <span>🚀 Stage</span>
                   <span className="w-1 h-1 rounded-full bg-zinc-600" />
-                  <span>{activeStage === "research" ? "Research" :
-                   activeStage === "strategy" ? "Strategy" :
-                   activeStage === "design" ? "Design" :
-                   activeStage === "animation" ? "Animation" : "Delivery"}</span>
+                  <span>
+                    {activeStage === "research"
+                      ? "Research"
+                      : activeStage === "strategy"
+                        ? "Strategy"
+                        : activeStage === "design"
+                          ? "Design"
+                          : activeStage === "animation"
+                            ? "Animation"
+                            : "Delivery"}
+                  </span>
                   <span className="w-1 h-1 rounded-full bg-zinc-600" />
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-[11px] font-semibold tracking-wide">
-                    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <svg
+                      className="w-3 h-3"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
                     {activeStage === "delivery" ? "1 week" : "2 weeks"}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <span className="text-zinc-500 text-[13px]">
-                    Stage {activeStage === "research" ? "1" :
-                           activeStage === "strategy" ? "2" :
-                           activeStage === "design" ? "3" :
-                           activeStage === "animation" ? "4" : "5"} of 5
+                    Stage{" "}
+                    {activeStage === "research"
+                      ? "1"
+                      : activeStage === "strategy"
+                        ? "2"
+                        : activeStage === "design"
+                          ? "3"
+                          : activeStage === "animation"
+                            ? "4"
+                            : "5"}{" "}
+                    of 5
                   </span>
                   {activeStage !== "delivery" && (
                     <button
                       onClick={() => {
-                        const order = ["research", "strategy", "design", "animation", "delivery"];
+                        const order = [
+                          "research",
+                          "strategy",
+                          "design",
+                          "animation",
+                          "delivery",
+                        ];
                         const idx = order.indexOf(activeStage);
-                        if (idx < order.length - 1) setActiveStage(order[idx + 1]);
+                        if (idx < order.length - 1)
+                          setActiveStage(order[idx + 1]);
                       }}
                       className="text-violet-400 text-[13px] font-semibold flex items-center gap-1 hover:text-violet-300 transition-colors"
                     >
@@ -1092,7 +1231,6 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
-
         </div>
       </section>
       {/* 6. Technology Platforms / Tools Section */}
@@ -1129,14 +1267,15 @@ const Home: React.FC = () => {
               </div>
 
               <h2 className="text-[30px] md:text-[44px] text-white leading-[1.1] tracking-tight">
-                Our Proven Technology
+                Our Proven Technology Platforms.
               </h2>
               <h3 className="text-[26px] md:text-[40px] text-gray-400 leading-[1.1] tracking-tight">
                 Platforms & Tools We Master
               </h3>
 
               <p className="text-zinc-500 font-semibold text-[15px] mt-6 w-full max-w-2xl mx-auto leading-relaxed">
-                At 5StarDesigners, we deliver exceptional services using advanced technologies — creating measurable, effective solutions that match your needs and turn complex ideas into simple, scalable products.
+                We use a clean, modern mix of tools to build fast and strong apps and websites. Every piece of software we pick is chosen to make sure your product is fast, safe, and easy for people to use. Our goal is to turn big ideas into smooth, simple, and ready-for-tomorrow tools.
+
               </p>
             </div>
           </div>
@@ -1147,19 +1286,48 @@ const Home: React.FC = () => {
             <div className="tools-marquee">
               <div className="tools-marquee-track speed-medium">
                 {[
-                  { name: "React", src: "https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" },
-                  { name: "Next.js", src: "https://www.vectorlogo.zone/logos/nextjs/nextjs-icon.svg" },
-                  { name: "TypeScript", src: "https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg" },
-                  { name: "Tailwind", src: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" },
+                  {
+                    name: "React",
+                    src: "https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg",
+                  },
+                  {
+                    name: "Next.js",
+                    src: "https://www.vectorlogo.zone/logos/nextjs/nextjs-icon.svg",
+                  },
+                  {
+                    name: "TypeScript",
+                    src: "https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg",
+                  },
+                  {
+                    name: "Tailwind",
+                    src: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
+                  },
                   ...Array.from({ length: 3 }, () => [
-                    { name: "React", src: "https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" },
-                    { name: "Next.js", src: "https://www.vectorlogo.zone/logos/nextjs/nextjs-icon.svg" },
-                    { name: "TypeScript", src: "https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg" },
-                    { name: "Tailwind", src: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" },
+                    {
+                      name: "React",
+                      src: "https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg",
+                    },
+                    {
+                      name: "Next.js",
+                      src: "https://www.vectorlogo.zone/logos/nextjs/nextjs-icon.svg",
+                    },
+                    {
+                      name: "TypeScript",
+                      src: "https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg",
+                    },
+                    {
+                      name: "Tailwind",
+                      src: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
+                    },
                   ]).flat(),
                 ].map((tool, i) => (
                   <div key={`fe-${i}`} className="tool-cube">
-                    <img src={tool.src} alt={tool.name} loading="lazy" decoding="async" />
+                    <img
+                      src={tool.src}
+                      alt={tool.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <span className="tool-cube-label">{tool.name}</span>
                   </div>
                 ))}
@@ -1170,19 +1338,48 @@ const Home: React.FC = () => {
             <div className="tools-marquee">
               <div className="tools-marquee-track speed-slow">
                 {[
-                  { name: "Node.js", src: "https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg" },
-                  { name: "Python", src: "https://www.vectorlogo.zone/logos/python/python-icon.svg" },
-                  { name: "GraphQL", src: "https://www.vectorlogo.zone/logos/graphql/graphql-icon.svg" },
-                  { name: "PostgreSQL", src: "https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg" },
+                  {
+                    name: "Node.js",
+                    src: "https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg",
+                  },
+                  {
+                    name: "Python",
+                    src: "https://www.vectorlogo.zone/logos/python/python-icon.svg",
+                  },
+                  {
+                    name: "GraphQL",
+                    src: "https://www.vectorlogo.zone/logos/graphql/graphql-icon.svg",
+                  },
+                  {
+                    name: "PostgreSQL",
+                    src: "https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg",
+                  },
                   ...Array.from({ length: 3 }, () => [
-                    { name: "Node.js", src: "https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg" },
-                    { name: "Python", src: "https://www.vectorlogo.zone/logos/python/python-icon.svg" },
-                    { name: "GraphQL", src: "https://www.vectorlogo.zone/logos/graphql/graphql-icon.svg" },
-                    { name: "PostgreSQL", src: "https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg" },
+                    {
+                      name: "Node.js",
+                      src: "https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg",
+                    },
+                    {
+                      name: "Python",
+                      src: "https://www.vectorlogo.zone/logos/python/python-icon.svg",
+                    },
+                    {
+                      name: "GraphQL",
+                      src: "https://www.vectorlogo.zone/logos/graphql/graphql-icon.svg",
+                    },
+                    {
+                      name: "PostgreSQL",
+                      src: "https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg",
+                    },
                   ]).flat(),
                 ].map((tool, i) => (
                   <div key={`be-${i}`} className="tool-cube">
-                    <img src={tool.src} alt={tool.name} loading="lazy" decoding="async" />
+                    <img
+                      src={tool.src}
+                      alt={tool.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <span className="tool-cube-label">{tool.name}</span>
                   </div>
                 ))}
@@ -1193,22 +1390,53 @@ const Home: React.FC = () => {
             <div className="tools-marquee">
               <div className="tools-marquee-track speed-fast">
                 {[
-                  { name: "Figma", src: "https://www.vectorlogo.zone/logos/figma/figma-icon.svg" },
-                  { name: "After Effects", src: "https://www.vectorlogo.zone/logos/adobe/adobe-icon.svg" },
-                  { name: "Blender", src: "https://www.vectorlogo.zone/logos/blender/blender-icon.svg" },
+                  {
+                    name: "Figma",
+                    src: "https://www.vectorlogo.zone/logos/figma/figma-icon.svg",
+                  },
+                  {
+                    name: "After Effects",
+                    src: "https://www.vectorlogo.zone/logos/adobe/adobe-icon.svg",
+                  },
+                  {
+                    name: "Blender",
+                    src: "https://www.vectorlogo.zone/logos/blender/blender-icon.svg",
+                  },
                   { name: "Spline", src: "" },
                   ...Array.from({ length: 3 }, () => [
-                    { name: "Figma", src: "https://www.vectorlogo.zone/logos/figma/figma-icon.svg" },
-                    { name: "After Effects", src: "https://www.vectorlogo.zone/logos/adobe/adobe-icon.svg" },
-                    { name: "Blender", src: "https://www.vectorlogo.zone/logos/blender/blender-icon.svg" },
+                    {
+                      name: "Figma",
+                      src: "https://www.vectorlogo.zone/logos/figma/figma-icon.svg",
+                    },
+                    {
+                      name: "After Effects",
+                      src: "https://www.vectorlogo.zone/logos/adobe/adobe-icon.svg",
+                    },
+                    {
+                      name: "Blender",
+                      src: "https://www.vectorlogo.zone/logos/blender/blender-icon.svg",
+                    },
                     { name: "Spline", src: "" },
                   ]).flat(),
                 ].map((tool, i) => (
                   <div key={`de-${i}`} className="tool-cube">
                     {tool.src ? (
-                      <img src={tool.src} alt={tool.name} loading="lazy" decoding="async" />
+                      <img
+                        src={tool.src}
+                        alt={tool.name}
+                        loading="lazy"
+                        decoding="async"
+                      />
                     ) : (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-[26px] h-[26px] text-white/70">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="w-[26px] h-[26px] text-white/70"
+                      >
                         <circle cx="12" cy="12" r="3" />
                         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
                       </svg>
@@ -1218,7 +1446,6 @@ const Home: React.FC = () => {
                 ))}
               </div>
             </div>
-
           </div>
 
           {/* CTA */}
@@ -1240,335 +1467,352 @@ const Home: React.FC = () => {
       {/* PRICING SECTION */}
       <section className="relative overflow-hidden bg-black">
         <div className="relative w-full bg-black overflow-hidden py-16 md:py-28 lg:py-40">
-        {/* background glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-violet-600/10 blur-[120px] transform-gpu" />
-        </div>
-
-        <div className="relative mb-20">
-          {/* LEFT CURVE */}
-          <img
-            src={leftcurve}
-            alt="" aria-hidden="true" loading="lazy" decoding="async"
-            className="absolute left-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
-          />
-
-          {/* RIGHT CURVE */}
-          <img
-            src={leftcurve}
-            alt="Right Curve"
-            className="absolute right-0 lg:top-1/2 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
-          />
-
-          {/* heading */}
-          <div className="relative z-10 max-w-3xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
-            <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-violet-700/60 to-transparent p-[1px] mb-6">
-              <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 bg-black backdrop-blur-xl">
-                <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                <span className="text-xs text-gray-200 tracking-widest">
-                  Pricing
-                </span>
-              </div>
-            </div>
-
-            <h2 className="text-3xl md:text-[44px] text-white tracking-tight leading-[1.05]">
-              Plans for all businesses, suitable for
-            </h2>
-            <h3 className="text-3xl md:text-[44px] text-gray-400 tracking-tight leading-[1.1] mt-2">
-              Personal Brands, Agencies, Startups.
-            </h3>
-
-            <p className="text-zinc-400 text-[18px] mt-6 max-w-2xl mx-auto leading-relaxed">
-              Our pricing plans are designed to make getting started as
-              effortless as possible. With flexible options tailored to suit a
-              variety of needs and budgets.
-            </p>
+          {/* background glow */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-violet-600/10 blur-[120px] transform-gpu" />
           </div>
-        </div>
 
-        <div className="max-w-7xl mx-auto relative z-10 px-8 md:px-16 lg:px-24">
-          {/* cards */}
-          <div className="w-full grid grid-cols-1 items-stretch gap-8 lg:grid-cols-3">
-            {/* PRO WEEKLY */}
+          <div className="relative mb-20">
+            {/* LEFT CURVE */}
+            <img
+              src={leftcurve}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              className="absolute left-0 lg:top-1/2 -bottom-5 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+            />
 
-            <div
-              className={`group relative h-full w-full rounded-[34px] border border-white/[0.08] 
-                  ${PRICING_CARD_GRADIENT}
-                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-violet-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
-            >
-              {/* top blue glow */}
-              <div className={`absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`} />
+            {/* RIGHT CURVE */}
+            <img
+              src={leftcurve}
+              alt="Right Curve"
+              className="absolute right-0 lg:top-1/2 -bottom-5 -scale-x-100 -translate-y-1/2 w-[35%] 2xl:max-w-[350px] lg:max-w-[280px] pointer-events-none"
+            />
 
-              <div className="relative px-8 md:px-9 pt-10 pb-8 min-h-[690px] flex-1 flex flex-col">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex flex-col items-start gap-3">
-                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-violet-950 border border-violet-900 flex items-center justify-center transition-all duration-500 group-hover:border-violet-400/40 group-hover:shadow-[0_0_35px_rgba(168,85,247,0.28)]">
-                      <Rocket />
-                    </div>
-                    <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-violet-50">
-                      Pro Weekly
-                    </span>
-                  </div>
-
-                  <span
-                    className="px-3 py-2 rounded-lg bg-violet-500/10 border bg-gradient-to-t from-gray-500/20 to-violet-900/20 border-violet-500/20 transition-all duration-300 group-hover:border-violet-400/30 group-hover:text-white 
-        text-[13px] font-semibold text-violet-100"
-                  >
-                    Most Pick
+            {/* heading */}
+            <div className="relative z-10 max-w-3xl mx-auto px-8 md:px-16 lg:px-24 text-center flex flex-col items-center">
+              <div className="inline-block rounded-lg bg-gradient-to-r from-transparent via-violet-700/60 to-transparent p-[1px] mb-6">
+                <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border-x border-gray-800 bg-black backdrop-blur-xl">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
+                  <span className="text-xs text-gray-200 tracking-widest">
+                    Pricing
                   </span>
                 </div>
-
-                {/* Price */}
-                <div className="relative mb-6 min-h-[84px]">
-                  <div className="flex items-end gap-2">
-                    <span className="text-white text-[44px]">$790</span>
-                    <span className="text-gray-500 text-[14px] mb-3">
-                      /Month
-                    </span>
-                    <span className="text-gray-600 text-[44px] line-through opacity-70">
-                      $1450
-                    </span>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="min-h-[70px] text-gray-400 text-[14px] leading-relaxed mb-7 transition-colors duration-300 group-hover:text-gray-300">
-                  Our basic pricing plan is designed to offer great value while
-                  providing the essential features you need to get started.
-                </p>
-
-                {/* Pills */}
-                <div className="flex gap-3 mb-8">
-                  <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
-                    <b>100+</b> <span className="text-gray-400">Projects</span>
-                  </span>
-                  <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] text-gray-300 transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
-                    <b>75+</b> <span className="text-gray-400">Revisions</span>
-                  </span>
-                </div>
-
-                {/* Features */}
-                <ul className="space-y-4 mb-8 text-[13px]">
-                  {[
-                    "1 Dedicated Expert Product Designer",
-                    "Up to 40 hours per week",
-                    "Daily Updates",
-                    "Real-Time Communication and Collaboration",
-                    "One Project at a time",
-                  ].map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-3 text-gray-300"
-                    >
-                      <BadgeCheck className="h-5 w-5 text-violet-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
-              {/* CTA */}
-              <div className="relative mt-auto px-6 pb-6">
-                <a
-                  href={CALENDLY_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${NAVBAR_CTA_BUTTON_CLASS} mx-auto w-full text-center`}
-                >
-                  Book an Appointment
-                </a>
-              </div>
+
+              <h2 className="text-3xl md:text-[44px] text-white tracking-tight leading-[1.05]">
+                Plans for all businesses, suitable for
+              </h2>
+              <h3 className="text-3xl md:text-[44px] text-gray-400 tracking-tight leading-[1.1] mt-2">
+                Personal Brands, Agencies, Startups.
+              </h3>
+
+              <p className="text-zinc-400 text-[18px] mt-6 max-w-2xl mx-auto leading-relaxed">
+                Our pricing plans are designed to make getting started as
+                effortless as possible. With flexible options tailored to suit a
+                variety of needs and budgets.
+              </p>
             </div>
+          </div>
 
-            {/* GROWTH */}
-            <div
-              className={`group relative h-full w-full rounded-[34px] border border-white/[0.08] 
+          <div className="max-w-7xl mx-auto relative z-10 px-8 md:px-16 lg:px-24">
+            {/* cards */}
+            <div className="w-full grid grid-cols-1 items-stretch gap-8 lg:grid-cols-3">
+              {/* PRO WEEKLY */}
+
+              <div
+                className={`group relative h-full w-full rounded-[34px] border border-white/[0.08] 
                   ${PRICING_CARD_GRADIENT}
                   shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-violet-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
-            >
-              {/* top glow */}
-              <div className={`absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`} />
-
-              <div className="relative px-8 md:px-9 pt-10 pb-8 min-h-[690px] flex-1 flex flex-col">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex flex-col items-start gap-3">
-                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-violet-950 border border-violet-900 flex items-center justify-center transition-all duration-500 group-hover:border-violet-400/40 group-hover:shadow-[0_0_35px_rgba(168,85,247,0.28)]">
-                      <Sparkles />
-                    </div>
-                    <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-violet-50">
-                      Growth Plan
-                    </span>
-                  </div>
-
-                  <span
-                    className="px-3 py-2 rounded-lg bg-violet-500/10 border bg-gradient-to-t from-gray-500/20 to-violet-900/20 border-violet-500/20 transition-all duration-300 group-hover:border-violet-400/30 group-hover:text-white 
-        text-[13px] font-semibold text-violet-100"
-                  >
-                    Popular
-                  </span>
-                </div>
-
-                {/* Price */}
-                <div className="relative mb-6 min-h-[84px]">
-                  <div className="flex items-end gap-2">
-                    <span className="text-white text-[44px]">$1,499</span>
-                    <span className="text-gray-500 text-[14px] mb-3">
-                      /Month
-                    </span>
-                    <span className="text-gray-600 text-[44px] line-through opacity-70">
-                      $2,299
-                    </span>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="min-h-[70px] text-gray-400 text-[14px] leading-relaxed mb-7 transition-colors duration-300 group-hover:text-gray-300">
-                  Our most popular plan for growing businesses that need extra capacity and faster delivery.
-                </p>
-
-                {/* Pills */}
-                <div className="flex gap-3 mb-8">
-                  <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
-                    <b>300+</b> <span className="text-gray-400">Projects</span>
-                  </span>
-                  <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] text-gray-300 transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
-                    <b>150+</b> <span className="text-gray-400">Revisions</span>
-                  </span>
-                </div>
-
-                {/* Features */}
-                <ul className="space-y-4 mb-8 text-[13px]">
-                  {[
-                    "1 Dedicated Expert Product Designer",
-                    "Up to 40 hours per week",
-                    "Daily Updates",
-                    "Real-Time Communication and Collaboration",
-                    "One Project at a time",
-                  ].map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-3 text-gray-300"
-                    >
-                      <BadgeCheck className="h-5 w-5 text-violet-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              {/* CTA */}
-              <div className="relative mt-auto px-6 pb-6">
-                <a
-                  href={CALENDLY_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${NAVBAR_CTA_BUTTON_CLASS} mx-auto w-full text-center`}
-                >
-                  Book an Appointment
-                </a>
-              </div>
-            </div>
-
-            {/* PREMIUM */}
-            <div
-              className={`group relative h-full w-full rounded-[34px] border border-white/[0.08] 
-                  ${PRICING_CARD_GRADIENT}
-                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-violet-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
-            >
-              {/* top indigo/blue glow */}
-              <div className={`absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`} />
-
-              <div className="relative px-8 md:px-9 pt-10 pb-8 min-h-[690px] flex-1 flex flex-col">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex flex-col items-start gap-3">
-                    <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-violet-950 border border-violet-900 flex items-center justify-center transition-all duration-500 group-hover:border-violet-400/40 group-hover:shadow-[0_0_35px_rgba(168,85,247,0.28)]">
-                      <Power /> {/* or Rocket if you want consistency */}
-                    </div>
-
-                    <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-violet-50">
-                      Premium
-                    </span>
-                  </div>
-
-                  <span
-                    className="px-3 py-2 rounded-lg bg-violet-500/10 border bg-gradient-to-t from-gray-500/20 to-violet-900/20 border-violet-500/20 transition-all duration-300 group-hover:border-violet-400/30 group-hover:text-white 
-        text-[13px] font-semibold text-violet-100"
-                  >
-                    Recommended
-                  </span>
-                </div>
-
-                {/* Price */}
-                <div className="relative mb-6 min-h-[84px]">
-                  <div className="flex items-end gap-2">
-                    <span className="text-white text-[44px]">$2,599</span>
-                    <span className="text-gray-500 text-[14px] mb-3">
-                      /Month
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="text-[44px] line-through opacity-0 select-none"
-                    >
-                      $1450
-                    </span>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="min-h-[70px] text-gray-400 text-[14px] leading-relaxed mb-7 transition-colors duration-300 group-hover:text-gray-300">
-                  Our premium pricing plan is designed for businesses looking
-                  for advanced features and priority-level support.
-                </p>
-
-                {/* Pills */}
-                <div className="flex gap-3 mb-8">
-                  <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
-                    <b>650+</b> <span className="text-gray-400">Projects</span>
-                  </span>
-                  <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
-                    <b>250+</b> <span className="text-gray-400">Revisions</span>
-                  </span>
-                </div>
-
-                {/* Features */}
-                <ul className="space-y-4 mb-8 text-[13px]">
-                  {[
-                    "Dedicated Expert Product Designer",
-                    "Up to 40 hours per week",
-                    "Daily Updates",
-                    "Real-Time Communication and Collaboration",
-                    "One Project at a time",
-                  ].map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-3 text-gray-300"
-                    >
-                      <BadgeCheck className="h-5 w-5 text-violet-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <img
-                  src={star}
-                  alt="Star"
-                  className="pointer-events-none absolute bottom-28 right-1/2 -translate-x-1/2 opacity-20 mx-auto"
+              >
+                {/* top blue glow */}
+                <div
+                  className={`absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`}
                 />
+
+                <div className="relative px-8 md:px-9 pt-10 pb-8 min-h-[690px] flex-1 flex flex-col">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex flex-col items-start gap-3">
+                      <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-violet-950 border border-violet-900 flex items-center justify-center transition-all duration-500 group-hover:border-violet-400/40 group-hover:shadow-[0_0_35px_rgba(168,85,247,0.28)]">
+                        <Rocket />
+                      </div>
+                      <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-violet-50">
+                        Pro Weekly
+                      </span>
+                    </div>
+
+                    <span
+                      className="px-3 py-2 rounded-lg bg-violet-500/10 border bg-gradient-to-t from-gray-500/20 to-violet-900/20 border-violet-500/20 transition-all duration-300 group-hover:border-violet-400/30 group-hover:text-white 
+        text-[13px] font-semibold text-violet-100"
+                    >
+                      Most Pick
+                    </span>
+                  </div>
+
+                  {/* Price */}
+                  <div className="relative mb-6 min-h-[84px]">
+                    <div className="flex items-end gap-2">
+                      <span className="text-white text-[44px]">$790</span>
+                      <span className="text-gray-500 text-[14px] mb-3">
+                        /Month
+                      </span>
+                      <span className="text-gray-600 text-[44px] line-through opacity-70">
+                        $1450
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="min-h-[70px] text-gray-400 text-[14px] leading-relaxed mb-7 transition-colors duration-300 group-hover:text-gray-300">
+                    Our basic pricing plan is designed to offer great value
+                    while providing the essential features you need to get
+                    started.
+                  </p>
+
+                  {/* Pills */}
+                  <div className="flex gap-3 mb-8">
+                    <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
+                      <b>100+</b>{" "}
+                      <span className="text-gray-400">Projects</span>
+                    </span>
+                    <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] text-gray-300 transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
+                      <b>75+</b>{" "}
+                      <span className="text-gray-400">Revisions</span>
+                    </span>
+                  </div>
+
+                  {/* Features */}
+                  <ul className="space-y-4 mb-8 text-[13px]">
+                    {[
+                      "1 Dedicated Expert Product Designer",
+                      "Up to 40 hours per week",
+                      "Daily Updates",
+                      "Real-Time Communication and Collaboration",
+                      "One Project at a time",
+                    ].map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-center gap-3 text-gray-300"
+                      >
+                        <BadgeCheck className="h-5 w-5 text-violet-500" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* CTA */}
+                <div className="relative mt-auto px-6 pb-6">
+                  <a
+                    href={CALENDLY_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${NAVBAR_CTA_BUTTON_CLASS} mx-auto w-full text-center`}
+                  >
+                    Book an Appointment
+                  </a>
+                </div>
               </div>
-              {/* CTA: keep only pill shape from reference */}
-              <div className="relative mt-auto px-6 pb-6">
-                <a
-                  href={CALENDLY_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${NAVBAR_CTA_BUTTON_CLASS} mx-auto w-full text-center`}
-                >
-                  Book an Appointment
-                </a>
+
+              {/* GROWTH */}
+              <div
+                className={`group relative h-full w-full rounded-[34px] border border-white/[0.08] 
+                  ${PRICING_CARD_GRADIENT}
+                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-violet-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
+              >
+                {/* top glow */}
+                <div
+                  className={`absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`}
+                />
+
+                <div className="relative px-8 md:px-9 pt-10 pb-8 min-h-[690px] flex-1 flex flex-col">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex flex-col items-start gap-3">
+                      <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-violet-950 border border-violet-900 flex items-center justify-center transition-all duration-500 group-hover:border-violet-400/40 group-hover:shadow-[0_0_35px_rgba(168,85,247,0.28)]">
+                        <Sparkles />
+                      </div>
+                      <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-violet-50">
+                        Growth Plan
+                      </span>
+                    </div>
+
+                    <span
+                      className="px-3 py-2 rounded-lg bg-violet-500/10 border bg-gradient-to-t from-gray-500/20 to-violet-900/20 border-violet-500/20 transition-all duration-300 group-hover:border-violet-400/30 group-hover:text-white 
+        text-[13px] font-semibold text-violet-100"
+                    >
+                      Popular
+                    </span>
+                  </div>
+
+                  {/* Price */}
+                  <div className="relative mb-6 min-h-[84px]">
+                    <div className="flex items-end gap-2">
+                      <span className="text-white text-[44px]">$1,499</span>
+                      <span className="text-gray-500 text-[14px] mb-3">
+                        /Month
+                      </span>
+                      <span className="text-gray-600 text-[44px] line-through opacity-70">
+                        $2,299
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="min-h-[70px] text-gray-400 text-[14px] leading-relaxed mb-7 transition-colors duration-300 group-hover:text-gray-300">
+                    Our most popular plan for growing businesses that need extra
+                    capacity and faster delivery.
+                  </p>
+
+                  {/* Pills */}
+                  <div className="flex gap-3 mb-8">
+                    <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
+                      <b>300+</b>{" "}
+                      <span className="text-gray-400">Projects</span>
+                    </span>
+                    <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] text-gray-300 transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
+                      <b>150+</b>{" "}
+                      <span className="text-gray-400">Revisions</span>
+                    </span>
+                  </div>
+
+                  {/* Features */}
+                  <ul className="space-y-4 mb-8 text-[13px]">
+                    {[
+                      "1 Dedicated Expert Product Designer",
+                      "Up to 40 hours per week",
+                      "Daily Updates",
+                      "Real-Time Communication and Collaboration",
+                      "One Project at a time",
+                    ].map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-center gap-3 text-gray-300"
+                      >
+                        <BadgeCheck className="h-5 w-5 text-violet-500" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* CTA */}
+                <div className="relative mt-auto px-6 pb-6">
+                  <a
+                    href={CALENDLY_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${NAVBAR_CTA_BUTTON_CLASS} mx-auto w-full text-center`}
+                  >
+                    Book an Appointment
+                  </a>
+                </div>
+              </div>
+
+              {/* PREMIUM */}
+              <div
+                className={`group relative h-full w-full rounded-[34px] border border-white/[0.08] 
+                  ${PRICING_CARD_GRADIENT}
+                  shadow-[0_45px_140px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-3 hover:border-violet-300/20 hover:shadow-[0_60px_160px_rgba(0,0,0,0.92)]`}
+              >
+                {/* top indigo/blue glow */}
+                <div
+                  className={`absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 ${PRICING_CARD_GLOW}`}
+                />
+
+                <div className="relative px-8 md:px-9 pt-10 pb-8 min-h-[690px] flex-1 flex flex-col">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex flex-col items-start gap-3">
+                      <div className="px-5 py-4 rounded-xl bg-slate-900 shadow-xl shadow-violet-950 border border-violet-900 flex items-center justify-center transition-all duration-500 group-hover:border-violet-400/40 group-hover:shadow-[0_0_35px_rgba(168,85,247,0.28)]">
+                        <Power /> {/* or Rocket if you want consistency */}
+                      </div>
+
+                      <span className="text-white font-semibold text-[15px] transition-colors duration-300 group-hover:text-violet-50">
+                        Premium
+                      </span>
+                    </div>
+
+                    <span
+                      className="px-3 py-2 rounded-lg bg-violet-500/10 border bg-gradient-to-t from-gray-500/20 to-violet-900/20 border-violet-500/20 transition-all duration-300 group-hover:border-violet-400/30 group-hover:text-white 
+        text-[13px] font-semibold text-violet-100"
+                    >
+                      Recommended
+                    </span>
+                  </div>
+
+                  {/* Price */}
+                  <div className="relative mb-6 min-h-[84px]">
+                    <div className="flex items-end gap-2">
+                      <span className="text-white text-[44px]">$2,599</span>
+                      <span className="text-gray-500 text-[14px] mb-3">
+                        /Month
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="text-[44px] line-through opacity-0 select-none"
+                      >
+                        $1450
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="min-h-[70px] text-gray-400 text-[14px] leading-relaxed mb-7 transition-colors duration-300 group-hover:text-gray-300">
+                    Our premium pricing plan is designed for businesses looking
+                    for advanced features and priority-level support.
+                  </p>
+
+                  {/* Pills */}
+                  <div className="flex gap-3 mb-8">
+                    <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
+                      <b>650+</b>{" "}
+                      <span className="text-gray-400">Projects</span>
+                    </span>
+                    <span className="px-4 py-1.5 rounded-lg bg-violet-500/10 border border-white/10 text-[13px] transition-all duration-300 group-hover:border-violet-400/25 group-hover:bg-violet-500/15">
+                      <b>250+</b>{" "}
+                      <span className="text-gray-400">Revisions</span>
+                    </span>
+                  </div>
+
+                  {/* Features */}
+                  <ul className="space-y-4 mb-8 text-[13px]">
+                    {[
+                      "Dedicated Expert Product Designer",
+                      "Up to 40 hours per week",
+                      "Daily Updates",
+                      "Real-Time Communication and Collaboration",
+                      "One Project at a time",
+                    ].map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-center gap-3 text-gray-300"
+                      >
+                        <BadgeCheck className="h-5 w-5 text-violet-500" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <img
+                    src={star}
+                    alt="Star"
+                    className="pointer-events-none absolute bottom-28 right-1/2 -translate-x-1/2 opacity-20 mx-auto"
+                  />
+                </div>
+                {/* CTA: keep only pill shape from reference */}
+                <div className="relative mt-auto px-6 pb-6">
+                  <a
+                    href={CALENDLY_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${NAVBAR_CTA_BUTTON_CLASS} mx-auto w-full text-center`}
+                  >
+                    Book an Appointment
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </section>
 
@@ -1605,18 +1849,18 @@ const Home: React.FC = () => {
             </div>
 
             <h2 className="text-4xl md:text-[48px] text-white tracking-tight leading-[1.05]">
-              Customer Reviews on
+Trusted By Startups, SaaS Brands & Growing Businesses
             </h2>
 
-            <h3 className="text-4xl md:text-[48px] text-gray-400 tracking-tight leading-[1.1] mt-2">
+            {/* <h3 className="text-4xl md:text-[48px] text-gray-400 tracking-tight leading-[1.1] mt-2">
               Process and Final Quality
-            </h3>
+            </h3> */}
 
             <p className="text-zinc-400 font-semibold text-[15px] mt-6 w-full max-w-lg mx-auto">
-              We keep it easy: clear checkpoints, fast feedback loops, and work
-              that looks sharp on launch day.
+             Read what our clients say about how we helped them build trust and look great.
+
             </p>
-            <div className="relative w-full max-w-[400px] mt-8 overflow-hidden opacity-30 grayscale select-none pointer-events-none">
+            {/* <div className="relative w-full max-w-[400px] mt-8 overflow-hidden opacity-30 grayscale select-none pointer-events-none">
               <div className="animate-infinite-scroll flex items-center py-2">
                 {[...logos, ...logos, ...logos].map((logo, index) => (
                   <div key={index} className="flex items-center space-x-3 mx-8">
@@ -1627,7 +1871,7 @@ const Home: React.FC = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             <div className="mt-10">
               <a
@@ -1656,31 +1900,31 @@ const Home: React.FC = () => {
             {[
               {
                 image: avatar1,
-                name: "Daniel Carter",
-                role: "Founder",
+                name: "Sarah Mitchell,",
+                role: "Product Manager",
                 company: "Innovate Solutions",
-                text: "Our message finally clicked. The new explainer is simple, sharp, and easy to share. They nailed the styleframes early, then the animation matched perfectly.",
+                text: "Working with the Inspiro team changed our product path completely. The team learned the goals fast and made a clean, fresh screen layout that users love. Talking together was easy the whole time. ",
               },
               {
                 image: avatar2,
-                name: "Emily Davis",
-                role: "Product Manager",
+                name: "James Carter,",
+                role: "SaaS Founder",
                 company: "Nexus Digital",
-                text: "The team understood our complex requirements and delivered a user-friendly, high-performing product.",
+                text: "We saw a big jump in happy users after the new design. Inspiro Studio focuses on smart layouts that really work. It was not just pretty to look at; it worked great.",
               },
               {
                 image: avatar3,
-                name: "David Lee",
-                role: "Founder",
+                name: "Ayesha Khan,",
+                role: "Tech Lead",
                 company: "GreenLeaf Enterprises",
-                text: "Their execution balanced visual polish with functional clarity. A very rare combination.",
+                text: "From the basic plan to the final code, everything was done perfectly. The team is fun, creative, and very good with new tech tools. They always finished on time",
               },
               {
                 image: avatar3,
-                name: "Mark Thompson",
-                role: "Creative Director",
+                name: "Daniel Roberts",
+                role: "Startup Founder",
                 company: "PixelWorks Studio",
-                text: "Strong process, sharp design sense, and excellent communication throughout the project.",
+                text: "With Inspiro Studio, we came up with just a simple thought, and the team turned it into a real, working, and growing app. The path was clear, organized, and very fast. ",
               },
               {
                 image: avatar2,
@@ -1691,10 +1935,10 @@ const Home: React.FC = () => {
               },
               {
                 image: avatar1,
-                name: "Daniel Carter",
-                role: "Founder",
+                name: "Michael Lee,",
+                role: " Business Owner",
                 company: "Fusion Studio",
-                text: "A premium experience from start to finish. The final result feels intentional and refined.",
+                text: "The best part is how honest and steady they are. They are not just a group you hire once but a true friend for your tech and design needs. ",
               },
             ].map((t, idx) => (
               <div
@@ -1827,7 +2071,9 @@ const Home: React.FC = () => {
                   className={`midnight-card-gradient border border-violet-100/15 rounded-[24px] overflow-hidden group hover:border-white/[0.08] transition-all duration-500 cursor-pointer ${activeFaq === idx ? "border-white/[0.12]" : ""}`}
                   onMouseEnter={() => setActiveFaq(idx)}
                   onMouseLeave={() =>
-                    setActiveFaq((current) => (current === idx ? null : current))
+                    setActiveFaq((current) =>
+                      current === idx ? null : current,
+                    )
                   }
                   onClick={() => toggleFaq(idx)}
                 >
@@ -1863,20 +2109,25 @@ const Home: React.FC = () => {
       {/* 9. Contact Section */}
       <section className="relative bg-transparent py-12 md:py-16 px-4 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className={`group relative w-full rounded-[32px] border border-white/[0.08] ${PRICING_CARD_GRADIENT} shadow-[0_45px_140px_rgba(0,0,0,0.9),0_0_60px_rgba(168,85,247,0.1)] overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-violet-400/25 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95),0_0_80px_rgba(192,132,252,0.15)]`}>
+          <div
+            className={`group relative w-full rounded-[32px] border border-white/[0.08] ${PRICING_CARD_GRADIENT} shadow-[0_45px_140px_rgba(0,0,0,0.9),0_0_60px_rgba(168,85,247,0.1)] overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-violet-400/25 hover:shadow-[0_60px_160px_rgba(0,0,0,0.95),0_0_80px_rgba(192,132,252,0.15)]`}
+          >
             <div className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(75%_55%_at_50%_0%,rgba(192,132,252,0.22),transparent_65%)]" />
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent" />
 
             <div className="relative z-10 py-10 md:py-12 px-6 md:px-12">
-              {status === 'success' ? (
+              {status === "success" ? (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                   <div className="text-center lg:text-left">
                     <div className="w-14 h-14 bg-violet-500/10 rounded-2xl flex items-center justify-center mb-6 border border-violet-500/20 mx-auto lg:mx-0 shadow-[0_0_20px_rgba(168,85,247,0.25)]">
                       <ShieldCheck className="w-7 h-7 text-violet-400" />
                     </div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight leading-tight">Mailed to Inbox.</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight leading-tight">
+                      Mailed to Inbox.
+                    </h2>
                     <p className="text-gray-400 text-base mb-8 max-w-sm mx-auto lg:mx-0">
-                      Your project details have been securely delivered to <br/>
+                      Your project details have been securely delivered to{" "}
+                      <br />
                       <span className="text-white font-bold bg-white/5 px-2 py-1 rounded-lg border border-white/10 inline-block mt-2">
                         business@inspirostudio.io
                       </span>
@@ -1899,30 +2150,44 @@ const Home: React.FC = () => {
                   <div className="bg-gradient-to-br from-[#070b1a] via-[#050814] to-black border border-white/10 rounded-3xl p-6 backdrop-blur-2xl shadow-inner">
                     <div className="flex items-center space-x-3 mb-6 border-b border-white/10 pb-3">
                       <ClipboardList className="w-4 h-4 text-gray-500" />
-                      <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">Live Dispatch Receipt</span>
+                      <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">
+                        Live Dispatch Receipt
+                      </span>
                     </div>
                     <div className="space-y-4">
                       <div className="flex items-start space-x-4">
                         <User className="w-4 h-4 text-violet-300 mt-0.5" />
                         <div>
-                          <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">Identity</p>
-                          <p className="text-white font-bold">{formData.name}</p>
+                          <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">
+                            Identity
+                          </p>
+                          <p className="text-white font-bold">
+                            {formData.name}
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-start space-x-4">
                         <Briefcase className="w-4 h-4 text-violet-400 mt-0.5" />
                         <div>
-                          <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">Service Type</p>
-                          <p className="text-white font-bold">{formData.category}</p>
+                          <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">
+                            Service Type
+                          </p>
+                          <p className="text-white font-bold">
+                            {formData.category}
+                          </p>
                         </div>
                       </div>
                       <div className="pt-3 border-t border-white/5">
-                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-2">Project Requirement</p>
-                        <p className="text-gray-400 text-sm leading-relaxed italic line-clamp-3">"{formData.brief}"</p>
+                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-2">
+                          Project Requirement
+                        </p>
+                        <p className="text-gray-400 text-sm leading-relaxed italic line-clamp-3">
+                          "{formData.brief}"
+                        </p>
                       </div>
                     </div>
                     <button
-                      onClick={() => setStatus('idle')}
+                      onClick={() => setStatus("idle")}
                       className={`${NAVBAR_CTA_BUTTON_FULL_WIDTH_CLASS} group mt-8`}
                     >
                       <span>Submit Another Brief</span>
@@ -1935,10 +2200,15 @@ const Home: React.FC = () => {
                   <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
                     <div className="w-full max-w-[480px]">
                       <h2 className="text-[28px] sm:text-[36px] lg:text-[44px] font-bold text-white mb-4 tracking-tight leading-[1.05]">
-                        TELL US <br/><span className="text-violet-300">EVERYTHING</span>.
+                        TELL US <br />
+                        <span className="text-violet-300">EVERYTHING</span>.
                       </h2>
                       <p className="text-sm md:text-base text-[#a1a1aa] mb-6 leading-relaxed max-w-md font-medium opacity-80">
-                        Your project inquiry is about to be mailed to <span className="text-white border-b border-violet-500/50 pb-1">business@inspirostudio.io</span>.
+                        Your project inquiry is about to be mailed to{" "}
+                        <span className="text-white border-b border-violet-500/50 pb-1">
+                          business@inspirostudio.io
+                        </span>
+                        .
                       </p>
                       <div className="space-y-6">
                         <ContactInfoItem
@@ -1960,85 +2230,150 @@ const Home: React.FC = () => {
                       <div className="contact-water-ripple contact-water-ripple-two"></div>
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-500/25 via-fuchsia-400/25 to-violet-500/25 rounded-[32px] blur-xl opacity-75 group-hover:opacity-100 transition duration-700"></div>
                       <div className="midnight-card-gradient relative border border-white/10 rounded-[24px] p-6 md:p-8 shadow-2xl animate-water-drop-in">
-                        <h3 className="text-xl font-bold text-white mb-6 tracking-tight flex items-center animate-water-item" style={{ animationDelay: '120ms' }}>
+                        <h3
+                          className="text-xl font-bold text-white mb-6 tracking-tight flex items-center animate-water-item"
+                          style={{ animationDelay: "120ms" }}
+                        >
                           Project Contact Form
-                          {status === 'submitting' && <Loader2 className="ml-3 w-4 h-4 text-violet-300 animate-spin" />}
+                          {status === "submitting" && (
+                            <Loader2 className="ml-3 w-4 h-4 text-violet-300 animate-spin" />
+                          )}
                         </h3>
                         <form onSubmit={handleSubmit} className="space-y-5">
-                          {status === 'error' && (
-                            <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 flex items-start space-x-3 text-red-400 text-sm animate-water-item" style={{ animationDelay: '180ms' }}>
+                          {status === "error" && (
+                            <div
+                              className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 flex items-start space-x-3 text-red-400 text-sm animate-water-item"
+                              style={{ animationDelay: "180ms" }}
+                            >
                               <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
                               <div>
-                                <p className="font-bold mb-1">Dispatch Failed</p>
-                                <p className="opacity-80 leading-relaxed">{errorMessage}</p>
+                                <p className="font-bold mb-1">
+                                  Dispatch Failed
+                                </p>
+                                <p className="opacity-80 leading-relaxed">
+                                  {errorMessage}
+                                </p>
                               </div>
                             </div>
                           )}
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 animate-water-item" style={{ animationDelay: '220ms' }}>
+                          <div
+                            className="grid grid-cols-1 md:grid-cols-2 gap-5 animate-water-item"
+                            style={{ animationDelay: "220ms" }}
+                          >
                             <div className="space-y-2">
-                              <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Name / Brand</label>
+                              <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                                Name / Brand
+                              </label>
                               <input
                                 required
                                 type="text"
                                 value={formData.name}
-                                onChange={(e) => setFormData({...formData, name: e.target.value})}
-                                disabled={status === 'submitting'}
+                                onChange={(e) =>
+                                  setFormData({
+                                    ...formData,
+                                    name: e.target.value,
+                                  })
+                                }
+                                disabled={status === "submitting"}
                                 className="w-full contact-water-input border rounded-2xl px-5 py-4 text-[14px] text-white placeholder:text-slate-300/55 focus:outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                 placeholder="e.g. Acme Corp"
                               />
                             </div>
                             <div className="space-y-2">
-                              <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Contact Email</label>
+                              <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                                Contact Email
+                              </label>
                               <input
                                 required
                                 type="email"
                                 value={formData.email}
-                                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                                disabled={status === 'submitting'}
+                                onChange={(e) =>
+                                  setFormData({
+                                    ...formData,
+                                    email: e.target.value,
+                                  })
+                                }
+                                disabled={status === "submitting"}
                                 className="w-full contact-water-input border rounded-2xl px-5 py-4 text-[14px] text-white placeholder:text-slate-300/55 focus:outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                 placeholder="you@domain.com"
                               />
                             </div>
                           </div>
-                          <div className="space-y-2 animate-water-item" style={{ animationDelay: '300ms' }}>
-                            <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Category</label>
+                          <div
+                            className="space-y-2 animate-water-item"
+                            style={{ animationDelay: "300ms" }}
+                          >
+                            <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                              Category
+                            </label>
                             <div className="relative">
                               <select
                                 value={formData.category}
-                                onChange={(e) => setFormData({...formData, category: e.target.value})}
-                                disabled={status === 'submitting'}
+                                onChange={(e) =>
+                                  setFormData({
+                                    ...formData,
+                                    category: e.target.value,
+                                  })
+                                }
+                                disabled={status === "submitting"}
                                 className="w-full contact-water-input border rounded-2xl px-5 py-4 text-[14px] text-white focus:outline-none transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                               >
-                                <option className="bg-[#0a1428]">Video Marketing</option>
-                                <option className="bg-[#0a1428]">Product Animation</option>
-                                <option className="bg-[#0a1428]">Branding Package</option>
-                                <option className="bg-[#0a1428]">Social Strategy</option>
+                                <option className="bg-[#0a1428]">
+                                  Video Marketing
+                                </option>
+                                <option className="bg-[#0a1428]">
+                                  Product Animation
+                                </option>
+                                <option className="bg-[#0a1428]">
+                                  Branding Package
+                                </option>
+                                <option className="bg-[#0a1428]">
+                                  Social Strategy
+                                </option>
                               </select>
                               <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
                                 <ArrowRight className="w-4 h-4 rotate-90" />
                               </div>
                             </div>
                           </div>
-                          <div className="space-y-2 animate-water-item" style={{ animationDelay: '380ms' }}>
-                            <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Project Brief</label>
+                          <div
+                            className="space-y-2 animate-water-item"
+                            style={{ animationDelay: "380ms" }}
+                          >
+                            <label className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                              Project Brief
+                            </label>
                             <textarea
                               required
                               rows={4}
                               value={formData.brief}
-                              onChange={(e) => setFormData({...formData, brief: e.target.value})}
-                              disabled={status === 'submitting'}
+                              onChange={(e) =>
+                                setFormData({
+                                  ...formData,
+                                  brief: e.target.value,
+                                })
+                              }
+                              disabled={status === "submitting"}
                               className="w-full contact-water-input min-h-[120px] border rounded-2xl px-5 py-4 text-[14px] text-white placeholder:text-slate-300/55 focus:outline-none transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                               placeholder="What do you need from our studio?"
                             ></textarea>
                           </div>
                           <button
                             type="submit"
-                            disabled={status === 'submitting'}
+                            disabled={status === "submitting"}
                             className={`${NAVBAR_CTA_BUTTON_FULL_WIDTH_CLASS} contact-water-submit relative overflow-hidden group shadow-2xl animate-water-item`}
-                            style={{ animationDelay: '460ms' }}
+                            style={{ animationDelay: "460ms" }}
                           >
-                            <span className="relative z-10">{status === 'submitting' ? 'Mailing to Studio...' : 'Mail Project to Inbox'}</span>
-                            {status === 'submitting' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+                            <span className="relative z-10">
+                              {status === "submitting"
+                                ? "Mailing to Studio..."
+                                : "Mail Project to Inbox"}
+                            </span>
+                            {status === "submitting" ? (
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                            ) : (
+                              <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            )}
                           </button>
                         </form>
                       </div>
@@ -2050,18 +2385,23 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };
 
-const ContactInfoItem: React.FC<{ icon: React.ReactNode; title: string; content: string }> = ({ icon, title, content }) => (
+const ContactInfoItem: React.FC<{
+  icon: React.ReactNode;
+  title: string;
+  content: string;
+}> = ({ icon, title, content }) => (
   <div className="flex items-start space-x-4 group">
     <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-violet-300 group-hover:bg-violet-500/10 group-hover:border-violet-500/20 transition-all duration-300 shadow-xl">
       {icon}
     </div>
     <div>
-      <h4 className="text-base font-bold text-white mb-0.5 tracking-tight group-hover:text-violet-300 transition-colors">{title}</h4>
+      <h4 className="text-base font-bold text-white mb-0.5 tracking-tight group-hover:text-violet-300 transition-colors">
+        {title}
+      </h4>
       <p className="text-gray-400 font-medium text-[14px]">{content}</p>
     </div>
   </div>
