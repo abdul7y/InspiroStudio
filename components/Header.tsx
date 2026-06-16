@@ -31,7 +31,7 @@ const Header: React.FC = () => {
     // a false positive: lazy-loaded content hasn't rendered yet so scrollHeight
     // is tiny, making pageBottomDistance ≤ 64 and hiding the header.
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
@@ -60,8 +60,8 @@ const Header: React.FC = () => {
         <nav
           className={`mt-4 rounded-[120px] border px-6 sm:px-8 lg:px-10 transition-all duration-300 ${
             scrolled
-              ? "border-white/[0.12] bg-black/55 py-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl"
-              : "border-white/[0.1] bg-black/40 py-4 backdrop-blur-xl"
+              ? "border-white/[0.12] bg-black/70 py-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-md"
+              : "border-white/[0.1] bg-black/60 py-4 backdrop-blur-md"
           }`}
         >
           <div className="grid grid-cols-[auto_auto] items-center gap-4 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
             isOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="mt-3 rounded-2xl border border-white/[0.12] bg-black/60 p-5 backdrop-blur-xl">
+          <div className="mt-3 rounded-2xl border border-white/[0.12] bg-black/80 p-5 backdrop-blur-md">
             <div className="flex flex-col gap-5">
               {NAV_LINKS.map((link) => {
                 const isActive = location.pathname === link.path;

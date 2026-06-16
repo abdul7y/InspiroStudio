@@ -164,11 +164,10 @@ body {
 .glass-card {
   background: linear-gradient(
     145deg,
-    rgba(13, 29, 56, 0.9) 0%,
-    rgba(6, 15, 30, 0.92) 52%,
-    rgba(3, 8, 18, 0.95) 100%
+    rgba(13, 29, 56, 0.96) 0%,
+    rgba(6, 15, 30, 0.97) 52%,
+    rgba(3, 8, 18, 0.98) 100%
   );
-  backdrop-filter: blur(12px);
   border: 1px solid var(--line-soft);
   border-radius: 24px;
   box-shadow: 0 24px 80px rgba(1, 8, 22, 0.55);
@@ -186,7 +185,6 @@ body {
       transparent 30%
     ),
     var(--midnight-card-gradient);
-  backdrop-filter: blur(14px);
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.65);
 }
 
@@ -350,6 +348,7 @@ body {
 .tools-marquee {
   overflow: hidden;
   position: relative;
+  contain: paint;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -398,7 +397,7 @@ body {
   width: 104px;
   height: 104px;
   border-radius: 22px;
-  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  background: rgba(18, 8, 31, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
   flex-direction: column;
@@ -406,40 +405,22 @@ body {
   justify-content: center;
   gap: 8px;
   flex-shrink: 0;
-  backdrop-filter: blur(8px);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.35s ease, box-shadow 0.35s ease;
   cursor: default;
   position: relative;
-}
-
-/* Glow ring */
-.tool-cube::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 24px;
-  background: inherit;
-  opacity: 0;
-  filter: blur(14px);
-  z-index: -1;
-  transition: opacity 0.4s ease;
 }
 
 .tool-cube:hover {
   border-color: rgba(167, 139, 250, 0.35);
   box-shadow:
     0 16px 48px rgba(0, 0, 0, 0.45),
-    0 0 36px rgba(167, 139, 250, 0.2),
+    0 0 28px rgba(167, 139, 250, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
   transform: translateY(-8px) scale(1.06);
-}
-
-.tool-cube:hover::before {
-  opacity: 1;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.35), transparent 70%);
 }
 
 .tool-cube img {
@@ -557,13 +538,12 @@ body {
 .contact-water-input {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.04) 100%
+    rgba(20, 10, 35, 0.95) 0%,
+    rgba(10, 5, 20, 0.98) 100%
   );
   border-color: rgba(148, 163, 184, 0.3);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 8px 28px rgba(2, 6, 23, 0.28);
-  backdrop-filter: blur(7px);
   transition: border-color 0.25s ease, box-shadow 0.25s ease,
     background 0.25s ease, transform 0.25s ease;
 }
@@ -639,8 +619,7 @@ body {
   border-radius: 999px;
   border: 1.8px solid rgba(255, 255, 255, 0.92);
   background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 24px rgba(167, 139, 250, 0.28);
-  mix-blend-mode: difference;
+  box-shadow: 0 0 18px rgba(167, 139, 250, 0.22);
   opacity: 0.9;
   transition: width 0.18s ease, height 0.18s ease, opacity 0.18s ease,
     background 0.18s ease, border-color 0.18s ease;

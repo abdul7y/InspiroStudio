@@ -41,17 +41,25 @@ const CustomCursor: React.FC = () => {
     let ringX = mouseX;
     let ringY = mouseY;
     let rafId = 0;
+    let isAnimating = false;
 
     const animate = () => {
-      ringX += (mouseX - ringX) * 0.16;
-      ringY += (mouseY - ringY) * 0.16;
+      const dx = mouseX - ringX;
+      const dy = mouseY - ringY;
+      ringX += dx * 0.16;
+      ringY += dy * 0.16;
 
       if (outerRef.current) {
         outerRef.current.style.transform = `translate3d(${ringX - 17}px, ${ringY - 17}px, 0)`;
       }
-
       if (innerRef.current) {
         innerRef.current.style.transform = `translate3d(${mouseX - 3}px, ${mouseY - 3}px, 0)`;
+      }
+
+      // Stop the loop once the ring has converged (within 0.5px)
+      if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) {
+        isAnimating = false;
+        return;
       }
 
       rafId = window.requestAnimationFrame(animate);
@@ -60,6 +68,11 @@ const CustomCursor: React.FC = () => {
     const handleMouseMove = (event: MouseEvent) => {
       mouseX = event.clientX;
       mouseY = event.clientY;
+      // Only start a new RAF loop if one isn't already running
+      if (!isAnimating) {
+        isAnimating = true;
+        rafId = window.requestAnimationFrame(animate);
+      }
     };
 
     const handleMouseDown = () => {
@@ -85,7 +98,6 @@ const CustomCursor: React.FC = () => {
     window.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('mouseleave', handleMouseLeave);
     window.addEventListener('mouseenter', handleMouseEnter);
-    rafId = window.requestAnimationFrame(animate);
 
     return () => {
       window.cancelAnimationFrame(rafId);

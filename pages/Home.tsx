@@ -711,7 +711,7 @@ const Home: React.FC = () => {
       <section className="relative overflow-hidden bg-black">
         {/* ambient glow */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-blue-600/20 blur-[140px]" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-blue-600/20 blur-[80px] transform-gpu" />
         </div>
 
         <div className="relative w-full bg-black overflow-hidden py-20 px-10">
@@ -1238,7 +1238,7 @@ const Home: React.FC = () => {
         <div className="relative w-full bg-black overflow-hidden py-16 md:py-28 lg:py-40">
           {/* background glow */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-violet-600/10 blur-[120px] transform-gpu" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-violet-600/10 blur-[60px] transform-gpu" />
           </div>
 
           <div className="relative mb-16">
@@ -1469,7 +1469,7 @@ const Home: React.FC = () => {
         <div className="relative w-full bg-black overflow-hidden py-16 md:py-28 lg:py-40">
           {/* background glow */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-violet-600/10 blur-[120px] transform-gpu" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-64 bg-violet-600/10 blur-[60px] transform-gpu" />
           </div>
 
           <div className="relative mb-20">
@@ -1820,7 +1820,7 @@ const Home: React.FC = () => {
       <section className="relative overflow-hidden bg-black">
         {/* ambient background */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-violet-600/20 blur-[140px] transform-gpu" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-72 bg-violet-600/20 blur-[80px] transform-gpu" />
         </div>
 
         <div className="relative w-full bg-black overflow-hidden py-16 px-6 md:px-10">

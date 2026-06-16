@@ -16,9 +16,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         format: 'iife',
-        manualChunks: undefined, // must disable this when using iife format
-      }
-    }
+        manualChunks: undefined,
+      },
+    },
   },
   resolve: {
     alias: {
